@@ -9,13 +9,12 @@ import CardInfo from '../../style/mui/components/CardInfo'
 function Services() {
     return (
         <Box className='rotating-border' sx={{
-            background: "linear-gradient(135deg, #ffcc80, #ff9800, #f57c00)",
-
+            background: "linear-gradient(135deg, #ffcc80, #ff9800, #f57c00) !important",
         }}>
             <Section>
                 <FlexBetween>
                     <FlexColumn sx={{ flexGrow: 1 }}>
-                        <Typography variant='h2' color={'grey.0'}> كيف ستفيدك <Typography variant='subBanner'>  منصه الريادة</Typography> ؟</Typography>
+                        <Typography  color={'grey.0'}> كيف ستفيدك <Typography variant='subBanner'>منصه الريادة</Typography> ؟</Typography>
                         <Box sx={{ p: '16px', maxWidth: '450px' }}>
                             <Typography variant='body1'  color={'grey.0'}>
                                 منصه الريادة تقدم لك مجموعات من الكورسات المختلفه التي تناسب اهتماماتك واهدافك التعليميه من خلال مدرسين وخبراء متخصصون فى شرح المناهج بطرق مبسطه وسهله.
