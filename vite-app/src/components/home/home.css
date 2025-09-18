@@ -1,0 +1,160 @@
+.starts-bg {
+    /* background:  url(https://png.pngtree.com/png-clipart/20211031/original/pngtree-neon-geometric-memphis-pattern-png-image_6891980.png); */
+    /* animation: stars 205s linear alternate; */
+    /* min-height: 100vh; */
+    /* background-position: center; */
+}
+
+@keyframes stars {
+    0% {
+        background-position: 0 0
+    }
+
+    100% {
+        background-position: 0 100%
+    }
+}
+
+#earth {
+    background: url(/assets/earth.webp);
+    background-size: cover;
+    border: 1px solid #000;
+    border-radius: 50%;
+    width: 100%;
+    height: 70px;
+    animation: movimiento 5s alternate 0s infinite;
+    /* box-shadow: 0 0 25px RGBA(255, 255, 255, 0.10),
+        -8px -8px 15px #000 inset,
+        2px 2px 25px #000 inset,
+        -45px -45px 25px RGBA(0, 0, 0, 0.5) inset,
+        25px 25px 45px RGBA(0, 0, 0, 0.45) inset; */
+    transform: rotateX(6deg) rotateY(6deg) rotateZ(6deg);
+}
+
+@keyframes movimiento {
+    0% {
+        background-position: 0 0
+    }
+
+    100% {
+        background-position: 355px 0
+    }
+}
+
+
+.cell-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    animation: divide 10s infinite ease-in-out;
+    pointer-events: none;
+  }
+
+.pos-absolute {
+    position: absolute;
+}
+
+  .reverse {
+    animation-direction: reverse !important;
+  }
+
+  .cell {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #a0e7e5 30%, #70c1b3 100%);
+    border-radius: 50%;
+    position: absolute;
+    transition: transform 1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px #4cc9f0;
+    pointer-events: none;
+
+  }
+
+  .nucleus {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at center, #ffafcc 30%, #ff5d8f 100%);
+    border-radius: 50%;
+    /* position: absolute; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+
+  }
+  
+  .chromosome {
+    width: 25px;
+    height: auto;
+    animation: spin 5s linear infinite;
+    pointer-events: none;
+
+  }
+
+  .organelle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    animation: organelle-move 10s infinite ease-in-out;
+    pointer-events: none;
+  }
+
+  .organelle:nth-child(1) { top: 20%; left: 25%; }
+  .organelle:nth-child(2) { top: 70%; left: 30%; }
+  .organelle:nth-child(3) { top: 40%; left: 70%; }
+
+  @keyframes divide {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scaleX(1.2);
+    }
+    50% {
+      transform: translateX(-50%) scaleX(0.8);
+    }
+    /* 55% {
+      opacity: 1;
+    }
+    60% {
+      opacity: 0;
+    } */
+    65% {
+      /* opacity: 1; */
+      transform: translateX(50%) scaleX(0.8);
+    }
+    75% {
+      transform: scaleX(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes nucleus-anim {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(60px);
+    }
+  }
+
+  @keyframes organelle-move {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(10px, -10px);
+    }
+    50% {
+      transform: translate(-10px, 10px);
+    }
+    75% {
+      transform: translate(5px, -5px);
+    }
+  }
