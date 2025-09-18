@@ -10,8 +10,8 @@ function Teachers() {
     const { data, isLoading } = useGetTeachersQuery()
     const theme = useTheme()
     const teachers = [
-        { name: 'احمد عصام السيد', descritpion: 'lorem ipsum dolar set imt', img: './assets/bill.png', id: 1 },
-        { name: 'احمد عصام السيد', descritpion: 'lorem ipsum dolar set imt', img: './assets/bill.png', id: 2 },
+        { name: 'احمد عصام السيد', descritpion: 'lorem ipsum dolar set imt', img: './assets/bill.webp', id: 1 },
+        { name: 'احمد عصام السيد', descritpion: 'lorem ipsum dolar set imt', img: './assets/bill.webp', id: 2 },
 
     ]
     //https://codesandbox.io/p/sandbox/infinite-marquee-with-framer-motion-wheel-scroll-d78he6?file=%2Fsrc%2FApp.tsx
@@ -25,7 +25,7 @@ function Teachers() {
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%" }}>
                         <path fill="#EFA14D" d="M57,-18.7C65.5,7.6,58.3,38.9,41.1,49.9C23.8,60.8,-3.4,51.4,-26,35.1C-48.7,18.8,-66.8,-4.4,-61.7,-26C-56.6,-47.7,-28.3,-67.7,-2,-67.1C24.3,-66.4,48.5,-45,57,-18.7Z" transform="translate(100 100)" />
                     </svg>
-                    <img src={'./assets/bill.png'} style={{
+                    <img src={'./assets/bill.webp'} style={{
                         transition: '.3s ease all', maxWidth: '200px', objectFit: 'contain',
                         marginBottom: '16px', '--scale': 1,
                         position: "absolute", top: 0, left: '50%', transformOrigin: 'bottom',
@@ -43,7 +43,7 @@ function Teachers() {
                             <path fill="#EFA14D" d="M57,-18.7C65.5,7.6,58.3,38.9,41.1,49.9C23.8,60.8,-3.4,51.4,-26,35.1C-48.7,18.8,-66.8,-4.4,-61.7,-26C-56.6,-47.7,-28.3,-67.7,-2,-67.1C24.3,-66.4,48.5,-45,57,-18.7Z" transform="translate(100 100)" />
                         </svg>
                     </Paper>
-                    <img src={'./assets/bill.png'} style={{
+                    <img src={'./assets/bill.webp'} style={{
                         transition: '.3s ease all',
                         marginBottom: '16px', '--scale': 1,
                         position: "absolute", bottom: 0, left: '50%', transformOrigin: 'bottom',

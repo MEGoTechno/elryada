@@ -35,7 +35,7 @@ function Hero() {
                 </Grid>
             </FlexColumn>
 
-            <img src="./assets/hero.png" style={{
+            <img src="./assets/hero.webp" style={{
                 maxWidth: '550px', flexShrink: 1
             }} />
         </FlexRow>

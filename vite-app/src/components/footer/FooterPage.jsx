@@ -19,7 +19,7 @@ function FooterPage() {
         <Section sx={{  bgcolor: "rgb(18, 20, 27)" }}>
             <FlexColumn gap={'12px'}>
 
-                <Image img={'/assets/elryada-logo.png'} maxWidth='160px' ratio={'auto'} />
+                <Image img={'/assets/logo.webp'} maxWidth='160px' ratio={'auto'} />
                 <Typography variant='h5' sx={{ color: 'grey.0', fontFamily: '"Changa", sans-serif' }}>
                     {lang.LOGO}
                     {/* Menassty */}

@@ -54,7 +54,7 @@ function Navbar({ setSidebar, isOpenedSidebar, isMobileScreen }) {
 
                 <FlexRow flexGrow={1}>
                     <Button component={Link} to={'/'}>
-                        <Image img={'/assets/elryada-logo.png'} borderRadius={0} maxWidth='60px' ratio={'auto'} />
+                        <Image img={'/assets/logo.webp'} borderRadius={0} maxWidth='60px' ratio={'auto'} />
                         {/* <Image img={'/assets/Menassty-nobg.png'} borderRadius={0} maxWidth='60px' ratio={'auto'} /> */}
                         {/* <Avatar src='/assets/logo.webp' sx={{ bgcolor: "primary.main", mr: 1, color: 'grey.0' }}>M</Avatar> */}
                         {/* {((!isMobileScreen || !user) && !isOpenedSidebar) && (
