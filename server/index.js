@@ -31,7 +31,7 @@ app.set('trust proxy', 1);
 const trustedIps = ["102.189.10.217", '156.197.75.241'] //, '::ffff:192.168.1.16' , '::ffff:192.168.1.16'
 
 process.env.NODE_ENV === 'development' && trustedIps.push('::ffff:192.168.1.16')
- 
+
 const limiter = rateLimit({
     windowMs: 1 * 60 * 1000, // 2 minutes
     limit: 400, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
@@ -74,7 +74,7 @@ app.use('/api/get-ip', (req, res, next) => {
         // real: req.headers['x-real-ip'],
     })
 })
-const origin = ['https://elryada.com'] //'https://elbeltagy-front.vercel.app',
+const origin = ['https://elryada.com', 'https://elryada.api.mrelbeltagy.com'] //'https://elbeltagy-front.vercel.app',
 process.env.NODE_ENV === 'development' && origin.push(...['http://192.168.1.16:3000', 'http://localhost:3000', 'http://192.168.1.13:3000'])
 
 app.use(cors(
