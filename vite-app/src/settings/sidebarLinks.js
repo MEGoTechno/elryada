@@ -25,6 +25,12 @@ import { TbWorldQuestion } from "react-icons/tb";
 import { RiSecurePaymentFill } from "react-icons/ri";
 import { PiInvoiceBold } from "react-icons/pi";
 import { VscFeedback } from "react-icons/vsc";
+import { IoSchoolSharp } from "react-icons/io5";
+import { GrInsecure } from "react-icons/gr";
+import { GiTeacher } from "react-icons/gi";
+
+
+
 import { lazy } from "react";
 import UserProfilePage from '../pages/user/UserProfilePage'
 
@@ -110,11 +116,11 @@ export const sidebarLinks = [
         // element: <UnitsPage /> Down
     }, {
         name: "بنك الاسئله", icon: <CiBank size="22px" />, to: "/questions_bank",
-        allowedTo: [user_roles.STUDENT, user_roles.ONLINE], isDisabled: false, info: { title: 'جديد', i: 2 },
+        allowedTo: [user_roles.STUDENT, user_roles.ONLINE], isDisabled: false, 
         element: <QuestionsBankPage />
     }, {
         name: "ايجاباتك", icon: <MdQuestionAnswer size="22px" />, to: "/answers",
-        allowedTo: [user_roles.STUDENT, user_roles.ONLINE], isDisabled: false, info: { title: 'جديد', i: 1 },
+        allowedTo: [user_roles.STUDENT, user_roles.ONLINE], isDisabled: false, 
         element: <GetUserAnswers />
     }, {
         name: "مجتمع الطلاب", icon: <TbWorldQuestion size="22px" />,
@@ -135,10 +141,10 @@ export const sidebarLinks = [
         to: "/management/sessions", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
         permissions: [''], element: <GetSessionsPage />, id: 'p_sessions'
     }, {
-        name: "اداره الصلاحيات", icon: <FaUsers size="22px" />, to: "/management/users/permissions", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
+        name: "اداره الصلاحيات", icon: <GrInsecure size="22px" />, to: "/management/users/permissions", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
         element: <PermissionsPage />, id: 'p_permissions'
     }, {
-        name: "عرض المدرسين", icon: <FaUsers size="22px" />, to: "/management/users/teachers", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
+        name: "عرض المدرسين", icon: <GiTeacher size="22px" />, to: "/management/users/teachers", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
         element: <TeachersPage />, id: 'p_teachers'
     }, {
         name: "عرض الطلاب", icon: <FaUsers size="22px" />, to: "/management/users", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
@@ -149,7 +155,7 @@ export const sidebarLinks = [
     }, {
         name: "إدارة المحتوى", icon: <SiGooglecampaignmanager360 size="22px" />, allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER]
     }, {
-        name: "إدارة الصفوف", icon: <FaSchool size="22px" />, to: "/management/grades", allowedTo: [user_roles.ADMIN],//user_roles.SUBADMIN, user_roles.TEACHER
+        name: "إدارة الصفوف", icon: <IoSchoolSharp size="22px" />, to: "/management/grades", allowedTo: [user_roles.ADMIN],//user_roles.SUBADMIN, user_roles.TEACHER
         element: <GradesManage />, id: 'p_gradesManage'
     },{
         name: "إدارة الكورسات", icon: <FaSchool size="22px" />, to: "/management/courses", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
@@ -158,11 +164,11 @@ export const sidebarLinks = [
         name: "عرض الاشتراكات", icon: <MdOutlineSubscriptions size="22px" />, to: '/statistics/courses', allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
         element: <GetSubscriptionsAll />, id: 'p_subscriptions', perms: coursesPerms(null, 'subscriptions') //'/management/subscriptions'
     }, {
-        name: "إدارة الاسئله", icon: <PiQuestionFill size="22px" />, to: "/management/questions", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], isDisabled: false, info: { title: 'جديد', i: 1 },
+        name: "إدارة الاسئله", icon: <PiQuestionFill size="22px" />, to: "/management/questions", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], isDisabled: false, 
         element: <GetQuestionsPage />, id: 'p_questions',
         perms: [...questionsPerms('manageQuestions'), ...tagsPerms('manageTags')]
     }, {
-        name: "احصائيات الاختبارات", icon: <MdQuestionAnswer size="22px" />, to: "/management/attempts", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], isDisabled: false, info: { title: 'جديد', i: 1 },
+        name: "احصائيات الاختبارات", icon: <MdQuestionAnswer size="22px" />, to: "/management/attempts", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], isDisabled: false, 
         element: <AttemptsPage />, id: 'p_attempts',
         //  perms: chapterPerms(null, 'lecturesStatistics')
     }, {
@@ -191,19 +197,19 @@ export const sidebarLinks = [
     }, {
         name: "المدفوعات", icon: <SignupIcon size="22px" />, allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], // info: { title: 'تحت الانشاء', i: 2 }
     }, {
-        name: "وسائل الدفع", icon: <RiSecurePaymentFill size="22px" />, to: "/management/payments", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], isDisabled: false, info: { title: "جديد", i: 1 },
+        name: "وسائل الدفع", icon: <RiSecurePaymentFill size="22px" />, to: "/management/payments", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], isDisabled: false,
         element: <ManagePaymentsPage />, id: 'p_payments'
     }, {
-        name: "الفواتير", icon: <PiInvoiceBold size="22px" />, to: "/management/invoices", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], isDisabled: false, info: { title: "جديد", i: 1 },
+        name: "الفواتير", icon: <PiInvoiceBold size="22px" />, to: "/management/invoices", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], isDisabled: false,
         element: <InvoicesPage />, id: 'p_invoices'
     }, {
         name: 'المحفظه و المدفوعات', icon: <PiInvoiceBold size="22px" />, to: "/payments", allowedTo: [user_roles.ONLINE, user_roles.STUDENT],
         element: <PaymentsPage />
     }, {
-        name: "اقتراحات/شكاوي", icon: <VscFeedback size="22px" />, to: "/management/feedBacks", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], info: { title: "جديد", i: 1 },
+        name: "اقتراحات/شكاوي", icon: <VscFeedback size="22px" />, to: "/management/feedBacks", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
         element: <FeedBacks isAdmin={true} />, id: 'p_feedBacks'
     }, {
-        name: "اقتراح/شكوي", icon: <VscFeedback size="22px" />, to: "/feedBacks", allowedTo: [user_roles.ONLINE, user_roles.STUDENT], info: { title: "جديد", i: 1 },
+        name: "اقتراح/شكوي", icon: <VscFeedback size="22px" />, to: "/feedBacks", allowedTo: [user_roles.ONLINE, user_roles.STUDENT], 
         element: <FeedBacks />
     },
 ]

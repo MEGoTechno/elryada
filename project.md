@@ -42,17 +42,23 @@ tracking effect as a middleware
         1- UserCourses Tables => show chapters index and modify
         3- Logo and colors and Home Page && grade id and index routing
         Teacher Page
+        --whatsapp numbers && validations
+        2- when add Link => give notification
+        Some work on teachers
         2- CreatedBy show && Permissions namings && Tracking middleware => CUD
         4- make it Alive
         5- Fix user.lectures => cancel it
         6- find Teacher
+
 
 ui/ux => Home, userHome, LectureCard ...
 
 ['AddCourses'] "courses array in LectureModel" to Lecture
 ["Chapters"] chapters Idea
 ['DeleteQuestion'] 
-
+['ReportsPage'] ==> need more customizations
+['useGet'] => without lazy
+overView
 
 ## ForgetPassword.jsx ['106'] => props.resetForm() //+walid,
 ## in createQuestions =>    const questions = await saveFiles(values) and add req.body.questions in questionController //+walid

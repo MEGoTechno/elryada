@@ -4,7 +4,7 @@ import { Box, Typography, useTheme } from '@mui/material'
 
 
 
-function CardInfo({ icon, caption, desc }) {
+function CardInfo({ icon, caption, desc, sx = {} }) {
 
     const theme = useTheme()
 
@@ -13,7 +13,7 @@ function CardInfo({ icon, caption, desc }) {
             bgcolor: 'white',
             border: '1px solid #ddd',
             borderRadius: '8px',
-            padding: '16px 22px', boxShadow: theme.shadows[3], mt: '10px', color: 'grey.1000', width: '150px', 
+            padding: '16px 22px', boxShadow: theme.shadows[3], mt: '10px', color: 'grey.1000', width: '150px', ...sx
         }}>
             {/* <Box sx={{
                 background: 'linear-gradient(to right, var(--palette-success-main) 0%, rgba(var(--palette-success-mainChannel) / 0) 100%)'

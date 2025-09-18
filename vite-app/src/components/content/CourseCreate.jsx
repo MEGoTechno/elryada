@@ -6,7 +6,6 @@ import TitleWithDividers from '../ui/TitleWithDividers'
 import { useCreateCourseMutation } from '../../toolkit/apis/coursesApi'
 import { lang } from '../../settings/constants/arlang'
 import { VscSymbolBoolean } from 'react-icons/vsc'
-import { AiFillPoundCircle } from 'react-icons/ai'
 
 import * as Yup from "yup"
 import { FlexRow } from '../../style/mui/styled/Flexbox'
@@ -14,6 +13,7 @@ import { Box, FormControlLabel, Switch } from '@mui/material'
 import MakeInput from '../../tools/makeform/MakeInput'
 import { MdOutlineDriveFileRenameOutline } from 'react-icons/md'
 import dayjs from 'dayjs'
+import { RiyalIcon } from '../icons/Riyal'
 
 const PreDiscount = ({ props, value, input, inputName }) => {
 
@@ -86,7 +86,7 @@ function CourseCreate({ unit, grade, setCourses }) {
         }, {
             name: 'price',
             label: lang.PRICE,
-            icon: <AiFillPoundCircle />,
+            icon: <RiyalIcon />,
             width: "40%",
             validation: Yup.number()
                 .min(0, 'يجب ان يكون 0 او اكبر')
@@ -94,7 +94,7 @@ function CourseCreate({ unit, grade, setCourses }) {
         }, {
             name: 'preDiscount',
             label: 'السعر قبل الخصم',
-            icon: <AiFillPoundCircle />,
+            icon: <RiyalIcon />,
             width: "100%",
             component: PreDiscount,
             validation: Yup.number()

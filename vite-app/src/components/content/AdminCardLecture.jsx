@@ -122,7 +122,7 @@ function AdminCardLecture({ lecture, i, setLectures, courseId, chapter }) {
           <>
             <InfoText label={'الوصف'} description={lecture.description} />
             <FlexRow>
-              <InfoText label={'سعر المجاضره'} description={lecture.price + ' ' + 'ريال'} />
+              <InfoText label={'سعر المحاضره'} description={lecture.price + ' ' + 'ريال'} />
               <BtnModal
                 disabled={!canUpdate}
                 btn={<TabInfo sx={{ cursor: 'pointer', margin: '0 8px' }} count={'اضغط لتعديل السعر'} i={2} />}

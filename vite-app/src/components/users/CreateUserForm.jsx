@@ -20,6 +20,7 @@ import { user_roles } from '../../settings/constants/roles';
 
 import * as Yup from "yup"
 import useGrades from '../../hooks/useGrades';
+import { validatePhone } from '../../tools/validations/validatePhone';
 
 function CreateUserForm({ setReset }) {
 
@@ -58,14 +59,13 @@ function CreateUserForm({ setReset }) {
       label: lang.PHONE,
       width: { xs: '100%', md: '49%' },
       icon: <FaSquarePhoneFlip color='green' />,
-      validation: Yup.string().required(lang.REQUERIED).matches(/^[0-9]{11}$/, "يجب ان يكون 11 رقم")
-
+      validation: validatePhone
     }, {
       name: 'familyPhone',
       label: lang.FAMILY_PHONE,
       width: { xs: '100%', md: '49%' },
       icon: <PiPhoneDisconnectFill color='green' />,
-      validation: Yup.string().required(lang.REQUERIED).matches(/^[0-9]{11}$/, "يجب ان يكون 11 رقم")
+      validation:validatePhone
         .notOneOf([Yup.ref('phone'), null], 'مينفعش هاتف ولى الامر يبقا رقمك'),
     }, {
       name: 'grade',

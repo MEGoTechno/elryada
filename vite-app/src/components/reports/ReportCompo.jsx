@@ -8,8 +8,8 @@ import { user_roles } from '../../settings/constants/roles'
 import * as yup from 'yup'
 import useGrades from '../../hooks/useGrades'
 const ReportCompo = ({ course, excludedUsers, isExcluded }) => {
-    const grades = useGrades()
-    
+    const { grades } = useGrades()
+ 
     const inputs = [
         {
             name: 'title',
@@ -29,7 +29,7 @@ const ReportCompo = ({ course, excludedUsers, isExcluded }) => {
             name: 'role',
             label: lang.ROLE,
             type: 'select',
-            options: [user_roles.ONLINE, user_roles.STUDENT],
+            options: [user_roles.ONLINE, user_roles.TEACHER],
         }, {
             name: 'isActive',
             label: 'ارسال للطلاب الفعالين فقط',

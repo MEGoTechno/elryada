@@ -1,10 +1,33 @@
 :root {
     --main-userName: '';
+    --swiper-navigation-color: #ff5722;
+    /* Changes arrow color */
+    --swiper-pagination-color: #ff5722;
+
 }
 
-html{
+/* Default: grab */
+.swiper {
+    cursor: grab;
+}
+
+/* When user clicks/holds: grabbing */
+.swiper:active {
+    cursor: grabbing;
+}
+
+.swiper-pagination {
+    position: relative !important;
+    margin-top: 15px;
+    /* Space below the slides */
+    top: auto !important;
+    bottom: auto !important;
+}
+
+html {
     scroll-behavior: smooth !important;
 }
+
 .test {
     animation: name duration timing-function delay iteration-count direction fill-mode;
 }

@@ -114,7 +114,7 @@ function UserHome() {
     return (
         <Section sx={{ minHeight: '86vh' }}>
             <Typography variant='subBanner' >
-                مرحبًا :  {user.name}
+                أهلا :  {user.name}
             </Typography>
             <Separator />
             <UserHeader user={user} flexDirection={'row'} variant={'circle'} />

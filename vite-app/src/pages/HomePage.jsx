@@ -36,8 +36,9 @@ function HomePage() {
             <LatestCourses />
             {/* <Teachers /> */}
             {/* <AboutUS /> */}
-            {/* <Services /> */}
             <Grades />
+            <br />
+            <Services />
         </div>
     )
 }

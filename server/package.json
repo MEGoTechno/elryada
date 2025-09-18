@@ -1,7 +1,7 @@
 {
   "name": "education",
   "version": "1.0.0",
-  "description": "for education services",
+  "description": "Education services",
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
@@ -10,7 +10,7 @@
     "start": "node index",
     "client": "npm start --prefix ../app",
     "myapp": "concurrently \"npm run server\" \"npm run client\"",
-    "platform": "concurrently \"npm run server\" \"npm start --prefix ../elshamy\"",
+    "platform": "concurrently \"npm run server\" \"npm start --prefix ../elryada\"",
     "seed:import": "node backend/model/seed",
     "seed:delte": "node backend/model/seed -d"
   },

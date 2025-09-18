@@ -1,9 +1,25 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode');
-const qrcodeTerminal = require("qrcode-terminal")
+// const qrcodeTerminal = require("qrcode-terminal")
+const fs = require('fs')
 
 const createError = require('./createError');
 const { FAILED } = require('./statusTexts');
+
+
+function formatWhatsAppNumber(number, countryCode = '966') {
+    // Remove any leading zeros or '+' signs
+    let cleanNumber = number.toString().replace(/^0+/, '').replace(/^\+/, '');
+
+    // If number already starts with country code, keep it as is
+    if (cleanNumber.startsWith(countryCode)) {
+        return `${cleanNumber}@c.us`;
+    }
+
+    // Otherwise, prepend the country code
+    return `${countryCode}${cleanNumber}@c.us`;
+}
+
 
 class WhatsappService {
     constructor() {
@@ -18,20 +34,21 @@ class WhatsappService {
         this.qrCodes = new Map();
         this.clients = new Map();
         this.clientStates = new Map();
-
-        // this.initializeSessionDirectory();
+        this.SESSION_DIR = 'whatsapp-session'
+        
+        this.initializeSessionDirectory();
     }
 
-    // initializeSessionDirectory() {
-    //     try {
-    //         if (!fs.existsSync(this.SESSION_DIR)) {
-    //             fs.mkdirSync(this.SESSION_DIR, { recursive: true });
-    //         }
-    //     } catch (error) {
-    //         this.logger.error(`Failed to create session directory: ${error.message}`);
-    //         throw new Error('Service initialization failed');
-    //     }
-    // }
+    initializeSessionDirectory() {
+        try {
+            if (!fs.existsSync(this.SESSION_DIR)) {
+                fs.mkdirSync(this.SESSION_DIR, { recursive: true });
+            }
+        } catch (error) {
+            this.logger.error(`Failed to create session directory: ${error.message}`);
+            throw new Error('Service initialization failed');
+        }
+    }
 
     async initialize(userId) {
         if (!userId) {
@@ -58,7 +75,7 @@ class WhatsappService {
         return new Client({
             authStrategy: new LocalAuth({
                 clientId: userId,
-                // dataPath: this.SESSION_DIR,
+                dataPath: this.SESSION_DIR,
             }),
             puppeteer: {
                 args: ['--no-sandbox', '--disable-setuid-sandbox'],
@@ -145,7 +162,7 @@ class WhatsappService {
 
     async sendMessage(userId, to, message) {
         try {
-            const chatId = "2" + to + '@c.us'
+            const chatId = formatWhatsAppNumber(to)
             const client = this.clients.get(userId)
             // console.log(client)
             const response = await client.sendMessage(chatId, message);
@@ -158,7 +175,7 @@ class WhatsappService {
 
     async sendFile(userId, to, filePath) {
         try {
-            const chatId = "2" + to + '@c.us'
+            const chatId = formatWhatsAppNumber(to)
             const client = this.clients.get(userId)
 
             const media = MessageMedia.fromFilePath(filePath);

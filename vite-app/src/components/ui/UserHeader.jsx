@@ -41,10 +41,10 @@ export default function UserHeader({ children, user, flexDirection = 'row', vari
                         m: '6px',
                         height: "200px",
                         width: "200px",
-                        bgcolor: theme.palette.primary[400],
+                        bgcolor: theme.palette.mode === 'dark' ? theme.palette.grey[0] : theme.palette.primary[400],
                         fontWeight: 800,
                         fontSize: '50px',
-                        color: theme.palette.grey[0],
+                        color: theme.palette.mode === 'dark' ? theme.palette.primary[400] : theme.palette.grey[0],
                     }}
                     variant={variant || 'square'} />
                 {(!user?.avatar?.url && !isAll) && (

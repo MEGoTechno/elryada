@@ -15,6 +15,7 @@ import MakeForm from "../../tools/makeform/MakeForm"
 import { useCreateUserMutation } from "../../toolkit/apis/usersApi"
 import usePostData from "../../hooks/usePostData"
 import fileValidation from "../../tools/validations/imageValidation"
+import { validatePhone } from "../../tools/validations/validatePhone"
 function CreateTeacher({ setReset }) {
 
     const inputs = [
@@ -27,7 +28,7 @@ function CreateTeacher({ setReset }) {
             name: 'name',
             label: lang.NAME,
             width: { xs: '100%', md: '49%' },
-            icon: <MdOutlineDriveFileRenameOutline color='green' />,
+            icon: <MdOutlineDriveFileRenameOutline color='orange' />,
             validation: Yup.string().required(lang.REQUERIED)
                 .matches(/^\s*(\S+\s+){2}\S+\s*$/, "يجب ان يكون 3 كلمات"),
         }, {
@@ -35,12 +36,12 @@ function CreateTeacher({ setReset }) {
             label: 'وصف المدرس',
             width: { xs: '100%', md: '49%' },
             rows: 4, variant: 'filled',
-            icon: <MdOutlineDriveFileRenameOutline color='green' />,
+            icon: <MdOutlineDriveFileRenameOutline color='orange' />,
         }, {
             name: 'userName',
             label: lang.USERNAME,
             width: { xs: '100%', md: '49%' },
-            icon: <MdOutlineDriveFileRenameOutline color='green' />,
+            icon: <MdOutlineDriveFileRenameOutline color='orange' />,
             validation: Yup.string()
                 .required(lang.REQUERIED)
                 .matches(/^[a-z0-9@.]+$/, "Only lowercase letters, numbers, '@', and '.' are allowed")
@@ -51,21 +52,21 @@ function CreateTeacher({ setReset }) {
             label: lang.EMAIL,
             width: { xs: '100%', md: '49%' },
             type: 'email',
-            icon: <MdMarkEmailRead color='green' />,
+            icon: <MdMarkEmailRead color='orange' />,
             validation: Yup.string().required(lang.REQUERIED).email('يجب ادخال ايميل صالح')
         }, {
             name: 'phone',
             label: lang.PHONE,
             width: { xs: '100%', md: '49%' },
-            icon: <FaSquarePhoneFlip color='green' />,
-            validation: Yup.string().required(lang.REQUERIED).matches(/^[0-9]{11}$/, "يجب ان يكون 11 رقم")
+            icon: <FaSquarePhoneFlip color='orange' />,
+            validation:validatePhone
 
         }, {
             name: 'government',
             label: lang.GOVERNMENT,
             type: 'select',
             options: makeArrWithValueAndLabel(governments, { value: 'region_id', label: 'name_ar' }),
-            icon: <RiGovernmentFill color='green' />,
+            icon: <RiGovernmentFill color='orange' />,
             value: 1,
             validation: Yup.string().required(lang.REQUERIED)
         }, {
@@ -76,13 +77,13 @@ function CreateTeacher({ setReset }) {
         }, {
             name: 'password',
             label: lang.PASSWORD,
-            icon: <TbPasswordUser color='green' />,
+            icon: <TbPasswordUser color='orange' />,
             validation: Yup.string().required("مطلوب").min(6, "يجب ان يكون اكثر من 6")
 
         }, {
             name: 'confirmPassword',
             label: lang.CONFIRM_PASSWORD,
-            icon: <TbPasswordUser color='green' />,
+            icon: <TbPasswordUser color='orange' />,
             validation: Yup.string().required("مطلوب")
                 .min(6, "يجب ان يكون اكثر من 6").oneOf([Yup.ref('password'), null], 'كلمة المرور غير متطابقه')
         },
@@ -114,6 +115,6 @@ export default CreateTeacher
 //     label: lang.GRADE,
 //     type: 'select',
 //     options: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
-//     icon: <IoSchool color='green' />,
+//     icon: <IoSchool color='orange' />,
 //     // validation: Yup.string().required(lang.REQUERIED)
 // },

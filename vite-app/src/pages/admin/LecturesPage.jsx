@@ -107,7 +107,7 @@ function LecturesPage() {
             width: 200,
             valueOptions: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
             renderCell: (params) => {
-                const grade = grades.find(({ index }) => index === params.row.grade)
+                const grade = grades.find(({ _id }) => _id === params.row.grade)
                 return (
                     <Typography>
                         {grade.name}

@@ -105,7 +105,8 @@ const coursesApi = apiSlice.injectEndpoints({
 })
 
 export const {
+    useGetCoursesQuery,
     useLazyGetCoursesQuery, useLazyGetOneCourseQuery, useGetOneCourseQuery, useCreateCourseMutation, useUpdateCourseMutation, useDeleteCourseMutation,
-    useSubscribeMutation, useLazyGetCourseLecturesAndCheckUserQuery, useLazyGetLectureAndCheckQuery,useGetLectureAndCheckQuery, usePassLectureMutation,
+    useSubscribeMutation, useLazyGetCourseLecturesAndCheckUserQuery, useLazyGetLectureAndCheckQuery, useGetLectureAndCheckQuery, usePassLectureMutation,
     useLazyGetExamQuery, useAddAttemptMutation, useLinkCourseMutation
 } = coursesApi

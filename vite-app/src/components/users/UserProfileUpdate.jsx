@@ -13,9 +13,10 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '../../toolkit/globalSlice';
 import { FaSquarePhoneFlip } from 'react-icons/fa6';
 import TitleWithDividers from '../ui/TitleWithDividers';
-import { green } from '@mui/material/colors';
+import { orange } from '@mui/material/colors';
 import UserChangePassword from './UserChangePassword';
 import { user_roles } from '../../settings/constants/roles';
+import { validatePhone } from '../../tools/validations/validatePhone';
 
 
 function UserProfileUpdate({ user, isAdmin = false, setUserAdmin, setReset }) {
@@ -51,19 +52,19 @@ function UserProfileUpdate({ user, isAdmin = false, setUserAdmin, setReset }) {
             label: lang.USERNAME,
             value: user.userName,
             disabled: !isAdmin && true,
-            icon: <VerifiedUserIcon sx={{ color: green[500] }} />
+            icon: <VerifiedUserIcon sx={{ color: orange[500] }} />
         }, {
             name: "name",
             label: lang.NAME,
             value: user.name,
-            icon: <AccountCircle sx={{ color: green[500] }} />,
+            icon: <AccountCircle sx={{ color: orange[500] }} />,
             width: { xs: '100%', md: '49%' },
             validation: Yup.string().required(lang.REQUERIED).matches(/^\s*(\S+\s+){2}\S+\s*$/, "يجب ان يكون 3 كلمات")
         }, {
             name: "email",
             label: lang.EMAIL,
             value: user.email,
-            icon: <AttachEmailIcon sx={{ color: green[500] }} />,
+            icon: <AttachEmailIcon sx={{ color: orange[500] }} />,
             width: { xs: '100%', md: '49%' },
             validation: Yup.string().required(lang.REQUERIED).email('يجب ادخال ايميل صالح'),
         }, {
@@ -71,16 +72,16 @@ function UserProfileUpdate({ user, isAdmin = false, setUserAdmin, setReset }) {
             label: lang.PHONE,
             value: user.phone,
             width: { xs: '100%', md: '49%' },
-            icon: <FaSquarePhoneFlip color={green[500]} />,
-            validation: Yup.string().required(lang.REQUERIED).matches(/^[0-9]{11}$/, "يجب ان يكون 11 رقم"),
+            icon: <FaSquarePhoneFlip color={orange[500]} />,
+            validation: validatePhone,
             disabled: !isAdmin && true
         }, {
             name: "familyPhone",
             label: lang.FAMILY_PHONE,
             value: user.familyPhone,
-            icon: <HouseIcon sx={{ color: green[500] }} />,
+            icon: <HouseIcon sx={{ color: orange[500] }} />,
             width: { xs: '100%', md: '49%' },
-            validation: Yup.string().required(lang.REQUERIED).matches(/^[0-9]{11}$/, "يجب ان يكون 11 رقم")
+            validation: validatePhone
                 .notOneOf([Yup.ref('phone'), null], 'مينفعش هاتف ولى الامر يبقا رقمك'),
             disabled: !isAdmin && true
         }, {

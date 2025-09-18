@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, useTheme } from '@mui/material'
 import { FlexRow } from '../../style/mui/styled/Flexbox'
 
 
@@ -10,10 +10,12 @@ const lineStyle = (width) => {
 }
 
 function TitleSection({ title, icon }) {
+    const theme = useTheme()
+
     return (
         <Box width={'100%'}>
             <Box>
-                <FlexRow width={'100%'} bgcolor={'primary.main'} p={'16px'} borderRadius={'8px'} color={'grey.0'}>
+                <FlexRow width={'100%'} bgcolor={theme.palette.mode === 'dark' ? theme.palette.grey[0] + 40 : 'primary.main'} p={'16px'} borderRadius={'8px'} color={theme.palette.mode === 'dark' ? 'primary.400' : 'grey.0'}>
                     <span style={{
                         marginBottom: '-10px'
                     }}>

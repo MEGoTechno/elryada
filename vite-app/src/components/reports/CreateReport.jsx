@@ -48,7 +48,7 @@ function CreateReport({ course = '' }) {
 
                     {/* <SwitchStyled checked={isExcluded} onChange={setIsExcluded} label={isExcluded ? 'استثناء الطلاب' : 'ارسال لطلاب المختارين'} /> */}
                 </Section>
-                <GetUsersPage setExcludedUsers={setExcludedUsers} isShowTitle={false} isShowGrades={course ? false : true} courses={[course]} />
+                <GetUsersPage setExcludedUsers={setExcludedUsers} isShowTitle={false} isShowStatistics={false} isShowGrades={course ? false : true} courses={[course]} />
 
             </ModalStyled>
         </FlexColumn>

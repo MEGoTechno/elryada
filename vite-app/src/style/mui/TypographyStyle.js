@@ -29,10 +29,10 @@ export const typographies = {
         // textShadow: '0 20px 30px hsla(0, 0%, 0%, 0.1)',
         fontFamily: '"Rubik",  sans-serif'
     }, subBanner: {
-        fontSize: '1.8rem',
+        fontSize: '3.3rem',
         fontWeight: 600,
+        fontFamily: '"Rubik",  sans-serif',
 
-        letterSpacing: 1.8,
         '@media (max-width:600px)': {
             fontSize: '1.5rem',
         },

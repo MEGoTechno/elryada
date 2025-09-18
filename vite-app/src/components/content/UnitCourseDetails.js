@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 import { CoursesIcon, } from '../ui/svg/ContentSvgs'
 import { FaArrowRight } from "react-icons/fa";
-import { AiFillPoundCircle } from "react-icons/ai";
 import { MdDateRange } from "react-icons/md";
 
 
@@ -26,7 +25,7 @@ import { MdGpsFixed } from "react-icons/md";
 import InfoText from '../ui/InfoText';
 import { RiyalIcon } from '../icons/Riyal.jsx';
 
-function UnitCourseDetails({ course, subscribedAt, lastLectureAt = false, currentIndex = false }) {
+function UserCourseDetails({ course, subscribedAt, lastLectureAt = false, currentIndex = false }) {
 
     if (!course) return <>loading ...!</>
     const isCourseDisabled = () => {
@@ -53,9 +52,9 @@ function UnitCourseDetails({ course, subscribedAt, lastLectureAt = false, curren
                 <FilledHoverBtn sx={{ width: '100%' }} disabled={isCourseDisabled()} component={Link} to={"/grades/" + course.grade + "/courses/" + course.index} endIcon={< FaArrowRight />} > الذهاب للكورس  </FilledHoverBtn >
             }>
 
-            <FlexColumn sx={{ flex: 1, gap: '16px' }}>
+            <FlexColumn sx={{ flex: 1, gap: '8px' }}>
 
-                <FlexBetween gap={'12px'} flex={'1'}>
+                <FlexBetween gap={'6px'} flex={'1'}>
                     <Box sx={{
                         '> *': {
                             color: 'neutral.0'
@@ -101,10 +100,9 @@ function UnitCourseDetails({ course, subscribedAt, lastLectureAt = false, curren
                 {!subscribedAt && (
                     <Box flex={1}>
                         <RowInfo title={'سعر الكورس'} desc={`${course.price} ريال`} icon={<RiyalIcon size='1rem' />} bgcolor='primary.500' />
-
                         {(course.preDiscount !== 0 && course.preDiscount > course.price) && (
                             <>
-                                <Separator sx={{ width: '100px', borderWidth: '2px', mr: 'auto' }} />
+                                <Separator sx={{ width: '100px', borderWidth: '2px', m: '8px', mr: 'auto' }} />
                                 <TabInfo title={lang.PRE_DISCOUNT} count={course.preDiscount + " ريال" + ' - ' + (((course.preDiscount - course.price) / course.preDiscount) * 100).toFixed(2) + "%"} icon={<RiyalIcon size={'1.5rem'} />} i={0} sx={{ mr: 'auto' }} />
                             </>
                         )}
@@ -118,4 +116,4 @@ function UnitCourseDetails({ course, subscribedAt, lastLectureAt = false, curren
 
 //sx={{textDecorationLine: 'line-through', color: 'red'}}
 // lectures, exams, files
-export default UnitCourseDetails
+export default UserCourseDetails

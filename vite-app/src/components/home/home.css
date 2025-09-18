@@ -5,6 +5,41 @@
     /* background-position: center; */
 }
 
+.rotating-border {
+  position: relative;
+  padding: 40px;
+  color: white;
+  background: #222;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.rotating-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(#ff9800, #ff5722, #ffcc00, #ff9800);
+  animation: rotate 4s linear infinite;
+  z-index: -1;
+}
+
+.rotating-border::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 15px;
+  z-index: 1;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes stars {
     0% {
         background-position: 0 0

@@ -1,6 +1,7 @@
 import { typographies } from "./mui/TypographyStyle";
 import { purple, amber, orange } from '@mui/material/colors';
 //#ffd166
+
 // color design tokens export
 export const tokensDark = {
     grey: {
@@ -20,15 +21,27 @@ export const tokensDark = {
         1000: "#000000", // manually adjusted
     },
     primary: {
-        100: "#fbe7d2",
-        200: "#f7d0a6",
-        300: "#f3b879",
-        400: "#efa14d",
-        500: "#eb8920",
-        600: "#bc6e1a",
-        700: "#8d5213",
-        800: "#5e370d",
-        900: "#2f1b06"
+        100: "#ffeacc",
+        200: "#ffd699",
+        300: "#ffc166",
+        400: "#ffad33",
+        500: "#ff9800",
+        600: "#cc7a00",
+        700: "#995b00",
+        800: "#663d00",
+        900: "#331e00"
+
+
+
+        // 100: "#fbe7d2",
+        // 200: "#f7d0a6",
+        // 300: "#f3b879",
+        // 400: "#efa14d",
+        // 500: "#eb8920",
+        // 600: "#bc6e1a",
+        // 700: "#8d5213",
+        // 800: "#5e370d",
+        // 900: "#2f1b06"
     },
     secondary: {
         // yellow
@@ -56,7 +69,7 @@ const bgColors = {
         alt: 'rgb(244, 246, 248)',
     },
     dark: {
-        dafault: 'rgb(22, 27, 36)',
+        dafault: '#141A21',
         // dafault: '#040414',
         alt: '#1C252E',
     }

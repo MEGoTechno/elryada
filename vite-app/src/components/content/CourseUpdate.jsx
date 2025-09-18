@@ -5,7 +5,6 @@ import usePostData from '../../hooks/usePostData'
 import { lang } from '../../settings/constants/arlang'
 
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
-import { AiFillPoundCircle } from "react-icons/ai";
 
 import { VscSymbolBoolean } from "react-icons/vsc";
 
@@ -15,6 +14,7 @@ import { Box, FormControlLabel, Switch } from '@mui/material'
 import MakeInput from '../../tools/makeform/MakeInput'
 import { FlexRow } from '../../style/mui/styled/Flexbox'
 import dayjs from 'dayjs'
+import { RiyalIcon } from '../icons/Riyal'
 
 const PreDiscount = ({ props, value, input, inputName }) => {
 
@@ -71,7 +71,7 @@ function CourseUpdate({ course, setCourse, setCourses, isAllDisabled = false }) 
             name: 'price',
             label: lang.PRICE,
             value: course.price,
-            icon: <AiFillPoundCircle />,
+            icon: <RiyalIcon />,
             width: "100%",
             validation: Yup.number()
                 .min(0, 'يجب ان يكون 0 او اكبر')
@@ -82,7 +82,7 @@ function CourseUpdate({ course, setCourse, setCourses, isAllDisabled = false }) 
             name: 'preDiscount',
             label: 'السعر قبل الخصم',
             value: course.preDiscount,
-            icon: <AiFillPoundCircle />,
+            icon: <RiyalIcon />,
             width: "100%",
             column: 1, row: 3,
             component: PreDiscount,

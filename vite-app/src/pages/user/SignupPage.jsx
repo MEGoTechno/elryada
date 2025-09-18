@@ -63,7 +63,9 @@ function SignupPage() {
                 </FlexRow>
             </Section>
 
-            <BannerAuth img={'/assets/signup.webp'} title={BUILD + ' ' + ACCOUNT} minHeight='130vh' />
+            <BannerAuth img={'/assets/signup.webp'} title={BUILD + ' ' + ACCOUNT} minHeight='130vh' sx={{
+                borderTopLeftRadius: '16px'
+            }} />
 
         </FlexBetween>
     )

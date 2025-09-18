@@ -3,9 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Box, Typography, useTheme, Link as MuiLink } from '@mui/material'
 
-import { LoginAnimatedIcon, ReactLoginIcon } from '../../components/ui/svg/Registers'
+import { LoginAnimatedIcon } from '../../components/ui/svg/Registers'
 import LoginForm from '../../components/auth/LoginForm'
-import Section from "../../style/mui/styled/Section"
 import { FlexBetween, FlexColumn, FlexRow } from '../../style/mui/styled/Flexbox'
 
 import BannerAuth from '../../components/ui/BannerAuth'
@@ -41,7 +40,7 @@ function LoginPage() {
                 url={window.location.href}
                 isSiteLink={true}
             />
-            <BannerAuth title={lang.LOGIN_ENTRY} img={'/assets/login.png'} />
+            <BannerAuth title={lang.LOGIN_ENTRY} img={'/assets/login.png'} sx={{ borderTopRightRadius: '16px', }} />
 
             {/* Login form */}
             <FlexColumn sx={{
@@ -77,6 +76,9 @@ function LoginPage() {
                     }} underline='always' sx={{ cursor: 'pointer', mt: '4px' }}> هل نسيت كلمه السر ؟</MuiLink>
                 </Box>
 
+                <ModalStyled open={open} setOpen={setOpen} fullWidth={true} >
+                    <ForgetPassword />
+                </ModalStyled>
             </FlexColumn>
         </FlexBetween>
     )

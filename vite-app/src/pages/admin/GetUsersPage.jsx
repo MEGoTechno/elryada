@@ -52,7 +52,7 @@ const exportObj = (grades) => {
     }
 }
 
-function GetUsersPage({ setExcludedUsers, isShowTitle = true, courses, isShowGrades = true }) {
+function GetUsersPage({ setExcludedUsers, isShowTitle = true, courses, isShowGrades = true, isShowStatistics = true }) {
 
     const { grades } = useGrades()
 
@@ -338,9 +338,9 @@ function GetUsersPage({ setExcludedUsers, isShowTitle = true, courses, isShowGra
             {isShowTitle && (
                 <>
                     <TitleSection title={lang.USERS_PAGE} />
+                    <BtnModal btnName={lang.CREATE_USER} component={<CreateUser setReset={setReset} />} />
                 </>
             )}
-            <BtnModal btnName={lang.CREATE_USER} component={<CreateUser setReset={setReset} />} />
 
             {isShowGrades && (
                 <GradesTabs grade={grade} setGrade={changeGrade} counts={gradesCounts} />
@@ -351,7 +351,9 @@ function GetUsersPage({ setExcludedUsers, isShowTitle = true, courses, isShowGra
                 apiRef={apiRef}
                 reset={[reset, grade]}
                 setSelection={setExcludedUsers}
-                type={'crud'} exportObj={exportObj(grades)} exportTitle={lang.USERS_PAGE} analysisFc={analysisUsers}
+                type={'crud'} exportObj={exportObj(grades)} exportTitle={lang.USERS_PAGE}
+
+                analysisFc={isShowStatistics && analysisUsers}
                 columns={columns} allStatuses={[deleteManyStatus]} deleteMany={deleteManyUsers}
                 viewFc={viewFc} fetchFc={fetchFc} updateFc={updateFc} deleteFc={deleteFc}
                 ViewRow={UserShowTable} viewRowModal={{

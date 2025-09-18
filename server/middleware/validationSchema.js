@@ -34,10 +34,10 @@ const signupSchema = () => {
         body('phone', 'الرقم غير صالح')
             .notEmpty().trim()
             .isLength({ min: 6, max: 100 }).withMessage('يجب ان تكون اكبر من او تساوى 6 عناصر')
-            .matches(/^\d{11}$/).withMessage('يجب ان يكون 11 رقم'),
+            .matches(/^(?:9665\d{8}|05\d{8})$/).withMessage('يجب ان يكون رقم صحيح'),
         body('familyPhone', 'الاسم غير صالح')
             .notEmpty().trim()
-            .matches(/^\d{11}$/).withMessage('يجب ان يكون 11 رقم')
+            .matches(/^(?:9665\d{8}|05\d{8})$/).withMessage('يجب ان يكون رقم صحيح')
             .custom((value, { req }) => {
                 if (value === req.body.phone) {
                     throw new Error('مينفعش هاتف ولى الامر يبقا رقمك');

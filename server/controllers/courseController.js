@@ -33,6 +33,7 @@ const coursesParams = (query) => {
         { key: "price", value: query.price },
         { key: "preDiscount", value: query.preDiscount },
         { key: "isActive", value: query.isActive},
+        { key: "isFixed", value: query.isFixed},
         { key: "showTeachers", value: query.showTeachers },
         { key: "unit", value: query.unit, operator: "equal" },
         { key: "index", value: query.index, operator: "equal" },
