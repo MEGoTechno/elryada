@@ -68,6 +68,7 @@ function QuestionsForm({ onSubmit, status, questions = null, metaData = { isAdd:
                 {
                     name: "title",
                     label: "العنوان",
+                    rows: 3
                 }, {
                     name: 'grade',
                     label: lang.GRADE,
@@ -102,6 +103,7 @@ function QuestionsForm({ onSubmit, status, questions = null, metaData = { isAdd:
                 }, {
                     name: "options",
                     type: "array",
+
                     value: [],
                     schema: optionSchema,
                     array: [
@@ -114,7 +116,9 @@ function QuestionsForm({ onSubmit, status, questions = null, metaData = { isAdd:
                             name: "title",
                             label: "الايجابه",
                             choose: "rtOptionId",
-                            from: 'id'
+                            from: 'id',
+                    rows: 3,
+
                         }
                     ]
                 },

@@ -16,7 +16,7 @@ import { GiSecretBook } from "react-icons/gi";
 import { FcPrivacy } from "react-icons/fc";
 import { RiEditCircleFill } from "react-icons/ri";
 import { MdWatchLater } from "react-icons/md";
-import { MdGroups } from "react-icons/md";
+// import { MdGroups } from "react-icons/md";
 import { TbReportSearch } from "react-icons/tb";
 import { CiBank } from "react-icons/ci";
 import { MdQuestionAnswer } from "react-icons/md";
@@ -68,7 +68,7 @@ const GetSubscriptionsCourse = lazy(() => import("../pages/admin/GetSubscription
 import QuestionsBankPage from "../pages/user/QuestionsBankPage";
 import LecturesPage from "../pages/admin/LecturesPage.jsx";
 import GetViewsPage from "../pages/admin/GetViewsPage.jsx";
-import GetGroupsPage from "../pages/admin/GetGroupsPage.jsx";
+// import GetGroupsPage from "../pages/admin/GetGroupsPage.jsx";
 import ReportsPage from "../pages/admin/ReportsPage.jsx";
 import InvoicesPage from "../pages/admin/InvoicesPage.jsx";
 import GetCouponsPage from "../pages/admin/GetCouponsPage.jsx";
@@ -96,6 +96,11 @@ const LecturePage = lazy(() => import("../pages/user/LecturePage"))
 const LectureIcon = () => {
     return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20 17a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.46c.35.61.54 1.3.54 2h10v11h-9v2m4-10v2H9v13H7v-6H5v6H3v-8H1.5V9a2 2 0 0 1 2-2zM8 4a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2a2 2 0 0 1 2 2" /></svg>
 }
+
+// {
+//     name: "إدارة المجموعات", icon: <MdGroups size="22px" />, to: "/management/groups", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
+//     element: <GetGroupsPage />, id: 'p_groups'
+// }, 
 
 //Routes - sidebar - permissions
 export const sidebarLinks = [
@@ -186,9 +191,6 @@ export const sidebarLinks = [
     }, {
         name: "عرض الكوبونات", icon: <MdOutlineCurrencyPound size="22px" />, to: "/management/coupons", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
         element: <GetCouponsPage />, id: 'p_coupons', perms: coursesPerms(null, 'coupons')
-    }, {
-        name: "إدارة المجموعات", icon: <MdGroups size="22px" />, to: "/management/groups", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
-        element: <GetGroupsPage />, id: 'p_groups'
     }, {
         name: "إدارة سياسات الموقع", icon: <RiEditCircleFill size="22px" />, to: "/management/privacy", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
         element: <ManagePrivacyPage />, id: 'p_managePrivacy'

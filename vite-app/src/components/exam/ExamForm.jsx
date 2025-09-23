@@ -218,6 +218,8 @@ function ExamForm({ lecture, status, onSubmit }) {
             {
                 name: "title",
                 label: "العنوان",
+                rows: 3
+
             }, {
                 name: "hints",
                 label: "ملحوظه",
@@ -257,7 +259,9 @@ function ExamForm({ lecture, status, onSubmit }) {
                         name: "title",
                         label: "الايجابه",
                         choose: "rtOptionId",
-                        from: 'id'
+                        from: 'id',
+                        rows: 3
+
                     }
                 ]
             },
