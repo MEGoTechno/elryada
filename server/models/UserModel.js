@@ -18,7 +18,9 @@ const userSchema = new mongoose.Schema({
     grades: [{ type: mongoose.Schema.Types.ObjectId, ref: 'grade' }],
     name: { type: String },
     description: String,
-    
+
+    isHome: Boolean,
+    hasBg: Boolean,
     avatar: {
         url: { type: String },
         size: { type: Number },

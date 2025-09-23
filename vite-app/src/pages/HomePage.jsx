@@ -34,7 +34,7 @@ function HomePage() {
             />
             <Hero />
             <LatestCourses />
-            {/* <Teachers /> */}
+            <Teachers />
             {/* <AboutUS /> */}
             <Grades />
             <br />

@@ -80,6 +80,7 @@ import { chapterPerms, questionsPerms, tagsPerms } from "../components/permissio
 import { coursesPerms } from "../components/permissions/constants/courses.js";
 import ManagePaymentsPage from "../pages/admin/ManagePaymentsPage.jsx";
 import GradesManage from "../pages/admin/GradesManage.jsx";
+import TeacherPage from "../pages/user/TeacherPage.jsx";
 const GetQuestionsPage = lazy(() => import("../pages/admin/GetQuestionsPage"))
 
 const AttemptPage = lazy(() => import("../pages/user/AttemptPage"))
@@ -116,11 +117,11 @@ export const sidebarLinks = [
         // element: <UnitsPage /> Down
     }, {
         name: "بنك الاسئله", icon: <CiBank size="22px" />, to: "/questions_bank",
-        allowedTo: [user_roles.STUDENT, user_roles.ONLINE], isDisabled: false, 
+        allowedTo: [user_roles.STUDENT, user_roles.ONLINE], isDisabled: false,
         element: <QuestionsBankPage />
     }, {
         name: "ايجاباتك", icon: <MdQuestionAnswer size="22px" />, to: "/answers",
-        allowedTo: [user_roles.STUDENT, user_roles.ONLINE], isDisabled: false, 
+        allowedTo: [user_roles.STUDENT, user_roles.ONLINE], isDisabled: false,
         element: <GetUserAnswers />
     }, {
         name: "مجتمع الطلاب", icon: <TbWorldQuestion size="22px" />,
@@ -157,18 +158,18 @@ export const sidebarLinks = [
     }, {
         name: "إدارة الصفوف", icon: <IoSchoolSharp size="22px" />, to: "/management/grades", allowedTo: [user_roles.ADMIN],//user_roles.SUBADMIN, user_roles.TEACHER
         element: <GradesManage />, id: 'p_gradesManage'
-    },{
+    }, {
         name: "إدارة الكورسات", icon: <FaSchool size="22px" />, to: "/management/courses", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
         element: <ManageCoursesPage />, id: 'p_coursesManage'
     }, {
         name: "عرض الاشتراكات", icon: <MdOutlineSubscriptions size="22px" />, to: '/statistics/courses', allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
         element: <GetSubscriptionsAll />, id: 'p_subscriptions', perms: coursesPerms(null, 'subscriptions') //'/management/subscriptions'
     }, {
-        name: "إدارة الاسئله", icon: <PiQuestionFill size="22px" />, to: "/management/questions", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], isDisabled: false, 
+        name: "إدارة الاسئله", icon: <PiQuestionFill size="22px" />, to: "/management/questions", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], isDisabled: false,
         element: <GetQuestionsPage />, id: 'p_questions',
         perms: [...questionsPerms('manageQuestions'), ...tagsPerms('manageTags')]
     }, {
-        name: "احصائيات الاختبارات", icon: <MdQuestionAnswer size="22px" />, to: "/management/attempts", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], isDisabled: false, 
+        name: "احصائيات الاختبارات", icon: <MdQuestionAnswer size="22px" />, to: "/management/attempts", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], isDisabled: false,
         element: <AttemptsPage />, id: 'p_attempts',
         //  perms: chapterPerms(null, 'lecturesStatistics')
     }, {
@@ -209,7 +210,7 @@ export const sidebarLinks = [
         name: "اقتراحات/شكاوي", icon: <VscFeedback size="22px" />, to: "/management/feedBacks", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
         element: <FeedBacks isAdmin={true} />, id: 'p_feedBacks'
     }, {
-        name: "اقتراح/شكوي", icon: <VscFeedback size="22px" />, to: "/feedBacks", allowedTo: [user_roles.ONLINE, user_roles.STUDENT], 
+        name: "اقتراح/شكوي", icon: <VscFeedback size="22px" />, to: "/feedBacks", allowedTo: [user_roles.ONLINE, user_roles.STUDENT],
         element: <FeedBacks />
     },
 ]
@@ -225,6 +226,8 @@ const otherLinks = [
 
     }, {
         path: '/grades/:gradeId', element: <UnitsPage />
+    }, {
+        path: '/teachers/:index', element: <TeacherPage />
     }, {// Edit Path here 
         path: '/grades/:gradeId/courses/:courseId', element: <CoursePage />, children: [
             {

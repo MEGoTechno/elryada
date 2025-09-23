@@ -71,7 +71,16 @@ router.route("/")
     .delete(verifyToken(), hasPermission(usersPerms(null, 'delete')), deleteManyUsers) //allowedTo
 
 router.route("/teachers")
-    .get(verifyToken(true, 'courses'), secureGetAll([{ key: 'role', value: user_roles.TEACHER }, { key: 'isActive', value: true }, { key: 'select', value: 'avatar name description' }]), getUsers)
+    .get(verifyToken(true, 'courses'), secureGetAll(
+        [
+            { key: 'role', value: user_roles.TEACHER }, { key: 'isActive', value: true }, { key: 'isHome', value: true },
+            { key: 'select', value: 'avatar name description hasBg index' }]), getUsers)
+
+router.route("/teachers/:index")
+    .get(verifyToken(true, 'courses'), secureGetAll((user, req) => ([
+        { key: 'role', value: user_roles.TEACHER }, { key: 'isActive', value: true }, { key: 'isHome', value: true },
+        { key: 'limit', value: 1 }, { key: 'index', value: (Number(req.params.index) || 'empty') },
+        { key: 'select', value: 'avatar name description hasBg index courses' }])), getUsers)
 
 router.route('/push')//create middleware specific
     .patch(verifyToken(), allowedTo(user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER), securePush,
@@ -85,7 +94,7 @@ router.route("/:userName")
     .get(verifyToken(), hasPermission([pages.findUser]), getByUserName) //allowedTo(user_roles.ADMIN, user_roles.SUBADMIN, user_roles.MENTOR)
 
 router.route("/:id")
-    .put(verifyToken(), allowedTo(user_roles.ADMIN, user_roles.SUBADMIN), updateUser)
+    .put(verifyToken(), allowedTo(user_roles.ADMIN, user_roles.SUBADMIN), imageUpload.single("avatar"), handelOneFile('avatar'), updateUser)
     .patch(verifyToken(), imageUpload.single("avatar"), updateUserProfile)
     .delete(verifyToken(), hasPermission(usersPerms(null, 'delete')), checkDeleteUser, deleteUser) //allowed
 

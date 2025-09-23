@@ -13,16 +13,16 @@ const UserModel = require("../models/UserModel");
 const ExamModel = require("../models/ExamModel");
 const AttemptModel = require("../models/AttemptModel");
 const getAttemptMark = require("../tools/getAttemptMark");
-const { ObjectId } = require('mongodb');
+
 const { uploadFile, deleteFile } = require("../middleware/upload/uploadFiles");
 const lockLectures = require("../tools/lockLectures");
 const CouponModel = require("../models/CouponModel");
 const codeConstants = require("../tools/constants/codeConstants");
-const VideoStatisticsModel = require("../models/VideoStatisticsModel");
+
 const handelExamAndAttempts = require("../tools/fcs/handelExamAndAttempts");
 const { user_roles } = require("../tools/constants/rolesConstants");
 const { coursesPerms, chapterPerms } = require("../tools/permissions/courses");
-const ChapterModel = require("../models/ChapterModel");
+
 
 
 const coursesParams = (query) => {

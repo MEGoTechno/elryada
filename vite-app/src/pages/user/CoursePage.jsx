@@ -150,20 +150,20 @@ function CoursePage() {
             >
                 {(courseDetails?.course) ?// setSubscribed={setSubscribed}
                     <FlexColumn gap={'16px'}>
-                        {teachers?.values?.users?.length && (
+                        {teachers?.values?.users?.length ? (
                             <Box sx={{ width: '100%' }}>
                                 <InfoText label={'المعلمون'} sx={{ my: '6px' }} />
                                 {/* <TextBorderWithIcons title='المعلمون' sx={{ my: '.5rem', justifyContent: 'flex-start' }} /> */}
                                 <FlexRow justifyContent={'center'} gap='4px' sx={{ width: '100%' }}>
                                     {teachers?.values?.users.map(u => {
-                                        return <DataWith3Items key={u._id} sx={{ width: 'fit-content', flexWrap: 'wrap', justifyContent: 'center' }}
+                                        return <DataWith3Items key={u._id} sx={{  flexWrap: 'wrap', justifyContent: 'center' }}
                                             src={u.avatar?.url}
                                             title={u.name} desc={u.description} />
                                     })}
 
                                 </FlexRow>
                             </Box>
-                        )}
+                        ) : ''}
                         <CourseSubscribeCard course={courseDetails?.course} isSubscribed={courseDetails?.course?.isSubscribed} setCourseDetails={setCourseDetails} />
 
                         {isLargeScreen && params.lectureId && (

@@ -5,7 +5,7 @@ import Image from '../../../components/ui/Image'
 function CardStyled({ img, title, description, children, btn1, btn2 }) {
     return (
         <Card sx={{
-            maxWidth: "430px", display: 'flex', flexDirection: 'column', '&:hover  img': {
+            maxWidth: "390px", display: 'flex', flexDirection: 'column', '&:hover  img': {
                 transform: 'scale(1.1) !important'
             }
         }}>

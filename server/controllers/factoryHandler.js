@@ -84,7 +84,7 @@ exports.handelOneFile = (fileKey) => //Previous upload without Storage
     asyncHandler(async (req, res, next) => {
         const file = req.file || null;
         if (file) {
-            const fileData = await uploadFile(file, { name: req.body?.name || file?.originalname, secure: true })
+            const fileData = await uploadFile(file, { name: file?.originalname, secure: true }) //req.body?.name || 
             req.body[fileKey] = fileData
         } else {
             delete req.body[fileKey]

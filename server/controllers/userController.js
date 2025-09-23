@@ -28,6 +28,7 @@ const userParams = (query) => {
         { key: "role", value: query.role },
         { key: "_id", value: query._id },
         { key: "name", value: query.name },
+        { key: "index", value: query.index },
         { key: "userName", value: query.userName },
         { key: "email", value: query.email },
         { key: "phone", value: query.phone },
@@ -35,19 +36,20 @@ const userParams = (query) => {
         { key: "devicesAllowed", value: query.devicesAllowed, type: 'number' },
         { key: "wallet", value: query.wallet, type: 'number' },
         { key: "isActive", value: query.isActive, type: "boolean" },
-        { key: "grade", value: query.grade,},
+        { key: "grade", value: query.grade, },
         { key: "government", value: query.government, type: "number", },
         { key: "totalPoints", value: query.totalPoints, type: "number", },
         { key: "marks", value: query.marks, type: "number", },
         { key: "exam_marks", value: query.exam_marks, type: "number", },
         { key: "groups", value: query.groups, type: 'array' },
         { key: "tags", value: query.tags },
-        { key: "courses", value: query.courses, type: "array" },
+        { key: "courses", value: query.courses },
         { key: "exams", value: query.exams, type: "array" },
         { key: "lectures", value: query.lectures, type: "array" },
         { key: "createdAt", value: query.createdAt },
         { key: "chapters", value: query.chapters },
         { key: "description", value: query.description },
+        { key: "isHome", value: query.isHome },
     ]
 } //modify it to be more frontend
 
@@ -167,9 +169,11 @@ const validateCreate = asyncHandler(async (req, res, next) => {
 const updateUser = asyncHandler(async (req, res, next) => {
 
     const id = req.params.id
-    const { grade, name, userName, email, password, phone, familyPhone, isActive, role, government, devicesAllowed, devicesRegistered } = req.body
+    const {
+        grade, name, userName, email, password, phone, familyPhone, isActive, role, government, devicesAllowed, devicesRegistered,
+        description, isHome, hasBg } = req.body
 
-    const user = await UserModel.findById(id) //.select(select) populate
+    const user = await UserModel.findById(id).lean() //.select(select) populate
     if (!user) return next(createError("No users found ..!", 404, statusTexts.FAILED))
 
     if (userName) {
@@ -182,25 +186,26 @@ const updateUser = asyncHandler(async (req, res, next) => {
         if (userHasPhone) return next(createError("هناك مستخدم موجود بالفعل ", 400, statusTexts.FAILED))
     }
 
-    user.grade = grade || user.grade
-    user.name = name || user.name
-    user.userName = userName || user.userName
-    user.phone = phone || user.phone
+    // user.grade = grade || user.grade
+    // user.name = name || user.name
+    // user.userName = userName || user.userName
+    // user.phone = phone || user.phone
 
-    user.email = email || user.email
-    user.familyPhone = familyPhone || user.familyPhone
-    user.devicesAllowed = devicesAllowed || user.devicesAllowed
-    user.devicesRegistered = devicesRegistered || user.devicesRegistered
-    user.government = government || user.government
-    user.description = description || user.description
+    // user.email = email || user.email
+    // user.familyPhone = familyPhone || user.familyPhone
+    // user.devicesAllowed = devicesAllowed || user.devicesAllowed
+    // user.devicesRegistered = devicesRegistered || user.devicesRegistered
+    // user.government = government || user.government
+    // user.description = description || user.description
+
+    // user.hasBg = typeof hasBg === "boolean" ? hasBg : user.hasBg
+    // user.isHome = typeof isHome === "boolean" ? isHome : user.isHome
 
     if ((user.role !== user_roles.ADMIN || user.role !== user_roles.SUBADMIN) && (role === user_roles.ADMIN || role === user_roles.SUBADMIN)) return next(createError('لا يمكن تغيير حاله المستخدم الي ادمن او مشرف'))
 
     if (user.role === user_roles.ADMIN && !isActive) return next(createError('لا يمكن الغاء تفعيل الادمن .'))
     if (user.role === user_roles.ADMIN && role !== user_roles.ADMIN) return next(createError('لا يمكن الغاء تفعيل الادمن .'))
 
-    user.isActive = typeof isActive === "boolean" ? isActive : user.isActive
-    user.role = role || user.role
 
     if (password === 'reset') {
         user.isResetPassword = true
@@ -211,11 +216,10 @@ const updateUser = asyncHandler(async (req, res, next) => {
         const hashedPassword = bcrypt.hashSync(password, 10)
         user.password = hashedPassword
     }
+    const updatedData = { ...user, ...req.body }
+    const updatedUser = await UserModel.findByIdAndUpdate(id, updatedData, { new: true })
 
-    await user.save()
-
-
-    return res.status(200).json({ status: statusTexts.SUCCESS, values: user, message: "تم تعديل البيانات بنجاح" })
+    return res.status(200).json({ status: statusTexts.SUCCESS, values: updatedUser, message: "تم تعديل البيانات بنجاح" })
 
 })
 

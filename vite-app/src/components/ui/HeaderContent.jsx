@@ -1,11 +1,11 @@
 import { Box, Typography, useMediaQuery, useTheme } from '@mui/material'
-import { FlexColumn, FlexRow } from '../../style/mui/styled/Flexbox'
+import { FlexBetween, FlexColumn, FlexRow } from '../../style/mui/styled/Flexbox'
 import CardInfo from '../../style/mui/components/CardInfo'
 import Image from './Image'
 import { MdArrowForward } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 
-function HeaderContent({ title, body, infos = [], img, children, height = '86vh', sectionName, sideChildren }) {
+function HeaderContent({ title, body, infos = [], img, sideImg, children, height = '86vh', sectionName, sideChildren }) {
 
     const theme = useTheme()
     const navigate = useNavigate()
@@ -39,26 +39,34 @@ function HeaderContent({ title, body, infos = [], img, children, height = '86vh'
                     <Typography sx={{ textDecoration: 'underline' }}>{sectionName}</Typography>
                 </FlexRow>
 
-                <FlexColumn sx={{ zIndex: 1, p: '30px 15px' }}>
-                    <Typography variant='h5' sx={{
-                        zIndex: 1, textShadow: theme.shadows[8], bgcolor: theme.palette.grey[0],
-                        p: '12px 16px', color: 'primary.main',
-                        borderRadius: '50px', border: '3px solid', borderColor: theme.palette.primary.main, fontWeight: 700,
-                    }}>
-                        {/* {sectionName && <span style={{ textDecoration: 'underline' }}>{sectionName}</span>} */}
-                        {/* :   */}
-                        {title}
-                    </Typography>
-                    <Typography variant='body1' sx={{ color: '#fff', zIndex: 1, maxWidth: '800px', my: '16px' }}>
-                        {body}
-                    </Typography>
+                <FlexBetween>
 
-                    <FlexRow sx={{ width: '100%', position: 'relative', gap: '10px', justifyContent: 'center' }}>
-                        {infos.length > 0 && infos.map((info, i) => (
-                            <CardInfo key={i} icon={info.icon} caption={info.caption} desc={info.desc} />
-                        ))}
-                    </FlexRow>
-                </FlexColumn>
+                    <FlexColumn sx={{ zIndex: 1, p: '30px 15px', flex: 1 }}>
+                        <Typography variant='h5' sx={{
+                            zIndex: 1, textShadow: theme.shadows[8], bgcolor: theme.palette.grey[0],
+                            p: '12px 16px', color: 'primary.main',
+                            borderRadius: '50px', border: '3px solid', borderColor: theme.palette.primary.main, fontWeight: 700,
+                            textAlign: 'center'
+                        }}>
+                            {/* {sectionName && <span style={{ textDecoration: 'underline' }}>{sectionName}</span>} */}
+                            {/* :   */}
+                            {title}
+                        </Typography>
+                        <Typography variant='body1' sx={{ color: '#fff', zIndex: 1, maxWidth: '800px', my: '16px' }}>
+                            {body}
+                        </Typography>
+
+                        <FlexRow sx={{ width: '100%', position: 'relative', gap: '10px', justifyContent: 'center' }}>
+                            {infos.length > 0 && infos.map((info, i) => (
+                                <CardInfo key={i} icon={info.icon} caption={info.caption} desc={info.desc} />
+                            ))}
+                        </FlexRow>
+                    </FlexColumn>
+                    {sideImg && (
+                        <Image img={sideImg} sx={{ width: '100%', maxWidth: '100vh', zIndex: 5, m: 'auto' }} />
+                    )}
+                </FlexBetween>
+
             </Box>
 
             <FlexRow sx={{ flexWrap: 'wrap', flexDirection: 'row-reverse', alignItems: 'flex-start', width: "100%" }}>
@@ -90,7 +98,7 @@ function HeaderContent({ title, body, infos = [], img, children, height = '86vh'
                         {children || <Image img={img} />}
                     </Box>
                 )}
-                
+
                 {sideChildren && (
                     <Box sx={{ mt: '32px', flexGrow: 1 }}>
                         {sideChildren}

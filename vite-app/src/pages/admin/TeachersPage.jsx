@@ -15,6 +15,7 @@ import BtnModal from "../../components/ui/BtnModal"
 import CreateTeacher from "../../components/users/CreateTeacher"
 import { useState } from "react"
 import UserResetPassword from "../../components/users/UserResetPassword"
+import TeacherUpdate from "../../components/users/TeacherUpdate"
 
 
 function TeachersPage() {
@@ -92,6 +93,11 @@ function TeachersPage() {
                 )
             }
         }, {
+            field: 'isHome',
+            headerName: 'إظهار المعلم للطلاب',
+            type: "boolean",
+            isSwitch: true
+        }, {
             field: "isResetPassword",
             headerName: 'اعاده ضبط كلمه السر',
             width: 200,
@@ -126,11 +132,12 @@ function TeachersPage() {
             </Section>
             <FullComponent data={{
                 resKey: 'users',
-                useFetch: useLazyGetUsersQuery,
+                useFetch: useLazyGetUsersQuery, isMultiPart: true,
                 useUpdate: useUpdateUserMutation,
                 useDelete: useDeleteUserMutation,
                 useDeleteMany: useDeleteManyUsersMutation,
-                columns, fetchFilters: { role: user_roles.TEACHER }, reset
+                columns, fetchFilters: { role: user_roles.TEACHER }, reset,
+                ViewRow: TeacherUpdate
             }} />
         </div>
     )

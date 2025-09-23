@@ -20,6 +20,15 @@ const usersApi = apiSlice.injectEndpoints({
                 }
             },
         }),
+        getOneTeacherByIndex: builder.query({
+            query: (queries) => {
+                const params = queries
+                return {
+                    url: "/users/teachers/" + params.index,
+                    params
+                }
+            },
+        }),
         deleteManyUsers: builder.mutation({
             query: data => ({
                 url: '/users',
@@ -59,7 +68,7 @@ const usersApi = apiSlice.injectEndpoints({
         updateUser: builder.mutation({
             query: (data) => {
                 return {
-                    url: `/users/` + data._id,
+                    url: `/users/` + (data?._id || data.get("id")),
                     method: 'PUT',
                     body: data
                 }
@@ -128,7 +137,7 @@ const usersApi = apiSlice.injectEndpoints({
 })
 
 export const {
-    useLazyGetUsersQuery, useGetTeachersQuery,
+    useLazyGetUsersQuery, useGetTeachersQuery, useGetOneTeacherByIndexQuery,
     useDeleteManyUsersMutation,
     useLazyGetOneUserQuery,
     useLazyAnalysisUsersQuery,

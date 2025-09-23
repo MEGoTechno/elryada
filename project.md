@@ -1,46 +1,12 @@
-pound ==> saudi currency
-teacher Description => experience by years
 chapters in specific course
-tracking effect as a middleware
     teacher View
         *Link coruses together
         *add and remove teachers has no perms just frontend by chapters perms
         -default courses perms when create
 
         -in Frontend ==> make if id found return and filter(Boolean)
-        -courses routes
-            -Tracking middleware
-            Notifications System & live chat
-
-            -who created course, does has permissions, when delete chapter handel it
-            Defaults Permissions in creation || change name and testing
-            -  exam statistics,  findTeacher, reports enhancement,
-            (createdBy, tracking mid) question answers,
-
-        UI & Ux => Chapter orders and currentIndex
-    -- review in userCourse to modify current index
-        Permissions in Backend
-                    -Created by, secureGetAll(), 
-                        //Codes => createdBy => subadmin, teacher
-                        //Lectures => createdBy
-                        //Coupons => createdBy
-                        //question => createdBy
-                        //Tag => createdBy
-    subAdminVIew
-    student
-        Home
-            Ui/Ux => change titles, 
-            latest courses - teachers,  
-        registered
-            meetings
-        courses
-            add teacher to user once subscribed listen to teacher courses
-            /*/index ??
-
     FInal
             --المعلمون
-        1- UserCourses Tables => show chapters index and modify
-        3- Logo and colors and Home Page && grade id and index routing
         Teacher Page
         --whatsapp numbers && validations
         2- when add Link => give notification
@@ -52,6 +18,17 @@ tracking effect as a middleware
 
 
 ui/ux => Home, userHome, LectureCard ...
+
+# [--''my plan ##]
+        1- saudi =>
+            1- Teachers Home and page
+            2- Live Settings
+            3- live Chat app and chating
+            4- Tracking middleware
+            5- linking system
+             6   Fix user.lectures
+            7--whatsapp numbers && validations
+                coding
 
 ['AddCourses'] "courses array in LectureModel" to Lecture
 ["Chapters"] chapters Idea

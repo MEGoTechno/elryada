@@ -31,6 +31,7 @@ export default function usePostData(sendData, setLoading, setReset = null) {
 
     // if multipart request into multer ...
     let formData = data
+
     if (isMultiPart) {
       formData = new FormData()
 

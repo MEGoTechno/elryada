@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux'
 import SEOHelmetAsync from '../../tools/SEOHelmetAsync'
 
 
-const BUILD = "انشاء"
+const BUILD = "إنشاء"
 const ACCOUNT = 'حساب'
 
 

@@ -21,6 +21,7 @@ function LatestCourses() {
         return (
             <Section>
                 <TextBorderWithIcons colorOne={'primary.main'} color={'neutral.0'} title={'احدث الدورات التدريبيه'} endIcon={<img src="./assets/course-icon.svg" style={{ width: '30px' }} />} />
+
                 <Swiper
                     modules={[Navigation, Pagination,  A11y]}
                     navigation
@@ -28,9 +29,9 @@ function LatestCourses() {
                     // spaceBetween={25}
                     // slidesPerView={2.5}
                     breakpoints={{
-                        320: { slidesPerView: 1.5, spaceBetween: 10 },   // mobile
-                        640: { slidesPerView: 1.5, spaceBetween: 15 }, // small tablets
-                        768: { slidesPerView: 2.5, spaceBetween: 20 },   // tablets
+                        320: { slidesPerView: 1.2, spaceBetween: 15 },   // mobile
+                        640: { slidesPerView: 1.2, spaceBetween: 15 }, // small tablets
+                        768: { slidesPerView: 2.25, spaceBetween: 20 },   // tablets
                       }}
                     // onSlideChange={() => console.log('slide change')}
                     // onSwiper={(swiper) => console.log(swiper)}

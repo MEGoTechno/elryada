@@ -49,7 +49,7 @@ function UserCourseDetails({ course, subscribedAt, lastLectureAt = false, curren
         </Button>}
             // btn2={!subscribedAt && (<OutLinedHoverBtn sx={{ width: '100%' }} endIcon={<MdOutlinePayment />} >subsrcibe</OutLinedHoverBtn>)}
             btn1={
-                <FilledHoverBtn sx={{ width: '100%' }} disabled={isCourseDisabled()} component={Link} to={"/grades/" + course.grade + "/courses/" + course.index} endIcon={< FaArrowRight />} > الذهاب للكورس  </FilledHoverBtn >
+                <FilledHoverBtn sx={{ width: '100%' }} disabled={isCourseDisabled()} component={Link} to={"/grades/" + course.grade + "/courses/" + course.index} endIcon={< FaArrowRight />} > الذهاب للدوره التدريبيه  </FilledHoverBtn >
             }>
 
             <FlexColumn sx={{ flex: 1, gap: '8px' }}>
