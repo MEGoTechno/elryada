@@ -102,7 +102,7 @@ function CoursePage() {
                         <Alert variant='filled' severity='warning'>المحاضرات هتنزل قريب , خليك متابع !</Alert>
                     )}
 
-                    <Grid >
+                    <Grid min='150px'>
                         {chapter?.lectures.map((lecture, i) => {
                             return <LectureUserCard
                                 lecturesProgress={userProgress && userProgress.find(u => u.chapter === chapter._id) || {}}
