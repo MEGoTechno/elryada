@@ -11,20 +11,22 @@ import usePostData from '../../hooks/usePostData'
 import { useUpdateExamMutation } from '../../toolkit/apis/examsApi'
 import useHandelQuestions from '../../hooks/useHandelQuestions'
 
-function ExamUpdatePage() {
+function ExamUpdatePage({ lecId, setLectures }) {
     const { lectureId } = useParams()
+    const usedLectureId = lecId ?? lectureId
 
     const [getData] = useLazyGetOneLectureQuery()
     const [getLecture] = useLazyGetData(getData)
     const [lecture, setLecture] = useState()
-
+ 
     useEffect(() => {
         const trigger = async () => {
-            const res = await getLecture({ id: lectureId })
+            const res = await getLecture({ id: usedLectureId })
             setLecture(res)
+
         }
         trigger()
-    }, [lectureId])
+    }, [usedLectureId])
 
     const [sendData, status] = useUpdateExamMutation()
     const [updateExam] = usePostData(sendData)
@@ -37,7 +39,19 @@ function ExamUpdatePage() {
             // console.log('val =>>>', values)
             setLoading(true)
             const exam = await saveFiles(values)
-            const res = await updateExam({ ...exam, lecture: lectureId })
+            const res = await updateExam({ ...exam, lecture: usedLectureId })
+
+            if (setLectures) {
+                setLectures((pre) => {
+                    return pre.map(lec => {
+                        if (lec._id === res.lecture._id) {
+                            return { ...res.lecture, exam: res.updatedExam }
+                        } else {
+                            return lec
+                        }
+                    })
+                })
+            }
             // setLecture({
             //     ...res.lecture, exam: res.updatedExam
             // })
@@ -49,7 +63,7 @@ function ExamUpdatePage() {
         } finally {
             setLoading(false)
         }
-    }, [lectureId])
+    }, [usedLectureId])
 
     if (!lecture) return <LoaderSkeleton />
     return (

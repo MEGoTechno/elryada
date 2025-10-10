@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom'
 import filePlayers from '../../settings/constants/filePlayers'
 import BtnModal from '../ui/BtnModal'
 import ExamCreatePage from '../../pages/admin/ExamCreatePage'
+import ExamUpdatePage from '../../pages/admin/ExamUpdatePage'
 
 
 const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|embed\/|v\/|shorts\/|.+\?v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})(\?.*)?$/;
@@ -371,8 +372,9 @@ function LectureForm({ grade, course, onSubmit, lecture, status, location, chapt
                     sectionType === sectionConstants.EXAM &&
                     <BtnModal
                         fullScreen
-                        btnName={'انشاء اختبار'}>
-                        <ExamCreatePage courseId={course} chapter={chapter} setLectures={setLectures} />
+                        btnName={location === 'update' ? "تعديل الاختبار" : 'انشاء اختبار'}>
+                        {location === 'update' ? <ExamUpdatePage lecId={lecture._id} setLectures={setLectures} /> :
+                            <ExamCreatePage courseId={course} chapter={chapter} setLectures={setLectures} />}
                     </BtnModal>
                     // <Button
                     //     component={Link}

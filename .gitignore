@@ -30,10 +30,9 @@ dist
 dist-ssr
 *.local
 
-.project.md
-project.md
-/project.md
 routes.js
+project.md
+archieve.md
 
 # Editor directories and files
 .vscode/*
@@ -48,3 +47,4 @@ routes.js
 
 # Sentry Config File
 .env.sentry-build-plugin
+.gitignore

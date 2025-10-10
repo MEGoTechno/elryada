@@ -16,7 +16,6 @@ chapters in specific course
         5- Fix user.lectures => cancel it
         6- find Teacher
 
-
 ui/ux => Home, userHome, LectureCard ...
 
 # [--''my plan ##]
@@ -37,76 +36,28 @@ ui/ux => Home, userHome, LectureCard ...
 ['useGet'] => without lazy
 overView
 
-## ForgetPassword.jsx ['106'] => props.resetForm() //+walid,
-## in createQuestions =>    const questions = await saveFiles(values) and add req.body.questions in questionController //+walid
-## QuestionsForms [21] grade: isNaN(Number(localStorage.getItem('grade'))) ? '' : Number(localStorage.getItem("grade")),
-## usePostData => Array.isArray ? values : entries.filter
-
---remove display block from SwitchStyled => to avoid accedent click
-## in CreateFormik [26] add else use preValue proper
-## CrudDataGrid , 31         await updateFc(newRow, field);  add field
-
-## factoryHandler [481] message: `تم بنجاح` + ' ' + (action === 'push' ? ' تمت الايضافه بنجاح' : ' تمت الازاله بنجاح'),
-## ShowImg => remove minHeight
-## course price percentage
-
-## in elbeltagy ==> createManh questions grade error
-## home react helmet
-++Walid done,
-
-//
-
-## lectureRoutes deleteFromBody(['course', 'exam'])
-
-## export durationRegex from lectureForm to ExamForm
-## createFormik 
-            inputs.forEach((input, i) => {
-            if (input.name) {
-                if (preValue) {
-                    data[input.name] = preValue[input.name] ?? ''
-                } else if ((typeof input.value === 'object' && Object.keys(input.value || {}).length === 0) && input?.value) {
-                    data[input.name] = ''
-                } else if (input.value ?? true) {
-                    data[input.name] = input.value ?? ""
-                    // After That No
-                } else if (input.type === 'array') {
-                    data[input.name] = input.value || []
-                } else {
-                    data[input.name] = ''
-                }
-            }
-
-            if (input.validation) {
-                validation[input.name] = input.validation
-            }
-
-            if (isAllDisabled) {
-                input.disabled = true
-            }
-        });
-
-
-## عليك انشاء 4 اسئله على الاقل
-## useLazyGetData ==>             
-        const handledParams = Array.isArray(params) ? params : Object.fromEntries(
-                    Object.entries(params).filter(([k, v]) => v !== null && v !== undefined && v !== '')
-                );
-## AdminCardLecture use isNativeLecture to and remove populate from lectureCreate in routes
-    ["solve populate cours"] and so no need for pupulate in getLecturesForAdminController
-
-## usePostData    after mainFc directly     if (setLoading) {
-          setLoading(false)
-        }
-secure routes in analysis => sesssions, users
 # routes
-    file take it copy paste and in routes.js import sidebarLinks
+    1-file take it copy paste and in routes.js import sidebarLinks
+    2- import make routesLinks in children in routes
+    3- move routes to App.jsx
+    delete routes folder but move Protected Route.jsx
+["mrelbeltagy"]
 
+## user home => remove groups
+["mrelbeltagy"]
+
+
+## paymentsPage from admin
+["mrelbeltagy"]
+
+## handelExamAndAttempts in tools Fc Backend
+    need if for attempt.answers if found
+["mrelbeltagy"]
 
 ## Learnings
     - page layout full control
 
 ### [Grade] dictionary
-
     1- make CRUD And Manage
     2- make Hook useGrades
     3- Fix backend => data and models and params
