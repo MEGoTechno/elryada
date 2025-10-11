@@ -130,6 +130,7 @@ exports.getAll = (Model, docName, params = [], isModernSort = true, populate = '
 
         // //populate
         populate = req.query.populate ? buildPopulate(req.query.populate) : populate
+        sort._id = -1 // *_*
 
         const docs = await Model.find(match)
             .select(select)

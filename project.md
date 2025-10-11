@@ -56,7 +56,6 @@ overView
 
 ## Learnings
     - page layout full control
-
 ### [Grade] dictionary
     1- make CRUD And Manage
     2- make Hook useGrades
@@ -65,3 +64,7 @@ overView
     5- grade Header && grade.index
     6- grades.jsx
     7- manage grade => grade.index for counting
+
+## Latest courses
+    limit 10, isModernSort
+    add coursesPage and show Courses

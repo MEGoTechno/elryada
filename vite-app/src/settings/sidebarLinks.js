@@ -81,6 +81,7 @@ import { coursesPerms } from "../components/permissions/constants/courses.js";
 import ManagePaymentsPage from "../pages/admin/ManagePaymentsPage.jsx";
 import GradesManage from "../pages/admin/GradesManage.jsx";
 import TeacherPage from "../pages/user/TeacherPage.jsx";
+import CoursesPage from "../pages/user/CoursesPage.jsx";
 const GetQuestionsPage = lazy(() => import("../pages/admin/GetQuestionsPage"))
 
 const AttemptPage = lazy(() => import("../pages/user/AttemptPage"))
@@ -239,6 +240,8 @@ const otherLinks = [
             }
         ]
     }, {
+        path: '/courses', element: <CoursesPage />
+    },{
         path: '/lectures/:lectureId', element: <ProtectedRoute allowedTo={[user_roles.STUDENT, user_roles.ONLINE]}>
             <LectureCenterPage />
         </ProtectedRoute>

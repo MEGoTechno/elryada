@@ -52,7 +52,7 @@ export default function CreateFormik({ inputs, onSubmit, status, btnWidth, enabl
     const validationSchema = Yup.object().shape(validation)
     return (
         <>
-            <Box width={"100%"}>
+            <Box width={"100%"} mt={'16px'}>
                 <Formik enableReinitialize={enableReinitialize} initialValues={data} onSubmit={onSubmit} validationSchema={validationSchema} validateOnChange={true}>
                     {(props) => (
                         <Form style={{ display: 'flex', alignItems: 'center', flexDirection: formDirection }}>
