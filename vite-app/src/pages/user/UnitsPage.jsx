@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 
 import Section from '../../style/mui/styled/Section'
-import { Alert, Box,  } from '@mui/material'
+import { Alert, Box, } from '@mui/material'
 import TitleSection from '../../components/ui/TitleSection'
 
 import { useParams } from 'react-router-dom'
@@ -20,6 +20,7 @@ import SEOHelmetAsync from '../../tools/SEOHelmetAsync'
 import useGrades from '../../hooks/useGrades'
 import { useLazyGetCoursesQuery } from '../../toolkit/apis/coursesApi'
 import UserCourseDetails from '../../components/content/UnitCourseDetails'
+import Grid from '../../style/vanilla/Grid'
 
 function UnitsPage() {
   const { gradeId } = useParams()
@@ -48,7 +49,7 @@ function UnitsPage() {
     if (gradeId !== "undefined" && grades.length && typeof Number(gradeId) === 'number') {
       trigger()
     }
-    
+
     //  else {
     //   if (user) { navigate('/grades/' + user.grade) }
     // }
@@ -75,11 +76,13 @@ function UnitsPage() {
           )}
 
           {status.isLoading && <LoaderSkeleton />}
-          {courses?.length > 0 &&
-            <>
-              {courses?.map((course, i) => <UserCourseDetails key={i} course={course} />)}
-            </>
-          }
+          <Grid>
+            {courses?.length > 0 &&
+              <>
+                {courses?.map((course, i) => <UserCourseDetails key={i} course={course} />)}
+              </>
+            }
+          </Grid>
         </Box>
       </Section >
     </>
