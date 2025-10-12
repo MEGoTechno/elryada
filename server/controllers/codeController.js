@@ -77,7 +77,7 @@ const handelCreateCode = expressAsyncHandler(async (req, res, next) => {
             }
         }
 
-        return res.status(200).json({ message: 'تم انشاء ' + copies + ' اكواد', status: SUCCESS })
+        return res.status(200).json({ message: 'تم إنشاء ' + copies + ' اكواد', status: SUCCESS })
     } else {
         return next(createError('عدد النسخ لا يمكن ان يكون اقل من 1 نسخه', 400, FAILED))
     }

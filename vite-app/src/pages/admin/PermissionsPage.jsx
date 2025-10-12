@@ -39,7 +39,7 @@ function PermissionsPage() {
         }, {
             label: 'الكورسات', component: <Courses addColumns={addedCourseCols} /> //
         }, {
-            label: 'الاسئله', component: <Permissions
+            label: 'الأسئلة', component: <Permissions
                 perms={[...questionsPerms(null, { values: true }),...tagsPerms(null, { values: true })]}
                 ifNotBtn
                 scoped={false} /> //

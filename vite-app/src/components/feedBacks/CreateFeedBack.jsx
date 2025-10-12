@@ -21,7 +21,7 @@ function CreateFeedBack({ setReset }) {
     return (
         <BtnModal
             btn={<FilledHoverBtn>
-                انشاء شكوى او اقتراح
+                إنشاء شكوى او اقتراح
             </FilledHoverBtn>}>
             <FeedBackForm onSubmit={onSubmit} status={status} />
         </BtnModal>

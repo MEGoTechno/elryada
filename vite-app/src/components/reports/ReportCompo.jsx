@@ -55,14 +55,14 @@ const ReportCompo = ({ course, excludedUsers, isExcluded }) => {
         await createReport(params)
     }
 
-    if (!course) {
-        inputs.push({
-            name: 'grade',
-            label: lang.GRADE,
-            type: 'select',
-            options: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
-        })
-    }
+    // if (!course) { *No-grade
+    //     inputs.push({
+    //         name: 'grade',
+    //         label: lang.GRADE,
+    //         type: 'select',
+    //         options: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
+    //     })
+    // }
     return <MakeForm inputs={inputs} onSubmit={trigger} status={status} />
 }
 

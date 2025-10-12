@@ -24,7 +24,7 @@ const usersPerms = (none, key = null) => {
 
     const all = {
         create: [
-            { id: "users_create", label: "انشاء طلاب" },
+            { id: "users_create", label: "إنشاء طلاب" },
         ].filter(Boolean),
 
         update: [

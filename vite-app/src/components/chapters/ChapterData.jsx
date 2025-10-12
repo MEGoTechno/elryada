@@ -14,7 +14,7 @@ import Loader from "../../style/mui/loaders/Loader"
 import usePermissions from "../permissions/hooks/usePermissions"
 import { chapterPerms } from "../permissions/constants/perms"
 
-function ChapterData({ chapter, setChapter, course, unit, grade, deleteChapter }) {
+function ChapterData({ chapter, setChapter, course,  grade, deleteChapter }) { //unit,
 
     const [lectures, setLectures] = useState()
     const [hasPermission] = usePermissions()
@@ -32,7 +32,7 @@ function ChapterData({ chapter, setChapter, course, unit, grade, deleteChapter }
 
     return (
         <FlexColumn sx={{ width: '100%' }}>
-            <AdminChapterInfo lecturesCount={lectures?.length} chapter={chapter} setChapter={setChapter} deleteChapter={deleteChapter} />
+            <AdminChapterInfo course={course} lecturesCount={lectures?.length} chapter={chapter} setChapter={setChapter} deleteChapter={deleteChapter} />
 
             <Grid gap="10px" sx={{ width: '100%' }}>
                 {lectures && lectures.map((lecture, i) => (
@@ -50,11 +50,12 @@ function ChapterData({ chapter, setChapter, course, unit, grade, deleteChapter }
             )}
             {hasPermission(chapterPerms(chapter._id, 'lecturesCreate')) && (
                 <BtnModal
+                
                     btn={<OutLinedHoverBtn>إضافة محاضرة إلى {chapter.name}</OutLinedHoverBtn>}
                     component={
                         <LectureCreate
                             setLectures={setLectures}
-                            unit={unit}
+                            //unit={unit}
                             grade={grade}
                             course={course}
                             chapter={chapter._id}

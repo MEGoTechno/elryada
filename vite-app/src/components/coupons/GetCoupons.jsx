@@ -46,7 +46,7 @@ const exportObj = {
     }
 }
 
-function GetCoupons({ course, tag, createBtnName = 'انشاء كوبون' }) {
+function GetCoupons({ course, tag, createBtnName = 'إنشاء كوبون' }) {
 
     const [reset, setReset] = useState(false)
 
@@ -137,7 +137,7 @@ function GetCoupons({ course, tag, createBtnName = 'انشاء كوبون' }) {
             editable: true
         }, {
             field: 'createdAt',
-            headerName: 'تم انشاءه فى',
+            headerName: 'تم إنشاءه فى',
             width: 170,
             type: 'number',
             renderCell: (params) => {

@@ -12,7 +12,7 @@ import { useAddToUserMutation } from "../../toolkit/apis/usersApi"
 import { useState } from "react"
 import { useSelector } from "react-redux"
 
-function ChapterTeachers({ chapter }) {
+function ChapterTeachers({ chapter, course }) {
     const [reset, setReset] = useState(false)
 
     const [sendData, status] = useAddToUserMutation()
@@ -23,7 +23,7 @@ function ChapterTeachers({ chapter }) {
         {
             label: 'ايضافه مدرس', component: <Users
                 filters={{
-                    chapters: '!=' + chapter._id,
+                    chapters: '!=' + chapter._id, courses: course,
                     role: [user_roles.TEACHER, user_roles.SUBADMIN], _id: '!=' + user._id
                 }}
                 allStatuses={[status]} reset={reset}

@@ -23,7 +23,7 @@ function MakeRadio({ inputName, input, props }) {
                 ))}
 
                 {(input.options?.length === 0 || !input.options) && (
-                    <Alert dir='ltr' sx={{ mb: "5px" }} severity='error'>يجب اضافه سنه دراسيه</Alert>
+                    <Alert dir='ltr' sx={{ mb: "5px" }} severity='error'>يجب إضافه ماده دراسيه</Alert>
                 )}
 
                 {/* {props.errors[inputName] && props.touched[inputName] && (

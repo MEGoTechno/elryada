@@ -14,7 +14,7 @@ function Grades() {
     return (
         <Section>
             <TextBorderWithIcons
-                title='الصفوف الدراسيه'
+                title='المواد الاساسيه'
                 color={theme.palette.neutral[0]}
                 colorOne={theme.palette.primary.main}
                 endIcon={<FaSchool size={'1.5rem'} />}

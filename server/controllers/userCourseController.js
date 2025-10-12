@@ -69,7 +69,7 @@ const addSubscription = expressAsyncHandler(async (req, res, next) => {
         return next(err)
     })
 
-    return res.status(201).json({ status: SUCCESS, values: doc, message: 'تم الانشاء بنجاح' })
+    return res.status(201).json({ status: SUCCESS, values: doc, message: 'تم الإنشاء بنجاح' })
 })
 // insertOne(UserCourseModel)
 //add to courses in user

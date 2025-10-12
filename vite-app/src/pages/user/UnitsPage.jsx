@@ -18,6 +18,8 @@ import UnitCourses from '../../components/content/UnitCourses'
 
 import SEOHelmetAsync from '../../tools/SEOHelmetAsync'
 import useGrades from '../../hooks/useGrades'
+import { useLazyGetCoursesQuery } from '../../toolkit/apis/coursesApi'
+import UserCourseDetails from '../../components/content/UnitCourseDetails'
 
 function UnitsPage() {
   const { gradeId } = useParams()
@@ -27,10 +29,10 @@ function UnitsPage() {
   // const user = useSelector(s => s.global.user)
 
   // const navigate = useNavigate()
-  const [units, setUnits] = useState([])
+  const [courses, setCourses] = useState([])
   // units
-  const [getUnitsFc, status] = useLazyGetUnitsQuery()
-  const [getUnits] = useLazyGetData(getUnitsFc)
+  const [getCoursesFc, status] = useLazyGetCoursesQuery()
+  const [getCourses] = useLazyGetData(getCoursesFc)
 
   useEffect(() => {
     const trigger = async () => {
@@ -38,25 +40,27 @@ function UnitsPage() {
       // console.log('grade ==>', grade)
       if (!grade) return
       setGrade(grade)
-      const res = await getUnits({ grade: grade._id })
-      setUnits(res.units)
+
+      const res = await getCourses({ grade: grade._id })
+      setCourses(res.courses)
     }
 
     if (gradeId !== "undefined" && grades.length && typeof Number(gradeId) === 'number') {
       trigger()
     }
+    
     //  else {
     //   if (user) { navigate('/grades/' + user.grade) }
     // }
   }, [gradeId, grades])
-  if (!grade) return
+  if (!grade) return <>Invalid</>
 
   return (
     <>
       {/* <GradeHeader grade={grade} /> */}
       <Section>
         <SEOHelmetAsync
-          title={"الصف الدراسي - " + grade.name}
+          title={"الماده الاساسيه - " + grade.name}
           desc={grade.description}
           url={window.location.href}
           isSiteLink={true}
@@ -65,15 +69,15 @@ function UnitsPage() {
         <GradeHeader grade={grade} />
 
         <Box sx={{ padding: '8px' }}>
-          <TitleSection title={lang.GRADE_CONTENT} />
-          {(status.isSuccess && units?.length === 0) && (
-            <Alert variant='filled' severity='warning'>الوحدات هتنزل قريب , خليك متابع !</Alert>
+          <TitleSection title={lang.GRADE_CONTENT + ' - ' + grade?.name} />
+          {(status.isSuccess && courses?.length === 0) && (
+            <Alert variant='filled' severity='warning'> سيتم تنزيل الدورات قريبا, تابع!</Alert>
           )}
 
           {status.isLoading && <LoaderSkeleton />}
-          {units?.length > 0 &&
+          {courses?.length > 0 &&
             <>
-              {units?.map((unit, i) => <UnitCourses key={i} unit={unit} />)}
+              {courses?.map((course, i) => <UserCourseDetails key={i} course={course} />)}
             </>
           }
         </Box>

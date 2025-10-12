@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import {   useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import { useGridApiRef } from '@mui/x-data-grid'
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { user_roles } from '../../settings/constants/roles'
 import governments from '../../settings/constants/governments'
@@ -14,7 +14,7 @@ import ModalStyled from '../../style/mui/styled/ModalStyled'
 import { makeArrWithValueAndLabel } from '../../tools/fcs/MakeArray'
 import MeDatagrid from '../../tools/datagrid/MeDatagrid'
 
-import { useLazyGetUsersCountQuery } from '../../toolkit/apis/statisticsApi'
+// import { useLazyGetUsersCountQuery } from '../../toolkit/apis/statisticsApi'
 import { useDeleteManyUsersMutation, useDeleteUserMutation, useLazyAnalysisUsersQuery, useLazyGetUsersQuery, useUpdateUserMutation } from '../../toolkit/apis/usersApi'
 import usePostData from '../../hooks/usePostData'
 import useLazyGetData from '../../hooks/useLazyGetData'
@@ -22,7 +22,7 @@ import useLazyGetData from '../../hooks/useLazyGetData'
 import CreateUser from '../../components/users/CreateUser'
 import TabInfo from '../../components/ui/TabInfo'
 import TitleSection from '../../components/ui/TitleSection'
-import GradesTabs from '../../components/grades/GradesTabs'
+// import GradesTabs from '../../components/grades/GradesTabs'
 import UserAvatar from '../../components/users/UserAvatar';
 import UserShowTable from '../../components/users/UserShowTable';
 import UserResetPassword from '../../components/users/UserResetPassword';
@@ -52,23 +52,23 @@ const exportObj = (grades) => {
     }
 }
 
-function GetUsersPage({ setExcludedUsers, isShowTitle = true, courses, isShowGrades = true, isShowStatistics = true }) {
+function GetUsersPage({ setExcludedUsers, isShowTitle = true, courses, isShowStatistics = true }) { // isShowGrades = true,
 
     const { grades } = useGrades()
 
     // console.log(data)
     const navigate = useNavigate()
-    const [searchParams, setSearchParams] = useSearchParams();
+    // const [searchParams, setSearchParams] = useSearchParams();
 
-    const [gradesCounts, setGradeCounts] = useState({})
-    const [grade, setGrade] = useState(Number(searchParams.get('grade')) || 0)
+    // const [gradesCounts, setGradeCounts] = useState({})
+    // const [grade, setGrade] = useState(Number(searchParams.get('grade')) || 0)
 
-    const changeGrade = (newVal) => {
-        setSearchParams({
-            grade: newVal
-        })
-        setGrade(newVal)
-    }
+    // const changeGrade = (newVal) => {
+    //     setSearchParams({
+    //         grade: newVal
+    //     })
+    //     setGrade(newVal)
+    // }
 
     //get users
     const [reset, setReset] = useState(false)
@@ -85,26 +85,26 @@ function GetUsersPage({ setExcludedUsers, isShowTitle = true, courses, isShowGra
                 params.role = '!=' + user_roles.TEACHER
             }
         }
-        const res = await getUsers({ ...params, grade: grade || 'all', courses }, false)
+        const res = await getUsers({ ...params,  courses }, false) //grade: grade || 'all', *No-grade
         const data = { values: res.users, count: res.count }
         return data
     }
 
     //get users count
-    const [getStatistics] = useLazyGetUsersCountQuery()
-    const [getUsersCount] = useLazyGetData(getStatistics)
+    // const [getStatistics] = useLazyGetUsersCountQuery() *No-grade
+    // const [getUsersCount] = useLazyGetData(getStatistics)
 
-    useEffect(() => {
-        const trigger = async () => {
+    // useEffect(() => {
+    //     const trigger = async () => {
 
-            const [...counts] = await Promise.all([
-                getUsersCount({ grade: 'all', role: '!=' + user_roles.TEACHER }),
-                ...grades.map(g => getUsersCount({ grade: g._id }, true)),
-            ])
-            setGradeCounts(counts)
-        }
-        trigger()
-    }, [grades])
+    //         const [...counts] = await Promise.all([
+    //             getUsersCount({ grade: 'all', role: '!=' + user_roles.TEACHER }),
+    //             ...grades.map(g => getUsersCount({ grade: g._id }, true)),
+    //         ])
+    //         setGradeCounts(counts)
+    //     }
+    //     trigger()
+    // }, [grades])
 
 
     const columns = [
@@ -168,25 +168,27 @@ function GetUsersPage({ setExcludedUsers, isShowTitle = true, courses, isShowGra
             width: 200,
             valueOptions: [user_roles.INREVIEW, user_roles.ONLINE, user_roles.STUDENT, user_roles.ADMIN, user_roles.SUBADMIN,],
             editable: true
-        }, {
-            field: "grade",
-            headerName: lang.GRADE,
-            type: 'singleSelect',
-            width: 200,
-            editable: true,
-            sortable: false,
-            filterable: false,
-            valueOptions: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
-            renderCell: (params) => {
-                const grade = grades.find(({ _id }) => _id === params.row.grade)
-                return (
-                    <Typography>
-                        {params.row.role === user_roles.ADMIN ? user_roles.ADMIN
-                            : grade?.name}
-                    </Typography>
-                )
-            }
-        }, {
+        }, 
+        // {
+        //     field: "grade",
+        //     headerName: lang.GRADE,
+        //     type: 'singleSelect',
+        //     width: 200,
+        //     editable: true,
+        //     sortable: false,
+        //     filterable: false,
+        //     valueOptions: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
+        //     renderCell: (params) => {
+        //         const grade = grades.find(({ _id }) => _id === params.row.grade)
+        //         return (
+        //             <Typography>
+        //                 {params.row.role === user_roles.ADMIN ? user_roles.ADMIN
+        //                     : grade?.name}
+        //             </Typography>
+        //         )
+        //     }
+        // }, 
+        {
             field: "government",
             headerName: 'المحافظه',
             type: 'singleSelect',
@@ -204,7 +206,7 @@ function GetUsersPage({ setExcludedUsers, isShowTitle = true, courses, isShowGra
             }
         }, {
             field: 'marks',
-            headerName: 'درجات الاسئله',
+            headerName: 'درجات الأسئلة',
             type: 'number',
         }, {
             field: 'exam_marks',
@@ -279,7 +281,7 @@ function GetUsersPage({ setExcludedUsers, isShowTitle = true, courses, isShowGra
         // },
         {
             field: 'createdAt',
-            headerName: 'تاريخ الانشاء',
+            headerName: 'تاريخ الإنشاء',
             width: 200,
             type: 'date',
             valueGetter: (params) => new Date(params),//*_*
@@ -342,14 +344,14 @@ function GetUsersPage({ setExcludedUsers, isShowTitle = true, courses, isShowGra
                 </>
             )}
 
-            {isShowGrades && (
+            {/* {isShowGrades && ( *No-grade
                 <GradesTabs grade={grade} setGrade={changeGrade} counts={gradesCounts} />
-            )}
+            )} */}
 
 
             <MeDatagrid
                 apiRef={apiRef}
-                reset={[reset, grade]}
+                reset={[reset]} //*No-grade
                 setSelection={setExcludedUsers}
                 type={'crud'} exportObj={exportObj(grades)} exportTitle={lang.USERS_PAGE}
 

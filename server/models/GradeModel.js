@@ -7,6 +7,7 @@ const gradeSchema = new mongoose.Schema({
     index: { type: Number, unique: true, required: true },
     image: {
         url: String,
+        resource_type: String
     }
 }, {
     timestamps: true,

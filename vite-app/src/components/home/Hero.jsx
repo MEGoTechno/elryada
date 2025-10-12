@@ -33,7 +33,7 @@ function Hero() {
                     <Grid min="150px" gap="6px" sx={{ width: '100%' }} >
                         <CardInfo caption={'برامج تدريبيه '} icon={<img src="./assets/course-icon.svg" style={{ width: '40px' }} />} />
                         <CardInfo caption={'نخبه من المعلمين'} icon={<img src="./assets/teacher-icon.svg" style={{ width: '40px' }} />} />
-                        <CardInfo caption={'اختبارات وبنك اسئله  '} icon={<img src="./assets/questions-icon.svg" style={{ width: '40px' }} />} />
+                        <CardInfo caption={'اختبارات وبنك أسئلة  '} icon={<img src="./assets/questions-icon.svg" style={{ width: '40px' }} />} />
                         {/* <CardService dir="vert"  icon={<img src="./assets/arrow.svg" style={{ width: '60px' }} />} desc={'دورات تدريبيه'} color="primary.main" /> */}
                     </Grid>
                 </FlexColumn>

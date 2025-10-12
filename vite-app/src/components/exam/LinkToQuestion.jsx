@@ -24,19 +24,19 @@ const LinkToQuestion = ({ props }) => {
     }
 
     return <div>
-        <FilledHoverBtn onClick={() => setOpen(true)}>ربط اسئله جديده</FilledHoverBtn>
+        <FilledHoverBtn onClick={() => setOpen(true)}>ربط أسئلة جديده</FilledHoverBtn>
 
-        {/* <FilledHoverBtn colorm="orange" onClick={() => setOpenUpdate(true)}> تعديل الاسئله</FilledHoverBtn> */}
+        {/* <FilledHoverBtn colorm="orange" onClick={() => setOpenUpdate(true)}> تعديل الأسئلة</FilledHoverBtn> */}
 
         <div>
-            <TabInfo title={"عدد الاسئله التى تم ربطها"} count={selections?.length ?? 0} i={0} />
+            <TabInfo title={"عدد الأسئلة التى تم ربطها"} count={selections?.length ?? 0} i={0} />
         </div>
 
         <ModalStyled open={open} setOpen={setOpen} fullScreen={true} >
             <Box>
                 <AdminGetQuestions setSelectedQs={setSelectedQs} allSelected={true} />
             </Box>
-            <FilledHoverBtn onClick={() => linkQs(selectedQs)}>ربط الاسئله</FilledHoverBtn>
+            <FilledHoverBtn onClick={() => linkQs(selectedQs)}>ربط الأسئلة</FilledHoverBtn>
         </ModalStyled>
     </div>
 }

@@ -56,7 +56,8 @@ function GetEveryUserViews({ lectureId, courseId, role, refetchUsers, userId }) 
             return {
                 ...view,
                 role: view.user?.role,
-                avatar: view.user?.avatar, name: view.user?.name, userName: view.user?.userName, isActive: view.user?.isActive, phone: view.user?.phone, familyPhone: view.user?.familyPhone, grade: view.user?.grade,
+                avatar: view.user?.avatar, name: view.user?.name, userName: view.user?.userName, isActive: view.user?.isActive, phone: view.user?.phone, familyPhone: view.user?.familyPhone, 
+                // grade: view.user?.grade,*No-grade *Need-grade
             }
         })
         setUsersCount(res.count)
@@ -144,23 +145,24 @@ function GetEveryUserViews({ lectureId, courseId, role, refetchUsers, userId }) 
             headerName: lang.FAMILY_PHONE,
             width: 200,
             sortable: false,
-        }, {
-            field: "grade",
-            headerName: lang.GRADE,
-            type: 'singleSelect',
-            width: 200,
-            filterable: false,
-            sortable: false,
-            valueOptions: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
-            renderCell: (params) => {
-                const grade = grades.find(({ _id }) => _id === params.row.grade)
-                return (
-                    <Typography>
-                        {grade?.name}
-                    </Typography>
-                )
-            }
         },
+        //  {
+        //     field: "grade",
+        //     headerName: lang.GRADE,
+        //     type: 'singleSelect',
+        //     width: 200,
+        //     filterable: false,
+        //     sortable: false,
+        //     valueOptions: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
+        //     renderCell: (params) => {
+        //         const grade = grades.find(({ _id }) => _id === params.row.grade)
+        //         return (
+        //             <Typography>
+        //                 {grade?.name}
+        //             </Typography>
+        //         )
+        //     }
+        // },
     ]
 
 

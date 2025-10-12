@@ -17,7 +17,7 @@ function CreateGrade({ setReset }) {
 
     return (
         <Section>
-            <TitleWithDividers title={'انشاء صف دراسي جديد'} />
+            <TitleWithDividers title={'إنشاء ماده اساسيه جديده'} />
             <GradeForm onSubmit={onSubmit} status={status} />
         </Section>
     )

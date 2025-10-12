@@ -3,7 +3,7 @@ export const lang = {
     Platform_name: '',
 
     LOGOUT: 'تسجيل الخروج',
-    GRADES: "السنوات الدراسيه",
+    GRADES: "المواد الاساسيه",
     COURSES: 'الكورسات',
     LOGIN_ENTRY: 'تسجيل دخول',
     LOGIN : 'تسجيل',
@@ -37,15 +37,15 @@ export const lang = {
     ALL: 'الكل',
 
     //content
-    GRADE_CONTENT: 'محتوى الصف',
+    GRADE_CONTENT: 'محتوى الماده الاساسيه',
     LECTURES: 'المحاضرات',
     UNITS: 'الوحدات',
-    COURSES_NUMBER: 'عدد الكورسات',
+    COURSES_NUMBER: 'عدد الدورات التدريبيه',
     isActive: 'الحاله',
     CREATE_UNIT: "إنشاء وحده",
     CHOOSE_UNIT: "إختر وحده",
-    CREATE_COURSE: "إنشاء كورس",
-    CHOOSE_COURSE: "إختر كورس",
+    CREATE_COURSE: "إنشاء دوره جديده",
+    CHOOSE_COURSE: "إختر دوره تدريبيه",
 
     NO_COURSES_IN_THIS_UNIT: "لا يوجد كورسات لهذه الوحده",
     COURSE_DETAILS: 'تفاصيل الكورس',
@@ -72,7 +72,7 @@ export const lang = {
     PRE_DISCOUNT: 'السعر قبل الخصم',
 
     TIME: 'الوقت',
-    QUESTIONS: 'الاسئله',
+    QUESTIONS: 'الأسئلة',
     ATTEMPT: 'محاوله',
     ATTEMPTS: 'المحاولات',
     YOUR_ATTEMPTS: 'عدد مرات اداء الاختبار',

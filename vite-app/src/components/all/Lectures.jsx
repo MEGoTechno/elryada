@@ -37,7 +37,7 @@ function Lectures({ filters, reset, viewFc, deleteFc, updateFc, massActions, all
             valueOptions: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
         }, {
             field: 'createdAt',
-            headerName: 'تاريخ الانشاء',
+            headerName: 'تاريخ الإنشاء',
             width: 200,
             type: 'date',
             valueGetter: (createdAt) => new Date(createdAt),

@@ -166,14 +166,14 @@ function ExamForm({ lecture, status, onSubmit }) {
         },
         {
             name: "showAnswersDate",
-            label: "تاريخ اظهار الايجابات",
+            label: "تاريخ اظهار الإجابات",
             type: 'fullDate',
             value: lecture?.exam?.showAnswersDate ? dayjs(lecture.exam.showAnswersDate) : null,
             column: 3,
             row: 3,
         }, {
             name: "isShowAnswers",
-            label: "هل تريد اظهار الايجابات",
+            label: "هل تريد اظهار الإجابات",
             type: 'switch',
             value: lecture?.exam?.isShowAnswers ?? true,
             column: 3,
@@ -208,24 +208,25 @@ function ExamForm({ lecture, status, onSubmit }) {
     //exam info => in update nested
     const inputs = [...lectureInfoInputs, {
         name: "questions",
-        label: "الاسئله ==>",
+        label: "الأسئلة ==>",
         value: lecture?.exam?.questions ?? [],
         schema: questionSchema, //
-        addLabel: "اضافه سؤال", // add schema for reply this field in main values
+        addLabel: "إضافه سؤال", // add schema for reply this field in main values
         removeLabel: "ازاله السؤال", //
         type: "chunk", //
         array: [ //inputs control to values of schema
             {
                 name: "title",
                 label: "العنوان",
-                rows: 3
+                rows: 3,
+                type: "editor"
 
             }, {
                 name: "hints",
                 label: "ملحوظه",
             }, {
                 name: "image",
-                label: "اضافه صوره",
+                label: "إضافه صوره",
                 type: "file",
                 disabled: false
             }, {
@@ -234,14 +235,14 @@ function ExamForm({ lecture, status, onSubmit }) {
                 type: "number",
             }, {
                 type: 'header',
-                title: 'الاختيارات'
+                title: 'الإختيارات'
             }, {
                 name: "isShuffle",
-                label: "هل تريد جعل الاختيارات عشوائيه؟",
+                label: "هل تريد جعل الإختيارات عشوائيه؟",
                 type: 'switch',
             }, {
                 name: "rtOptionId",
-                label: "الايجابه الصحيحه",
+                label: "الإجابه الصحيحه",
                 disabled: true,
                 hidden: true
             }, {
@@ -257,7 +258,7 @@ function ExamForm({ lecture, status, onSubmit }) {
                         hidden: true,
                     }, {
                         name: "title",
-                        label: "الايجابه",
+                        label: "الإجابه",
                         choose: "rtOptionId",
                         from: 'id',
                         rows: 3
@@ -280,8 +281,14 @@ function ExamForm({ lecture, status, onSubmit }) {
             Yup.array()
                 .of(
                     Yup.object().shape({
-                        title: Yup.string().required(lang.REQUERIED),
-                        rtOptionId: Yup.string().required('اختر الايجابه الصحيحه'),
+                        title: Yup.string()
+                            .nullable()
+                            .when('image', {
+                                is: (image) => !image || (!image.url && !image.name),
+                                then: (schema) => schema.required('العنوان مطلوب'),
+                                otherwise: (schema) => schema.notRequired(),
+                            }),
+                        rtOptionId: Yup.string().required('اختر الإجابه الصحيحه'),
                         image: Yup.mixed()
                             .test({
                                 message: 'Please provide a supported image typed(jpg or png)',
@@ -316,7 +323,7 @@ function ExamForm({ lecture, status, onSubmit }) {
                         )
                     })
                 )
-                .required('يجب ان يكون هناك اسئله') // these constraints are shown if and only if inner constraints are satisfied
+                .required('يجب ان يكون هناك أسئلة') // these constraints are shown if and only if inner constraints are satisfied
                 .min(isDevelop ? 1 : 5, '5 على الاقل')
         ,
     }

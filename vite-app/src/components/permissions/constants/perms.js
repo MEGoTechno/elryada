@@ -3,10 +3,10 @@ export const chapterPerms = (chapterId, key = null, meta = { courseId: null, val
 
     const all = {
         create: [
-            { id: "chapters_create", label: "انشاء اجزاء لاي كورس" },
+            { id: "chapters_create", label: "إنشاء اجزاء لاي كورس" },
             {
                 id: courseId ? `course_chapters_create:${courseId}` : null,
-                label: "انشاء اجزاء لهذا الكورس", scoped: true
+                label: "إنشاء اجزاء لهذا الكورس", scoped: true
             },
         ],
 
@@ -36,9 +36,9 @@ export const chapterPerms = (chapterId, key = null, meta = { courseId: null, val
         ].filter(Boolean),
 
         lecturesCodes: [
-            { id: "chapters_lectures_codes", label: "امكانيه انشاء اكواد للمحاضرات" },
-            chapterId && { id: `chapter_lectures_codes:${chapterId}`, label: "امكانيه انشاء اكواد لمحاضرات هذا الفصل", scoped: true },
-            courseId && { id: `course_lectures_codes:${courseId}`, label: " امكانيه انشاء اكواد لمحاضرات هذا الكورس", scoped: true },
+            { id: "chapters_lectures_codes", label: "امكانيه إنشاء اكواد للمحاضرات" },
+            chapterId && { id: `chapter_lectures_codes:${chapterId}`, label: "امكانيه إنشاء اكواد لمحاضرات هذا الفصل", scoped: true },
+            courseId && { id: `course_lectures_codes:${courseId}`, label: " امكانيه إنشاء اكواد لمحاضرات هذا الكورس", scoped: true },
         ].filter(Boolean),
 
         lecturesUpdate: [
@@ -57,7 +57,7 @@ export const usersPerms = (none, key = null) => {
 
     const all = {
         create: [
-            { id: "users_create", label: "انشاء طلاب" },
+            { id: "users_create", label: "إنشاء طلاب" },
         ].filter(Boolean),
 
         update: [
@@ -74,19 +74,19 @@ export const usersPerms = (none, key = null) => {
 export const questionsPerms = (key = null, meta = { values: false }) => {
     const all = {
         manageQuestions: [
-            { id: 'questions.manage', label: 'اداره اسئله' }
+            { id: 'questions.manage', label: 'اداره أسئلة' }
         ],
         create: [
-            { id: 'questions.create', label: 'انشاء اسئله', isValid: false }
+            { id: 'questions.create', label: 'إنشاء أسئلة', isValid: false }
         ],
         update: [
-            { id: 'questions.update', label: 'تعديل الاسئله', isValid: false }
+            { id: 'questions.update', label: 'تعديل الأسئلة', isValid: false }
         ],
         delete: [
-            { id: 'questions.delete', label: 'حذف الاسئله', isValid: false }
+            { id: 'questions.delete', label: 'حذف الأسئلة', isValid: false }
         ],
         showAnswers: [
-            { id: 'answers.read', label: 'عرض كل الايجابات' }
+            { id: 'answers.read', label: 'عرض كل الإجابات' }
         ]
 
     }
@@ -100,7 +100,7 @@ export const tagsPerms = (key = null, meta = { values: false }) => {
             { id: 'tags.manage', label: 'اداره الروابط', isValid: true }
         ],
         create: [
-            { id: 'tags.create', label: 'انشاء رابط اسئله', isValid: false }
+            { id: 'tags.create', label: 'إنشاء رابط أسئلة', isValid: false }
         ],
         update: [
             { id: 'tags.update', label: 'تعد', isValid: false }

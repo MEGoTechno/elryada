@@ -125,7 +125,7 @@ function CreateCode({ setReset, lecture = false, chapter }) {
 
     return (
         <Section>
-            <Typography variant='h6' textAlign={'center'} borderBottom={'4px solid'} my={'16px'}>انشاء كود {lecture?.name ? 'للمحاضره' + ' ' + lecture.name : ''}</Typography>
+            <Typography variant='h6' textAlign={'center'} borderBottom={'4px solid'} my={'16px'}>إنشاء كود {lecture?.name ? 'للمحاضره' + ' ' + lecture.name : ''}</Typography>
             <MakeSelect title={'اختر كود'} value={type} setValue={setType}
                 options={[codeConstants.ACTIVATE, codeConstants.CENTER, codeConstants.WALLET, codeConstants.LECTURES]}
                 disableValue={lecture?.name && [codeConstants.ACTIVATE, codeConstants.CENTER, codeConstants.WALLET]}

@@ -127,7 +127,7 @@ function ExamCard({ exam, lecture }) {
                     <FlexColumn sx={{ alignItems: 'flex-start' }} gap={2}>
                         <TabInfo count={exam?.time} i={0} title={'الوقت'} isBold={false} icon={<FaClock size={'1.1rem'} />} />
                         <TabInfo count={examPoints + ' ' + 'درجه'} i={0} title={'درجه الاختبار'} isBold={false} icon={<FaClock size={'1.1rem'} />} />
-                        <TabInfo count={exam?.questions.length} i={1} title={'عدد الاسئله'} isBold={false} icon={<FcQuestions size={'1.1rem'} />} />
+                        <TabInfo count={exam?.questions.length} i={1} title={'عدد الأسئلة'} isBold={false} icon={<FcQuestions size={'1.1rem'} />} />
                         <TabInfo count={exam?.attemptsNums} i={3} title={'عدد المحاولات'} isBold={false} icon={<FaClock size={'1.1rem'} />} />
                     </FlexColumn>
 
@@ -148,7 +148,7 @@ function ExamCard({ exam, lecture }) {
                                     : hasToFinishAttempts ? 'عليك اكمال المحاولات السابقه' : "ابدا الاختبار"}
                     </Button>
                 </CardActions>
-                <ModalStyled title={'هل انت متاكد من بدا الاختبار ؟'} desc={exam.method === getExamMethod({ methodValue: "question", key: 'value' }) ? "اذا انتهى الوقت, لن تستطيع اكمال الاسئله التى لم يتم حلها !" : 'بمجرد البدء لا يمكنك العوده !'} open={open} setOpen={setOpen} action={action} />
+                <ModalStyled title={'هل انت متاكد من بدا الاختبار ؟'} desc={exam.method === getExamMethod({ methodValue: "question", key: 'value' }) ? "اذا انتهى الوقت, لن تستطيع اكمال الأسئلة التى لم يتم حلها !" : 'بمجرد البدء لا يمكنك العوده !'} open={open} setOpen={setOpen} action={action} />
             </Card>
 
             {attempts && (
@@ -166,8 +166,8 @@ function ExamCard({ exam, lecture }) {
 
                                 {attempt.hasToFinishAttempts ? (
                                     <>
-                                        <TabInfo count={attempt.answers.length} i={1} title={"الاسئله المجابه"} isBold={true} />
-                                        <TabInfo count={exam.questions.length - attempt.answers.length} i={3} title={"الاسئله المتبقيه"} />
+                                        <TabInfo count={attempt.answers.length} i={1} title={"الأسئلة المجابه"} isBold={true} />
+                                        <TabInfo count={exam.questions.length - attempt.answers.length} i={3} title={"الأسئلة المتبقيه"} />
                                         {(exam.isTime ?? true) ? (
                                             <>
                                                 <TabInfo count={getDateWithTime(attempt.endAt)} i={2} title={"ستنتهى المحاوله فى : "} />
@@ -198,7 +198,7 @@ function ExamCard({ exam, lecture }) {
                                 }}
                                 disabled={dayjs().isBefore(dayjs(lecture.exam?.showAnswersDate)) || !lecture.exam.isShowAnswers}>
 
-                                {attempt.hasToFinishAttempts ? 'اكمال الاختبار' : dayjs().isBefore(dayjs(lecture.exam.showAnswersDate)) ? "موعد عرض الايجابات فى " + getDateWithTime(lecture.exam.showAnswersDate) : 'عرض الايجابات'}
+                                {attempt.hasToFinishAttempts ? 'اكمال الاختبار' : dayjs().isBefore(dayjs(lecture.exam.showAnswersDate)) ? "موعد عرض الإجابات فى " + getDateWithTime(lecture.exam.showAnswersDate) : 'عرض الإجابات'}
                             </Button>
                         </FlexColumn>
                     })}

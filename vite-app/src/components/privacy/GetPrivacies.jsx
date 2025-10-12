@@ -62,7 +62,7 @@ function GetPrivacies({ reset, setReset }) {
             }
         }, {
             field: 'createdAt',
-            headerName: 'تاريخ الانشاء',
+            headerName: 'تاريخ الإنشاء',
             width: 200,
             renderCell: (params) => {
                 return <TabInfo count={getFullDate(params.row.createdAt)} i={1} />

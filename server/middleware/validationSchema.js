@@ -44,8 +44,9 @@ const signupSchema = () => {
                 }
                 return true;
             }),
-        body('grade', 'يجب اختيار صف دراسى')
-            .notEmpty().trim().escape().isLength({ max: 100 }).withMessage('يجب ان تكون اقل من او تساوى 100 عناصر'),
+
+        // body('grade', 'يجب اختيار صف دراسى')
+        //     .notEmpty().trim().escape().isLength({ max: 100 }).withMessage('يجب ان تكون اقل من او تساوى 100 عناصر'),
 
         body('government', 'يجب اختيار  محافظه')
             .notEmpty().trim().escape().isLength({ max: 100 }).withMessage('يجب ان تكون اقل من او تساوى 100 عناصر'),

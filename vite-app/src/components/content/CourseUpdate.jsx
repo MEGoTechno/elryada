@@ -33,7 +33,7 @@ const PreDiscount = ({ props, value, input, inputName }) => {
     return <FlexRow sx={{
         justifyContent: 'space-between', gap: '6px'
     }}>
-        <FormControlLabel control={<Switch disabled={input.disabled} checked={isPreDiscount} onChange={() => setPreDiscount(!isPreDiscount)} />} label="اضافه سعر قبل الخصم" />
+        <FormControlLabel control={<Switch disabled={input.disabled} checked={isPreDiscount} onChange={() => setPreDiscount(!isPreDiscount)} />} label="إضافه سعر قبل الخصم" />
         <Box sx={{ width: { xs: '100%', md: '60%' } }}>
             {isPreDiscount && (
                 <MakeInput input={{ ...input, value: value }} props={props} />

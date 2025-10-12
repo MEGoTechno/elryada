@@ -17,7 +17,7 @@ import { useDeleteChapterMutation, useUpdateChapterMutation } from "../../toolki
 import usePostData from "../../hooks/usePostData"
 import SwitchStyled from "../../style/mui/styled/SwitchStyled"
 
-function AdminChapterInfo({ chapter, setChapter, lecturesCount = '', deleteChapter }) {
+function AdminChapterInfo({ chapter, setChapter, lecturesCount = '', deleteChapter , course}) {
 
     const [sendData, updateStatus] = useUpdateChapterMutation()
     const [updateChapter] = usePostData(sendData)
@@ -47,7 +47,7 @@ function AdminChapterInfo({ chapter, setChapter, lecturesCount = '', deleteChapt
                     onChange={(v) => onSubmit({ isMust: v })} isLoading={updateStatus.isLoading} label={'تفعيل اكمال المحاضرات'} />
             )}
             {hasPermission(chapterPerms(chapter._id, 'permissions')) && (
-                <ChapterTeachers chapter={chapter} />
+                <ChapterTeachers chapter={chapter} course={course} />
             )}
             
             <FlexRow gap={'4px'}>

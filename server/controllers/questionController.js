@@ -84,7 +84,7 @@ const createManyQuestions = expressAsyncHandler(async (req, res, next) => {
         return q
     });
     const questions = await QuestionModel.insertMany(handledQs)
-    return res.status(200).json({ message: 'تم انشاء ' + questions.length + ' اسئله', status: SUCCESS })
+    return res.status(200).json({ message: 'تم إنشاء ' + questions.length + ' أسئلة', status: SUCCESS })
 })
 
 //@desc Question Bank Handel
@@ -116,10 +116,10 @@ const startQuestionsBank = expressAsyncHandler(async (req, res, next) => {
     );
 
     const flattened = fetchQuestions.flat()
-    if (flattened.length === 0) return res.status(404).json({ message: 'لا يوجد اسئله, لقد قمت بالايجابه على جميع الاسئله' })
+    if (flattened.length === 0) return res.status(404).json({ message: 'لا يوجد أسئلة, لقد قمت بالإجابه على جميع الأسئلة' })
     const { questions } = secureRtOption(req, { questions: flattened })
 
-    res.status(200).json({ values: questions, message: 'تم الحصول على عدد ' + questions?.length + ' اسئله' })
+    res.status(200).json({ values: questions, message: 'تم الحصول على عدد ' + questions?.length + ' أسئلة' })
 })
 
 module.exports = {

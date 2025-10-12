@@ -94,6 +94,8 @@ export default function Text({ setText, defaultData, disabled = false }) {
             items: [
                 'undo',
                 'redo',
+                'specialCharacters',
+                'subscript', 'superscript',
                 '|',
                 'heading',
                 '|',

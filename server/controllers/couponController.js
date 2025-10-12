@@ -47,7 +47,7 @@ const createCoupons = expressAsyncHandler((async (req, res, next) => {
             await CouponModel.create(createdCoupon)
         }
 
-        return res.status(200).json({ message: 'تم انشاء ' + coupon.copies + ' كوبونات', status: SUCCESS })
+        return res.status(200).json({ message: 'تم إنشاء ' + coupon.copies + ' كوبونات', status: SUCCESS })
     }
 
     const foundCoupon = await CouponModel.findOne({ coupon: coupon.coupon }).lean().select("_id")

@@ -56,10 +56,10 @@ function QuestionsForm({ onSubmit, status, questions = null, metaData = { isAdd:
     const inputs = [
         {
             name: "questions",
-            label: "الاسئله ==>",
+            label: "الأسئلة ==>",
             schema: questionSchema,
             value: questions || [questionSchema], //Clone it, not Acc to Schema
-            addLabel: metaData.isAdd && "اضافه سؤال",
+            addLabel: metaData.isAdd && "إضافه سؤال",
             removeLabel: metaData.isAdd && "ازاله السؤال",
             startNums: 1,
 
@@ -68,7 +68,8 @@ function QuestionsForm({ onSubmit, status, questions = null, metaData = { isAdd:
                 {
                     name: "title",
                     label: "العنوان",
-                    rows: 3
+                    rows: 3,
+                    type: "editor"
                 }, {
                     name: 'grade',
                     label: lang.GRADE,
@@ -80,7 +81,7 @@ function QuestionsForm({ onSubmit, status, questions = null, metaData = { isAdd:
                     label: "ملحوظه",
                 }, {
                     name: "image",
-                    label: "اضافه صوره",
+                    label: "إضافه صوره",
                     type: "file",
                     disabled: false
                 }, {
@@ -90,14 +91,14 @@ function QuestionsForm({ onSubmit, status, questions = null, metaData = { isAdd:
                     value: 1
                 }, {
                     type: 'header',
-                    title: 'الاختيارات'
+                    title: 'الإختيارات'
                 }, {
                     name: "isShuffle",
-                    label: "هل تريد جعل الاختيارات عشوائيه؟",
+                    label: "هل تريد جعل الإختيارات عشوائيه؟",
                     type: 'switch',
                 }, {
                     name: "rtOptionId",
-                    label: "الايجابه الصحيحه",
+                    label: "الإجابه الصحيحه",
                     disabled: true,
                     hidden: true
                 }, {
@@ -114,10 +115,10 @@ function QuestionsForm({ onSubmit, status, questions = null, metaData = { isAdd:
                             hidden: true,
                         }, {
                             name: "title",
-                            label: "الايجابه",
+                            label: "الإجابه",
                             choose: "rtOptionId",
                             from: 'id',
-                    rows: 3,
+                            rows: 3,
 
                         }
                     ]
@@ -139,9 +140,16 @@ function QuestionsForm({ onSubmit, status, questions = null, metaData = { isAdd:
                 Yup.array()
                     .of(
                         Yup.object().shape({
-                            title: Yup.string().required(lang.REQUERIED),
-                            rtOptionId: Yup.string().required('اختر الايجابه الصحيحه'),
-                            grade: Yup.string().required(''),
+                            // title: Yup.string().required(lang.REQUERIED),
+                            title: Yup.string()
+                                .nullable()
+                                .when('image', {
+                                    is: (image) => !image || (!image.url && !image.name),
+                                    then: (schema) => schema.required('العنوان مطلوب'),
+                                    otherwise: (schema) => schema.notRequired(),
+                                }),
+                            rtOptionId: Yup.string().required('اختر الإجابه الصحيحه'),
+                            grade: Yup.string().required(lang.REQUERIED),
                             image: Yup.mixed()
                                 .test({
                                     message: 'Please provide a supported image typed(jpg or png)',
@@ -176,7 +184,7 @@ function QuestionsForm({ onSubmit, status, questions = null, metaData = { isAdd:
                             )
                         })
                     )
-                    .required('يجب ان يكون هناك اسئله') // these constraints are shown if and only if inner constraints are satisfied
+                    .required('يجب ان يكون هناك أسئلة') // these constraints are shown if and only if inner constraints are satisfied
                     .min(1, '1 على الاقل') // *_*
             ,
         }

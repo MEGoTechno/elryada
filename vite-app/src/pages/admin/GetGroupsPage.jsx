@@ -18,7 +18,7 @@ function GetGroupsPage() {
 
       <FlexColumn>
         <FilledHoverBtn onClick={() => setOpen(!open)}>
-          انشاء مجموعه جديده
+          إنشاء مجموعه جديده
         </FilledHoverBtn>
 
         <GetGroups reset={reset} setReset={setReset} />

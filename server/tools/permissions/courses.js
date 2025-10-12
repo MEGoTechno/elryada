@@ -15,7 +15,7 @@ const coursesPerms = (courseId, key = null, meta = { values: false }) => {
 
     const all = {
         create: [
-            { id: 'courses_create', label: 'انشاء كورسات' }
+            { id: 'courses_create', label: 'إنشاء كورسات' }
         ],
         subscriptions: [
             {
@@ -124,10 +124,10 @@ const chapterPerms = (chapterId, key = null, meta = { courseId: null, values: fa
 
     const all = {
         create: [
-            { id: "chapters_create", label: "انشاء اجزاء لاي كورس" },
+            { id: "chapters_create", label: "إنشاء اجزاء لاي كورس" },
             isScoped(courseId) && {
                 id: courseId ? `course_chapters_create:${courseId}` : null,
-                label: "انشاء اجزاء لهذا الكورس", scoped: true
+                label: "إنشاء اجزاء لهذا الكورس", scoped: true
             }
         ].filter(Boolean),
 
@@ -170,12 +170,12 @@ const chapterPerms = (chapterId, key = null, meta = { courseId: null, values: fa
         ].filter(Boolean),
 
         lecturesCodes: [
-            { id: "chapters_lectures_codes", label: "امكانيه انشاء اكواد للمحاضرات" },
+            { id: "chapters_lectures_codes", label: "امكانيه إنشاء اكواد للمحاضرات" },
             courseId && {
-                id: `course_lectures_codes:${courseId}`, label: "امكانيه انشاء اكواد لمحاضرات هذا الفصل", scoped: true
+                id: `course_lectures_codes:${courseId}`, label: "امكانيه إنشاء اكواد لمحاضرات هذا الفصل", scoped: true
             },
             isScoped(chapterId) && {
-                id: `chapter_lectures_codes:${chapterId}`, label: "امكانيه انشاء اكواد لمحاضرات هذا الفصل", scoped: true
+                id: `chapter_lectures_codes:${chapterId}`, label: "امكانيه إنشاء اكواد لمحاضرات هذا الفصل", scoped: true
             },
         ].filter(Boolean),
 
@@ -200,7 +200,7 @@ const chapterPerms = (chapterId, key = null, meta = { courseId: null, values: fa
 const unitsPerms = (no, key = null, meta = { values: false }) => {
     const all = {
         create: [
-            { id: 'units_create', label: 'انشاء وحدات' },
+            { id: 'units_create', label: 'إنشاء وحدات' },
         ],
         update: [
             { id: 'units_update', label: 'تعديل الوحدات' },
@@ -215,19 +215,19 @@ const unitsPerms = (no, key = null, meta = { values: false }) => {
 const questionsPerms = (key = null, meta = { values: false }) => {
     const all = {
         manageQuestions: [
-            { id: 'questions.manage', label: 'اداره اسئله', isDefault: true }
+            { id: 'questions.manage', label: 'اداره أسئلة', isDefault: true }
         ],
         create: [
-            { id: 'questions.create', label: 'انشاء اسئله', isValid: false }
+            { id: 'questions.create', label: 'إنشاء أسئلة', isValid: false }
         ],
         update: [
-            { id: 'questions.update', label: 'تعديل الاسئله', isValid: false }
+            { id: 'questions.update', label: 'تعديل الأسئلة', isValid: false }
         ],
         delete: [
-            { id: 'questions.delete', label: 'حذف الاسئله', isValid: false }
+            { id: 'questions.delete', label: 'حذف الأسئلة', isValid: false }
         ],
         showAnswers: [
-            { id: 'answers.read', label: 'عرض كل الايجابات' }
+            { id: 'answers.read', label: 'عرض كل الإجابات' }
         ]
 
     }
@@ -241,7 +241,7 @@ const tagsPerms = (key = null, meta = { values: false }) => {
             { id: 'tags.manage', label: 'اداره الروابط', isValid: true, isDefault: true }
         ],
         create: [
-            { id: 'tags.create', label: 'انشاء رابط اسئله', isValid: false }
+            { id: 'tags.create', label: 'إنشاء رابط أسئلة', isValid: false }
         ],
         update: [
             { id: 'tags.update', label: 'تعد', isValid: false }

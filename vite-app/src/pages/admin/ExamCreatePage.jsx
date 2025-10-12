@@ -14,7 +14,7 @@ import useHandelQuestions from '../../hooks/useHandelQuestions'
 import { useCreateExamMutation } from '../../toolkit/apis/examsApi'
 
 
-function ExamCreatePage({ courseId, chapter, setLectures }) {
+function ExamCreatePage({ courseId, chapter, setLectures, setClose }) {
     const navigate = useNavigate()
     // const { courseId } = useParams()
     const [course, setCourse] = useState()
@@ -44,7 +44,9 @@ function ExamCreatePage({ courseId, chapter, setLectures }) {
             const res = await createExam({ ...exam, chapters: [chapter] })
             setLectures(prev => { return [...prev, res] })
             props.resetForm()
-
+            if (setClose) {
+                setClose(p => !p)
+            }
             setLoading(false)
         } catch (error) {
             setLoading(false)
@@ -56,7 +58,7 @@ function ExamCreatePage({ courseId, chapter, setLectures }) {
 
     return (
         <Section>
-            <TitleWithDividers title={'انشاء اختبار : ' + course.name} />
+            <TitleWithDividers title={'إنشاء اختبار : ' + course.name} />
             {/* loading */}
             <ExamForm lecture={{ course: course._id, grade: course.grade }} status={{ ...status, isLoading: loading }} onSubmit={onSubmit} />
         </Section>

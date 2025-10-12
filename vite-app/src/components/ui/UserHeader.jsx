@@ -9,7 +9,7 @@ import { RiGovernmentFill } from "react-icons/ri";
 
 import { FaSquarePhoneFlip } from 'react-icons/fa6'
 import { PiPhoneDisconnectFill } from 'react-icons/pi'
-import { IoSchool } from 'react-icons/io5'
+// import { IoSchool } from 'react-icons/io5'
 import { MdMarkEmailRead, MdOutlineDriveFileRenameOutline } from 'react-icons/md'
 import { MdVerifiedUser } from "react-icons/md";
 import { FlexBetween, FlexColumn } from '../../style/mui/styled/Flexbox'
@@ -19,13 +19,13 @@ import { HashLink } from 'react-router-hash-link';
 import governments from '../../settings/constants/governments'
 import TabInfo from './TabInfo'
 import { GrScorecard } from "react-icons/gr";
-import useGrades from '../../hooks/useGrades'
+// import useGrades from '../../hooks/useGrades'
 
 // eslint-disable-next-line react/prop-types
 export default function UserHeader({ children, user, flexDirection = 'row', variant, isAll = false }) {
 
     const theme = useTheme()
-    const { grades } = useGrades()
+    // const { grades } = useGrades()
     const isMobileScreen = useMediaQuery('(max-width:600px)');
     return (
         <Box sx={{
@@ -60,10 +60,10 @@ export default function UserHeader({ children, user, flexDirection = 'row', vari
 
                 <Grid>
                     <DataWith3Items title={lang.NAME} icon={<MdOutlineDriveFileRenameOutline size={'2rem'} />} desc={user?.name} />
-                    <DataWith3Items title={lang.GRADE} icon={<IoSchool size={'2rem'} />} desc={grades.find(g => g._id === user.grade)?.name} />
+                    {/* <DataWith3Items title={lang.GRADE} icon={<IoSchool size={'2rem'} />} desc={grades.find(g => g._id === user.grade)?.name} /> *No-grade */}
                     <DataWith3Items title={lang.ROLE} icon={<MdVerifiedUser size={'2rem'} />} desc={user?.role} />
                     <DataWith3Items title={'الدرجات'} icon={<GrScorecard size={'1.8rem'} />} desc={<FlexBetween>
-                        <TabInfo count={user.marks} i={1} title={'درجات الاسئله'} isBold={false} />
+                        <TabInfo count={user.marks} i={1} title={'درجات الأسئلة'} isBold={false} />
                         <TabInfo count={user.exam_marks} i={2} title={'درجات الاختبارت'} isBold={false} />
                     </FlexBetween>} />
                     {isAll && (

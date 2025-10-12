@@ -30,7 +30,7 @@ const lectureParams = (query) => {
     return [
         { $filter: query.$filter },
         { key: "grade", value: query.grade },
-        { key: "unit", value: query.unit, operator: "equal" },
+        // { key: "unit", value: query.unit, operator: "equal" },
         { key: "course", value: query.course, operator: "equal" },
         { key: "name", value: query.name },
         { key: "description", value: query.description },
@@ -143,7 +143,7 @@ const protectGetLectures = expressAsyncHandler(async (req, res, next) => {
     // Final query
     req.query = {
         $filter: { $or: orConditions },
-        grade: user.grade,
+        // grade: user.grade,*No-grade
         select,
         populate,
         isModernSort: true

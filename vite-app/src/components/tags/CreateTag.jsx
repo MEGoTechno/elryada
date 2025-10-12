@@ -56,7 +56,7 @@ function CreateTag({ setReset, defaultGrade }) {
     }
     return (
         <Section sx={{ width: '100%' }}>
-            <TitleWithDividers title={'انشاء رابط'} />
+            <TitleWithDividers title={'إنشاء رابط'} />
             <MakeForm inputs={inputs} btnWidth={'100%'} status={status} onSubmit={onSubmit} />
         </Section>
     )

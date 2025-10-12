@@ -29,7 +29,7 @@ const deleteFileFc = expressAsyncHandler(async (req, res, next) => {
 
 
 router.route("/")
-    .post(verifyToken(), allowedTo(user_roles.ADMIN, user_roles.SUBADMIN), upload.array('files', 50), uploadFiles)
+    .post(verifyToken(), allowedTo(user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER), upload.array('files', 50), uploadFiles)
     .delete(verifyToken(), deleteFileFc)
 
 module.exports = router

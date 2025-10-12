@@ -24,7 +24,7 @@ function AnswerHighlight({ question, setQuestion }) {
 
     return (
         <FlexRow justifyContent={'flex-end'} my={'16px'}>
-            <TabInfo count={isHighlighted ? 'هذا السؤال محفوظ فى الاسئله المهمه' : 'هل تريد حفظ السؤال ؟'} i={isHighlighted ? 1 : 3} />
+            <TabInfo count={isHighlighted ? 'هذا السؤال محفوظ فى الأسئلة المهمه' : 'هل تريد حفظ السؤال ؟'} i={isHighlighted ? 1 : 3} />
             <Button onClick={highlightAnswer} sx={{ m: '0 16px' }} variant={isHighlighted ? "outlined" : 'contained'} color={isHighlighted ? "error" : 'primary'}>
                 {isHighlighted ? "ازاله السؤال" : 'حفظ السؤال'}
             </Button>

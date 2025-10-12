@@ -40,7 +40,9 @@ function GetStudentsNotViewed({ grade, lectureId, lectureName, course, role }) {
     const fetchFc = async (params) => {
         params = {
             ...params,
-            lectures: `!=_split_${lectureId}`, grade, courses: course
+            lectures: `!=_split_${lectureId}`, 
+            // grade, *No-grade *Need-grade
+             courses: course
         }
 
         if (role) {
@@ -101,22 +103,23 @@ function GetStudentsNotViewed({ grade, lectureId, lectureName, course, role }) {
             valueOptions: [user_roles.ONLINE, user_roles.STUDENT, user_roles.INREVIEW],
             sortable: role ? false : true,
             filterable: role ? false : true,
-        }, {
-            field: "grade",
-            headerName: lang.GRADE,
-            type: 'singleSelect',
-            width: 200,
-            filterable: false,
-            valueOptions: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
-            renderCell: (params) => {
-                const grade = grades.find(({ _id }) => _id === params.row.grade)
-                return (
-                    <Typography>
-                        {grade?.name}
-                    </Typography>
-                )
-            }
-        },
+        }, 
+        // {
+        //     field: "grade",
+        //     headerName: lang.GRADE,
+        //     type: 'singleSelect',
+        //     width: 200,
+        //     filterable: false,
+        //     valueOptions: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
+        //     renderCell: (params) => {
+        //         const grade = grades.find(({ _id }) => _id === params.row.grade)
+        //         return (
+        //             <Typography>
+        //                 {grade?.name}
+        //             </Typography>
+        //         )
+        //     }
+        // },
     ]
 
     return (

@@ -68,7 +68,7 @@ function UserCourseDetails({ course, subscribedAt, lastLectureAt = false, curren
                     <TabInfo count={lecturesCounts.files} i={'2'} title={lang.FILES} icon={<FilesIcon size={'1.5rem'} />} />
                     <TabInfo count={lecturesCounts.exams} i={'3'} title={lang.EXAMS} icon={<ExamIcon size='1.5rem' />} /> */}
 
-                    <TabInfo count={getFullDate(course.createdAt)} i={'1'} title={'تاريخ انشاء الكورس'} icon={<MdDateRange size='1.3rem' />} isBold={false} />
+                    <TabInfo count={getFullDate(course.createdAt)} i={'1'} title={'تاريخ إنشاء الكورس'} icon={<MdDateRange size='1.3rem' />} isBold={false} />
                     {subscribedAt && (
                         <TabInfo count={getFullDate(subscribedAt)} i={'2'} title={'تاريخ الاشتراك بالكورس'} icon={<MdDateRange size='1.3rem' />} isBold={false} />
                     )}

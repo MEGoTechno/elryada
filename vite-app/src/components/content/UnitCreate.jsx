@@ -32,7 +32,7 @@ function UnitCreate({ grade, setUnits }) {
 
     return (
         <Section sx={{ minWidth: '250px' }}>
-            <TitleWithDividers title={'انشاء وحده لهذا الصف'} />
+            <TitleWithDividers title={'إنشاء وحده لهذه الماده'} />
             <MakeForm inputs={inputs} btnWidth={'100%'} onSubmit={onSubmit} status={status} enableReinitialize={true} />
         </Section>
     )

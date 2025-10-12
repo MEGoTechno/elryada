@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import ModalStyled from '../../style/mui/styled/ModalStyled'
 import { Box, Button } from '@mui/material'
@@ -8,10 +8,15 @@ import { FilledHoverBtn } from '../../style/buttonsStyles'
 import TitleWithDividers from './TitleWithDividers'
 
 function BtnModal({
-    parenetSx = {}, btn, disabled = false,
+    parenetSx = {}, btn, disabled = false, close = false,
     btnName, icon, children, component, variant = 'contained', color, size = 'small', isFilledHover = false, fullWidth = true, fullScreen = false, titleInSection = false
 }) {
     const [open, setOpen] = useState(false)
+
+    useEffect(() => {
+        setOpen(false)
+    }, [close])
+
     return (
         <FlexColumn sx={parenetSx}>
             {btn ?

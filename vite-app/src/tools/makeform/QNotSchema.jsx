@@ -17,10 +17,10 @@ function QNotSchema({ freeze, setFreeze, props, currentValueIndex }) {
     return (
         <FlexColumn sx={{ m: '12px 16px' }}>
             <Typography variant='body1'>
-                هذا السؤال من بنك الاسئله, اذا قمت بتعديل السؤال الان سيتم حفظه كسؤال جديد!
+                هذا السؤال من بنك الأسئلة, اذا قمت بتعديل السؤال الان سيتم حفظه كسؤال جديد!
             </Typography>
             <SwitchStyled label={freeze ? 'تجميد السؤال' : 'هل تريد التعديل؟'} checked={freeze} onChange={setFreeze} />
-            {hasChanged && <TabInfo sx={{ mr: 'auto', textDecoration: 'underline' }} count={'*سيتم انشاء سؤال جديد دون تغيير السؤال الاساسي*'} i={1} />}
+            {hasChanged && <TabInfo sx={{ mr: 'auto', textDecoration: 'underline' }} count={'*سيتم إنشاء سؤال جديد دون تغيير السؤال الاساسي*'} i={1} />}
         </FlexColumn>
     )
 }

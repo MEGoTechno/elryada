@@ -30,7 +30,7 @@ function SignupPage() {
     return (
         <FlexBetween sx={{ flexWrap: 'wrap-reverse' }}>
             <SEOHelmetAsync
-                title={'انشاء حساب - انشئ حسابك الان على منصه الريادة'}
+                title={'إنشاء حساب - انشئ حسابك الان على منصه الريادة'}
                 desc={"انشئ حسابك الان, وابدا رحلتك فى منصه الريادة"}
                 url={"https://elryada.com/signup"}
                 isSiteLink={true}

@@ -4,7 +4,7 @@ const UnitModel = require("./UnitModel")
 
 const courseSchema = new mongoose.Schema({
     grade: { type: mongoose.Schema.Types.ObjectId, ref: 'grade', required: true },
-    unit: { type: mongoose.Schema.Types.ObjectId, ref: UnitModel, required: true },
+    unit: { type: mongoose.Schema.Types.ObjectId, ref: UnitModel, required: false },
     index: { type: Number, required: true, unique: true },
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
 

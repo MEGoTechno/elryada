@@ -28,7 +28,7 @@ export default function QuizCard({ exam, submit, isLoading, navigateToAnswers, e
     const currentQ = questions[currentQuestionIndex]
 
     const [open, setOpen] = useState(false)
-    const [modalMsg, setModalMsg] = useState("هناك اسئله لم يتم حلها, هل انت متاكد من الاستمرار ؟")
+    const [modalMsg, setModalMsg] = useState("هناك أسئلة لم يتم حلها, هل انت متاكد من الاستمرار ؟")
 
     const openModal = () => {
         changeModalMsg()
@@ -40,7 +40,7 @@ export default function QuizCard({ exam, submit, isLoading, navigateToAnswers, e
         if (isAllAnswered) {
             setModalMsg("هل انت متاكد من ارسال البيانات ؟")
         } else {
-            setModalMsg("هناك اسئله لم يتم حلها, هل انت متاكد من الاستمرار ؟")
+            setModalMsg("هناك أسئلة لم يتم حلها, هل انت متاكد من الاستمرار ؟")
         }
     }
 

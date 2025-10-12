@@ -69,22 +69,24 @@ function Users({ filters, reset, viewFc, deleteFc, updateFc, massActions, allSta
             type: 'singleSelect',
             width: 200,
             valueOptions: roles,
-        }, {
-            field: "grade",
-            headerName: lang.GRADE,
-            type: 'singleSelect',
-            width: 200,
-            valueOptions: handelObjsOfArr(grades, { value: '_id', label: 'name' }),
-            renderCell: (params) => {
-                const grade = grades.find(({ _id }) => _id === params.row.grade)
-                return (
-                    <Typography>
-                        {params.row.role === user_roles.ADMIN ? user_roles.ADMIN
-                            : grade?.name}
-                    </Typography>
-                )
-            }
-        }, {
+        }, 
+        // {
+        //     field: "grade", *No-grade
+        //     headerName: lang.GRADE,
+        //     type: 'singleSelect',
+        //     width: 200,
+        //     valueOptions: handelObjsOfArr(grades, { value: '_id', label: 'name' }),
+        //     renderCell: (params) => {
+        //         const grade = grades.find(({ _id }) => _id === params.row.grade)
+        //         return (
+        //             <Typography>
+        //                 {params.row.role === user_roles.ADMIN ? user_roles.ADMIN
+        //                     : grade?.name}
+        //             </Typography>
+        //         )
+        //     }
+        // },
+         {
             field: "government",
             headerName: 'المحافظه',
             type: 'singleSelect',
@@ -101,7 +103,7 @@ function Users({ filters, reset, viewFc, deleteFc, updateFc, massActions, allSta
             }
         }, {
             field: 'createdAt',
-            headerName: 'تاريخ الانشاء',
+            headerName: 'تاريخ الإنشاء',
             width: 200,
             type: 'date',
             valueGetter: (createdAt) => new Date(createdAt),

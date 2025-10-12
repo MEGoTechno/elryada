@@ -111,7 +111,7 @@ function TeachersPage() {
             }
         }, {
             field: 'createdAt',
-            headerName: 'تاريخ الانشاء',
+            headerName: 'تاريخ الإنشاء',
             width: 200,
             type: 'date',
             valueGetter: (params) => new Date(params),//*_*
@@ -128,7 +128,7 @@ function TeachersPage() {
                 <BtnModal
                     variant='contained'
                     component={<CreateTeacher setReset={setReset} />}
-                    btnName={'انشاء مدرس جديد'} />
+                    btnName={'إنشاء مدرس جديد'} />
             </Section>
             <FullComponent data={{
                 resKey: 'users',

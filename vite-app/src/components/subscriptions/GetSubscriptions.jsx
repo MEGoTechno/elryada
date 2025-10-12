@@ -75,12 +75,12 @@ function GetSubscriptions({ courseId = '', user = '', isShowTitle = false }) {
     const fetchFc = async (params) => {
         user ? params.user = user : ''
 
-        const res = await getSubscriptions({ ...params, course: courseId, populate: 'user course.name course._id course.price chapters$chapter.name' }, false)
+        const res = await getSubscriptions({ ...params, course: courseId, populate: 'user course.name course._id course.price course.grade chapters$chapter.name' }, false)
         const modifiedRes = res.subscriptions.map((subscribe) => {
 
             return {
                 ...subscribe.user,
-                courseId: subscribe.course._id,
+                courseId: subscribe.course._id, grade: subscribe.course.grade, // *No-grade
                 courseName: subscribe.course.name, price: subscribe.course.price, course: subscribe.course,
                 _id: subscribe._id, createdAt: subscribe.createdAt, currentIndex: subscribe.currentIndex, updatedAt: subscribe.updatedAt, payment: subscribe.payment,
                 chapters: subscribe.chapters

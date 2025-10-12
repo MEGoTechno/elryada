@@ -36,10 +36,10 @@ function GetAttemptsNot({ grade, exam, course, lecture, courseType = '' }) {
 
     const fetchFc = async (params) => {
         let res = []
-        if (courseType === user_roles.STUDENT) {
-            res = await getNotDoExam({ ...params, exams: `!=_split_${exam}`, grade, role: user_roles.STUDENT }, false)
+        if ('not allowed' === user_roles.STUDENT) {
+            res = await getNotDoExam({ ...params, exams: `!=_split_${exam}`,   role: user_roles.STUDENT }, false)//grade *No-grade
         } else {
-            res = await getNotDoExam({ ...params, exams: `!=_split_${exam}`, grade, courses: course }, false)
+            res = await getNotDoExam({ ...params, exams: `!=_split_${exam}`,  courses: course }, false)//grade *No-grade
         }
 
         const data = { values: res.users, count: res.count }

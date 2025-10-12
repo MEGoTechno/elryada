@@ -22,7 +22,7 @@ function GroupForm({ status, onSubmit, group = {}, enableReinitialize = false, i
     const inputs = [
         {
             name: "grade",
-            label: 'اختر الصف الدراسى',
+            label: 'اختر الماده الاساسيه',
             validation: Yup.string().required(),
             type: 'select',
             options: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),

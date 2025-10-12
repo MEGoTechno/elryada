@@ -34,7 +34,7 @@ function BankNavigateBtn({ navigateToAnswers, exam, questions, submit }) {
                     ارسال و عرض النتائج
                 </Button>
             )}
-            <ModalStyled action={action} open={open} setOpen={setOpen} title={'هل انت متاكد؟'} desc={isAllHasChosenOption() ? "هل انت متاكد من ارسال البيانات ؟" : "هناك اسئله لم يتم حلها, هل انت متاكد من الاستمرار ؟"} />
+            <ModalStyled action={action} open={open} setOpen={setOpen} title={'هل انت متاكد؟'} desc={isAllHasChosenOption() ? "هل انت متاكد من ارسال البيانات ؟" : "هناك أسئلة لم يتم حلها, هل انت متاكد من الاستمرار ؟"} />
         </>
     )
 }

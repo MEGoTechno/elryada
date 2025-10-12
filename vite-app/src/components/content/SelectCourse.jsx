@@ -10,7 +10,7 @@ import { lang } from '../../settings/constants/arlang'
 import LoaderWithText from '../../style/mui/loaders/LoaderWithText'
 import { Alert } from '@mui/material'
 
-function SelectCourse({ unit = 0, activeCourse, setActiveCourse, reset, setCourses, courses }) {
+function SelectCourse({ grade = 0, activeCourse, setActiveCourse, reset, setCourses, courses }) { //unit = 0,
 
     const [count, setCount] = useState('loading ...')
 
@@ -20,19 +20,19 @@ function SelectCourse({ unit = 0, activeCourse, setActiveCourse, reset, setCours
     useEffect(() => {
 
         const trigger = async () => {
-            const coursesRes = await getCourses({ unit: unit !== 0 ? unit : 'all' }, false)
+            const coursesRes = await getCourses({ grade: grade !== 0 ? grade : 'all' }, false) //unit: unit !== 0 ? unit : 'all'
             setCourses(coursesRes.courses)
             setCount(coursesRes.count)
         }
 
         trigger()
 
-    }, [unit, courses])
+    }, [grade, courses])
 
     if (status.isLoading) return <LoaderWithText />
 
     if (status.isSuccess && courses.length === 0) return <Alert variant="filled" severity="warning">
-        لا يوجد كورسات فى هذه الوحده
+        لا يوجد دورات فى هذه الماده
     </Alert>
 
     return (

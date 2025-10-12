@@ -9,7 +9,7 @@ import { Alert } from '@mui/material'
 import usePermissions from '../../components/permissions/hooks/usePermissions'
 import { coursesPerms } from '../../components/permissions/constants/courses'
 
-function ManageCourses({ grade, activeUnit, activeCourse, setActiveCourse, courses, setCourses }) {
+function ManageCourses({ grade, activeCourse, setActiveCourse, courses, setCourses }) { //activeUnit, 
 
     const [openCourseModal, setCourseModal] = useState(false)
     const [hasPermission] = usePermissions()
@@ -17,16 +17,18 @@ function ManageCourses({ grade, activeUnit, activeCourse, setActiveCourse, cours
         <>
             <FlexBetween gap={'10px'} m={'20px 0'} >
                 {hasPermission(coursesPerms(null, 'create')) && (
-                    <StyledBtn disabled={!activeUnit || !grade} onClick={() => setCourseModal(true)}> {lang.CREATE_COURSE}</StyledBtn>
+                    <StyledBtn disabled={!grade} onClick={() => setCourseModal(true)}> {lang.CREATE_COURSE}</StyledBtn>
                 )}
-                <SelectCourse unit={activeUnit} setActiveCourse={setActiveCourse} activeCourse={activeCourse} courses={courses} setCourses={setCourses} />
+                <SelectCourse grade={grade} setActiveCourse={setActiveCourse} activeCourse={activeCourse} courses={courses} setCourses={setCourses} />
+                {/* unit={activeUnit}  */}
                 {/* reset={[activeUnit]} */}
             </FlexBetween>
 
             <ModalStyled open={openCourseModal} setOpen={setCourseModal} >
-                {(activeUnit && grade) ?
-                    <CourseCreate grade={grade} unit={activeUnit} setCourses={setCourses} />
-                    : <Alert severity='warning'>من فضلك اختر صف دراسي !</Alert>
+                {(grade) ?
+                    <CourseCreate grade={grade} setCourses={setCourses} />
+                    // unit={activeUnit}
+                    : <Alert severity='warning'>من فضلك اختر ماده دراسيه !</Alert>
                 }
             </ModalStyled>
         </>

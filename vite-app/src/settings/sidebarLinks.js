@@ -109,7 +109,7 @@ export const sidebarLinks = [
         name: "تسجيل الدخول", icon: <LoginIcon size="22px" />, to: "/login", allowedTo: [user_roles.NOT_USER],
         element: <LoginPage />, skipVerifyRoute: true
     }, {
-        name: "انشاء حساب", icon: <SignupIcon size="22px" />, to: "/signup", allowedTo: [user_roles.NOT_USER],
+        name: "إنشاء حساب", icon: <SignupIcon size="22px" />, to: "/signup", allowedTo: [user_roles.NOT_USER],
         element: <SignupPage />, skipVerifyRoute: true
     }, {
         name: "سياسات الموقع", icon: <FcPrivacy size="22px" />, to: "/privacy",
@@ -117,16 +117,18 @@ export const sidebarLinks = [
     }, {
         name: "الكورسات", icon: <LiaSchoolSolid size="22px" />,
         to: "/grades", allowedTo: [user_roles.STUDENT, user_roles.ONLINE], element: <GradesPage />
-    }, {
-        name: "محاضراتى", icon: <FaSchool size="22px" />, to: "/grades/" + store?.getState()?.global?.user?.grade,
-        allowedTo: [user_roles.STUDENT, user_roles.ONLINE],
-        // element: <UnitsPage /> Down
-    }, {
-        name: "بنك الاسئله", icon: <CiBank size="22px" />, to: "/questions_bank",
+    }, 
+    // {
+    //     name: "محاضراتى", icon: <FaSchool size="22px" />, to: "/grades/" + store?.getState()?.global?.user?.grade,
+    //     allowedTo: [user_roles.STUDENT, user_roles.ONLINE],
+    //     // element: <UnitsPage /> Down
+    // },
+     {
+        name: "بنك الأسئلة", icon: <CiBank size="22px" />, to: "/questions_bank",
         allowedTo: [user_roles.STUDENT, user_roles.ONLINE], isDisabled: false,
         element: <QuestionsBankPage />
     }, {
-        name: "ايجاباتك", icon: <MdQuestionAnswer size="22px" />, to: "/answers",
+        name: "إجاباتك", icon: <MdQuestionAnswer size="22px" />, to: "/answers",
         allowedTo: [user_roles.STUDENT, user_roles.ONLINE], isDisabled: false,
         element: <GetUserAnswers />
     }, {
@@ -162,16 +164,16 @@ export const sidebarLinks = [
     }, {
         name: "إدارة المحتوى", icon: <SiGooglecampaignmanager360 size="22px" />, allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER]
     }, {
-        name: "إدارة الصفوف", icon: <IoSchoolSharp size="22px" />, to: "/management/grades", allowedTo: [user_roles.ADMIN],//user_roles.SUBADMIN, user_roles.TEACHER
+        name: "إدارة المواد الاساسيه", icon: <IoSchoolSharp size="22px" />, to: "/management/grades", allowedTo: [user_roles.ADMIN],//user_roles.SUBADMIN, user_roles.TEACHER
         element: <GradesManage />, id: 'p_gradesManage'
     }, {
-        name: "إدارة الكورسات", icon: <FaSchool size="22px" />, to: "/management/courses", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
+        name: "إدارة الدورات التدريبيه", icon: <FaSchool size="22px" />, to: "/management/courses", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
         element: <ManageCoursesPage />, id: 'p_coursesManage'
     }, {
         name: "عرض الاشتراكات", icon: <MdOutlineSubscriptions size="22px" />, to: '/statistics/courses', allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
         element: <GetSubscriptionsAll />, id: 'p_subscriptions', perms: coursesPerms(null, 'subscriptions') //'/management/subscriptions'
     }, {
-        name: "إدارة الاسئله", icon: <PiQuestionFill size="22px" />, to: "/management/questions", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], isDisabled: false,
+        name: "إدارة الأسئلة", icon: <PiQuestionFill size="22px" />, to: "/management/questions", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], isDisabled: false,
         element: <GetQuestionsPage />, id: 'p_questions',
         perms: [...questionsPerms('manageQuestions'), ...tagsPerms('manageTags')]
     }, {
@@ -199,7 +201,7 @@ export const sidebarLinks = [
         name: "تقارير الطلاب", icon: <TbReportSearch size="22px" />, to: "/management/reports", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
         element: <ReportsPage />, id: 'p_stdReports'
     }, {
-        name: "المدفوعات", icon: <SignupIcon size="22px" />, allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], // info: { title: 'تحت الانشاء', i: 2 }
+        name: "المدفوعات", icon: <SignupIcon size="22px" />, allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], // info: { title: 'تحت الإنشاء', i: 2 }
     }, {
         name: "وسائل الدفع", icon: <RiSecurePaymentFill size="22px" />, to: "/management/payments", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER], isDisabled: false,
         element: <ManagePaymentsPage />, id: 'p_payments'
@@ -218,7 +220,7 @@ export const sidebarLinks = [
     },
 ]
 // {
-//     name: "انشاء كود", icon: <SiHashicorp size="22px" />, to: "/management/codes/create", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
+//     name: "إنشاء كود", icon: <SiHashicorp size="22px" />, to: "/management/codes/create", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
 //     element: <CreateCodePage />, id: 'p_createCode'
 // }, 
 export const pagesPerms = sidebarLinks.filter(l => l.id).map(l => ({ id: l.id, label: l.name, perms: l.perms }))

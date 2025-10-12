@@ -9,7 +9,7 @@ function GetCouponsPage() {
         <Section>
             <TitleWithDividers title={'صفحه الكوبونات'} />
             {/* <FlexColumn>
-                <FilledHoverBtn onClick={() => setOpen(true)}>انشاء كوبون عام</FilledHoverBtn>
+                <FilledHoverBtn onClick={() => setOpen(true)}>إنشاء كوبون عام</FilledHoverBtn>
             </FlexColumn> */}
 
 

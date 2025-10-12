@@ -98,7 +98,7 @@ const getByUserViews = expressAsyncHandler(async (req, res, next) => {
                             phone: 1,
                             familyPhone: 1,
                             email: 1,
-                            grade: 1,
+                            // grade: 1,
                             watches: 1,
                             isActive: 1,
                             createdAt: 1

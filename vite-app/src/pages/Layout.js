@@ -8,6 +8,9 @@ import GlobalMsg from '../components/ui/GlobalMsg'
 
 import LoaderSkeleton from "../style/mui/loaders/LoaderSkeleton"
 import FooterPage from '../components/footer/FooterPage'
+import { useDispatch, useSelector } from 'react-redux'
+import { useLazyIsLoggedQuery } from '../toolkit/apis/usersApi'
+import { setUser } from '../toolkit/globalSlice'
 
 
 function Layout() {
@@ -17,7 +20,7 @@ function Layout() {
     const [isOpenedSidebar, setSidebar] = useState(false)
 
     const pathName = location.pathname
-
+    const user = useSelector(s => s.global?.user)
     useEffect(() => {
         window.scrollTo({
             top: 0, left: 0, behavior: 'instant'
@@ -29,6 +32,21 @@ function Layout() {
             const prev = localStorage.getItem('prevPage')
             localStorage.removeItem('prevPage')
             window.location.href = prev
+        }
+    }, [])
+
+    const dispatch = useDispatch()
+    const [getUserData] = useLazyIsLoggedQuery()
+
+    useEffect(() => {
+        const checkIslogged = async () => {
+            const { data } = await getUserData()
+            const userData = data?.values
+
+            dispatch(setUser({ ...user, ...userData }))
+        }
+        if (user?._id && user?.userName) {
+            checkIslogged()
         }
     }, [])
 

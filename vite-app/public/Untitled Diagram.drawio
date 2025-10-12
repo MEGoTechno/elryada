@@ -1533,7 +1533,7 @@
         <mxCell id="BA5Z3L4z0XltAJa-nlEn-0" value="" style="whiteSpace=wrap;html=1;aspect=fixed;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="108" y="1388" width="502" height="502" as="geometry" />
         </mxCell>
-        <mxCell id="BA5Z3L4z0XltAJa-nlEn-1" value="&lt;b&gt;&lt;font style=&quot;font-size: 25px;&quot;&gt;بنك الاسئله&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;dashPattern=12 12;strokeColor=default;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="BA5Z3L4z0XltAJa-nlEn-1" value="&lt;b&gt;&lt;font style=&quot;font-size: 25px;&quot;&gt;بنك الأسئلة&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;dashPattern=12 12;strokeColor=default;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="312.5" y="1410" width="105" height="30" as="geometry" />
         </mxCell>
       </root>

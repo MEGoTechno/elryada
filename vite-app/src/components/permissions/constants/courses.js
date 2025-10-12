@@ -13,7 +13,7 @@ export const coursesConstants = {
 export const coursesPerms = (courseId, key = null, meta = { values: false }) => {
     const all = {
         create: [
-            { id: 'courses_create', label: 'انشاء كورسات' }
+            { id: 'courses_create', label: 'إنشاء كورسات' }
         ], read: [
             { id: 'courses_readAll', label: 'عرض كل الكورسات' }
         ],
@@ -120,7 +120,7 @@ export const coursesPerms = (courseId, key = null, meta = { values: false }) => 
 export const unitsPerms = (no, key = null, meta = { values: false }) => {
     const all = {
         create: [
-            { id: 'units_create', label: 'انشاء وحدات' },
+            { id: 'units_create', label: 'إنشاء وحدات' },
         ],
         update: [
             { id: 'units_update', label: 'تعديل الوحدات' },

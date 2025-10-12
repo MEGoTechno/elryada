@@ -20,12 +20,12 @@ function GetQuestionsPage() {
 
     const tabs = [
         {
-            label: 'بنك الاسئله', component: <AdminGetQuestions />, count: data?.values?.count ?? 'laoding', permId: 0
+            label: 'بنك الأسئلة', component: <AdminGetQuestions />, count: data?.values?.count ?? 'laoding', permId: 0
         },
         {
             label: 'الروابط', component: <GetTags />, count: tagsCount?.values?.count ?? 'loading', permId: 1
         }, {
-            label: 'عرض الايجابات', component: <GetAnswers />, count: answersCount?.values?.count ?? 'loading', permId: 2 //<GetUserAnswers />
+            label: 'عرض الإجابات', component: <GetAnswers />, count: answersCount?.values?.count ?? 'loading', permId: 2 //<GetUserAnswers />
         },
     ]
     const permissions = [
@@ -36,7 +36,7 @@ function GetQuestionsPage() {
 
     return (
         <Section>
-            <TitleWithDividers title={'بنك الاسئله'} />
+            <TitleWithDividers title={'بنك الأسئلة'} />
             <TabsAutoStyled originalTabs={tabs} permissions={permissions} />
         </Section>
     )

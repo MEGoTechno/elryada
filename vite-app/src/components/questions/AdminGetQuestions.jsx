@@ -103,7 +103,10 @@ function AdminGetQuestions({ setSelectedQs, allSelected = false, filters = {}, i
             field: 'title',
             headerName: 'عنوان السؤال',
             width: 200,
-            editable: true
+            editable: true,
+            renderCell: (p) => {
+                return <div dangerouslySetInnerHTML={{ __html: p.row.title }} />
+            }
         }, {
             field: 'hints',
             headerName: "ملاحظات",
@@ -222,7 +225,7 @@ function AdminGetQuestions({ setSelectedQs, allSelected = false, filters = {}, i
                         return [
                             <BtnConfirm
                                 modalInfo={{
-                                    desc: 'سيتم اضافه هذا الرابط الي السؤال'
+                                    desc: 'سيتم إضافه هذا الرابط الي السؤال'
                                 }}
                                 btn={<IconButton color='success' onClick={() => linkFc(params?.row?._id)}>
                                     <FaPlus></FaPlus>
@@ -259,7 +262,7 @@ function AdminGetQuestions({ setSelectedQs, allSelected = false, filters = {}, i
             }
         }, {
             field: 'createdAt',
-            headerName: "تاريخ الانشاء",
+            headerName: "تاريخ الإنشاء",
             type: 'date',
             width: 150,
             valueGetter: (createdAt) => new Date(createdAt)
@@ -286,7 +289,7 @@ function AdminGetQuestions({ setSelectedQs, allSelected = false, filters = {}, i
         <Section>
             {/* <TabInfo count={viewsCount} title={'عدد المشاهدات'} i={1} /> */}
             {isShowCreate && (
-                <BtnModal btnName={'انشاء سؤال'} component={<CreateQuestion setReset={setReset} />} size='medium' isFilledHover={true} />
+                <BtnModal btnName={'إنشاء سؤال'} component={<CreateQuestion setReset={setReset} />} size='medium' isFilledHover={true} />
             )}
 
             <MeDatagrid

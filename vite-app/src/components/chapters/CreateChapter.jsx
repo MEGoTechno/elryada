@@ -17,7 +17,7 @@ function CreateChapter({ courseId, setChapters }) {
         }
     }
     return <Section>
-        <TitleWithDividers title={'انشاء جزء جديد'} />
+        <TitleWithDividers title={'إنشاء جزء جديد'} />
         <ChapterForm onSubmit={onSubmit} status={status} />
     </Section>
 }

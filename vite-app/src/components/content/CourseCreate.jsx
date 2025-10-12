@@ -26,7 +26,7 @@ const PreDiscount = ({ props, value, input, inputName }) => {
     return <FlexRow sx={{
         justifyContent: 'space-between', gap: '10px'
     }}>
-        <FormControlLabel control={<Switch checked={isPreDiscount} onChange={() => setPreDiscount(!isPreDiscount)} />} label="اضافه سعر قبل الخصم" />
+        <FormControlLabel control={<Switch checked={isPreDiscount} onChange={() => setPreDiscount(!isPreDiscount)} />} label="إضافه سعر قبل الخصم" />
         <Box sx={{ width: { xs: '100%', md: '40%' } }}>
             {isPreDiscount && (
                 <MakeInput input={{ ...input, value: !isPreDiscount ? 0 : value }} props={props} />
@@ -171,7 +171,7 @@ function CourseCreate({ unit, grade, setCourses }) {
 
     return (
         <Section sx={{ minWidth: '250px' }}>
-            <TitleWithDividers title={'انشاء كورس'} />
+            <TitleWithDividers title={'إنشاء كورس'} />
             <MakeForm inputs={inputs} btnWidth={'100%'} onSubmit={onSubmit} status={status} enableReinitialize={true} />
         </Section>
     )

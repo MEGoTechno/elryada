@@ -81,7 +81,7 @@ function Navbar({ setSidebar, isOpenedSidebar, isMobileScreen }) {
                                 <Typography variant='subtitle1' ml={'5px'}>الدخول</Typography>
                             </Button>
 
-                            <StyledBtn component={Link} to="/signup" endIcon={<SignupIcon />}>انشاء حساب</StyledBtn>
+                            <StyledBtn component={Link} to="/signup" endIcon={<SignupIcon />}>إنشاء حساب</StyledBtn>
                         </>
                     )}
 

@@ -85,6 +85,9 @@ function GetAnswers() {
             width: 200,
             filterable: true,
             sortable: false,
+            renderCell: (p)=> {
+                return  <span dangerouslySetInnerHTML={{ __html: p?.row?.title }} />
+            }
         }, {
             field: 'hints',
             headerName: "ملاحظات",
@@ -101,7 +104,7 @@ function GetAnswers() {
             sortable: false,
             renderCell: (params) => {
                 return <BtnModal
-                    btnName={'عرض الايجابه'}
+                    btnName={'عرض الإجابه'}
                     fullScreen={false}
                     component={<FlexColumn>
                         <AnsweredQuestion setQuestion={() => {
@@ -141,7 +144,7 @@ function GetAnswers() {
             valueOptions: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
         }, {
             field: 'createdAt',
-            headerName: "تاريخ الانشاء",
+            headerName: "تاريخ الإنشاء",
             type: 'date',
             width: 200,
             valueGetter: (createdAt) => new Date(createdAt),

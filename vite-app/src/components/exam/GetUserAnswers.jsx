@@ -93,6 +93,9 @@ function GetUserAnswers({ filters }) {
             width: 200,
             filterable: true,
             sortable: false,
+            renderCell: (p)=> {
+                return  <span dangerouslySetInnerHTML={{ __html: p?.row?.title }} />
+            }
         }, {
             field: 'hints',
             headerName: "ملاحظات",
@@ -108,7 +111,7 @@ function GetUserAnswers({ filters }) {
             sortable: false,
             renderCell: (params) => {
                 return <BtnModal
-                    btnName={'عرض الايجابه'}
+                    btnName={'عرض الإجابه'}
                     fullScreen={false}
                     component={<FlexColumn>
                         <AnsweredQuestion currentQuestion={params.row} index={0} />
@@ -138,7 +141,7 @@ function GetUserAnswers({ filters }) {
             editable: true
         }, {
             field: 'createdAt',
-            headerName: "تاريخ الانشاء",
+            headerName: "تاريخ الإنشاء",
             type: 'date',
             width: 200,
             valueGetter: (createdAt) => new Date(createdAt),
@@ -150,11 +153,11 @@ function GetUserAnswers({ filters }) {
 
     return (
         <Section>
-            <TitleWithDividers title={'تفاصيل الايجابات'} icon={<MdQuestionAnswer size={'22px'} color={'inherit'} />} />
-            <TabInfo count={count} title={'عدد الايجابات'} i={1} />
+            <TitleWithDividers title={'تفاصيل الإجابات'} icon={<MdQuestionAnswer size={'22px'} color={'inherit'} />} />
+            <TabInfo count={count} title={'عدد الإجابات'} i={1} />
             <MeDatagrid
                 type={'crud'}
-                exportObj={exportObj(grades)} exportTitle={'تفاصيل الايجابات'}
+                exportObj={exportObj(grades)} exportTitle={'تفاصيل الإجابات'}
                 columns={columns} //reset={[reset]}
                 loading={status.isLoading}
                 fetchFc={fetchFc}  //deleteFc={deleteFc} updateFc={updateFc}

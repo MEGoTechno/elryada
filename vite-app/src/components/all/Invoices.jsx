@@ -108,7 +108,7 @@ function Invoices() {
             }
         }, {
             field: 'createdAt',
-            headerName: "تاريخ الانشاء",
+            headerName: "تاريخ الإنشاء",
             type: 'date',
             width: 150,
             valueGetter: (date) => new Date(date),

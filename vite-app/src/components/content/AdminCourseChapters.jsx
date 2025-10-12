@@ -47,18 +47,18 @@ function AdminCourseChapters({ course, setLecturesCount, refetchLectures, unit, 
 
     return (
         <Grid gap='10px'>
-            <TextBorderWithIcons title="الفصول" />
+            <TextBorderWithIcons title="محتوي الدوره" />
             <BtnsGroup
                 btns={[...chapters.map(ch => ({
                     label: ch.name, component: <ChapterData
                         chapter={ch}
                         setChapter={changeChapter}
                         deleteChapter={deleteChapter}
-                        course={course} grade={grade} unit={unit}
+                        course={course} grade={grade}// unit={unit}
                     />
                 })),
                 {
-                    btn: <BtnModal disabled={!hasPermission(chapterPerms(null, 'create', { courseId: course }))} size="medium" btnName={'انشاء جزء جديد'} variant="outlined" color={'warning'}
+                    btn: <BtnModal disabled={!hasPermission(chapterPerms(null, 'create', { courseId: course }))} size="medium" btnName={'إنشاء جزء جديد'} variant="outlined" color={'warning'}
                         component={<CreateChapter setChapters={setChapters} courseId={course} />} />
                 }]}
             />

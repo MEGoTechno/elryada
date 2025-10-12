@@ -75,7 +75,7 @@ function GetPayments() {
             }
         }, {
             field: 'createdAt',
-            headerName: "تاريخ الانشاء",
+            headerName: "تاريخ الإنشاء",
             type: 'date',
             width: 150,
             valueGetter: (date) => new Date(date),
@@ -87,7 +87,7 @@ function GetPayments() {
 
     return (
         <div>
-            <BtnModal component={<CreatePayment setReset={setReset} />} btnName={'انشاء وسيله دفع جديده'} isFilledHover={true} />
+            <BtnModal component={<CreatePayment setReset={setReset} />} btnName={'إنشاء وسيله دفع جديده'} isFilledHover={true} />
 
             <FullComponent data={{
                 useFetch: useLazyGetPaymentsQuery,

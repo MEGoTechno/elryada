@@ -18,7 +18,7 @@ function GetCourseCoupons() {
         <Section>
             <TitleWithDividers title={'صفحه كوبونات كورس'} />
             <FlexColumn>
-                <FilledHoverBtn onClick={() => setOpen(true)}>انشاء كوبون</FilledHoverBtn>
+                <FilledHoverBtn onClick={() => setOpen(true)}>إنشاء كوبون</FilledHoverBtn>
             </FlexColumn>
 
             <GetCoupons course={courseId} reset={reset} />

@@ -48,7 +48,7 @@ function GetSubscriptionsNot({ grade }) {
     const [getNotSubscribedUsers] = useLazyGetData(getData)
 
     const fetchFc = async (params) => {
-        const res = await getNotSubscribedUsers({ ...params, courses: `!=_split_${courseId}`, grade }, false)
+        const res = await getNotSubscribedUsers({ ...params, courses: `!=_split_${courseId}`, role: user_roles.ONLINE }, false)//grade *No-grade
         const data = { values: res.users, count: res.count }
         setNotCounts(res.count)
         return data
@@ -129,16 +129,17 @@ function GetSubscriptionsNot({ grade }) {
             type: 'singleSelect',
             valueOptions: userRoles,
         },
+        // {
+        //     field: "grade",// *No-grade
+        //     headerName: lang.GRADE,
+        //     type: 'singleSelect',
+        //     width: 200,
+        //     filterable: false,
+        //     valueOptions: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
+        // }, 
         {
-            field: "grade",
-            headerName: lang.GRADE,
-            type: 'singleSelect',
-            width: 200,
-            filterable: false,
-            valueOptions: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
-        }, {
             field: "addsubscribe",
-            headerName: 'اضافه اشتراك',
+            headerName: 'إضافه اشتراك',
             disableExport: true,
             filterable: false,
             sortable: false,
@@ -177,7 +178,7 @@ function GetSubscriptionsNot({ grade }) {
             <ModalStyled open={openFileModal} setOpen={setOpenFileModal} >
                 <Image img={fileConfirm} />
             </ModalStyled>
-            <ModalStyled title={'هل انت متاكد من اضافه الطالب ؟'} open={open} setOpen={setOpen} action={trigger} />
+            <ModalStyled title={'هل انت متاكد من إضافه الطالب ؟'} open={open} setOpen={setOpen} action={trigger} />
         </>
     )
 }

@@ -177,7 +177,7 @@ function LecturesPage() {
         //                             return [
         //                                 <BtnConfirm
         //                                     modalInfo={{
-        //                                         desc: 'سيتم اضافه هذا الطالب الي المحاضره' + ' ' + lecture.name
+        //                                         desc: 'سيتم إضافه هذا الطالب الي المحاضره' + ' ' + lecture.name
         //                                     }}
         //                                     btn={<IconButton color='success' onClick={() => handelUser({
         //                                         id: user._id, field: 'lectures', value: lecture._id, action: 'push'
@@ -263,7 +263,7 @@ function LecturesPage() {
             isSwitch: true
         }, {
             field: 'createdAt',
-            headerName: 'تاريخ الانشاء',
+            headerName: 'تاريخ الإنشاء',
             width: 200,
             type: 'date',
             valueGetter: (createdAt) => new Date(createdAt),

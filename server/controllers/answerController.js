@@ -84,8 +84,8 @@ const markQuestion = expressAsyncHandler(async (req, res, next) => {
 
     // Step 3: If already answered and not creating new attempt
     if (hasAnswered && !isCreateNewAnswer) {
-        const note = hasAnswered.chosenOptionId !== answeredQuestion.chosenOptionId ? 'هذا السؤال تمت الايجابه عنه من قبل ولن يتم حفظ الايجابه المختاره, الايجابه السابقه هى:' + (question.options.find(opt => opt.id === hasAnswered.chosenOptionId)?.title || 'لم تتم الايجابه')
-            : 'تمت الايحابه عن هذا السؤال من قبل'
+        const note = hasAnswered.chosenOptionId !== answeredQuestion.chosenOptionId ? 'هذا السؤال تمت الإجابه عنه من قبل ولن يتم حفظ الإجابه المختاره, الإجابه السابقه هى:' + (question.options.find(opt => opt.id === hasAnswered.chosenOptionId)?.title || 'لم تتم الإجابه')
+            : 'تمت الإجابه عن هذا السؤال من قبل'
         return res.status(200)
             .json({
                 message: note, status: SUCCESS,
@@ -203,8 +203,8 @@ const markAttempt = expressAsyncHandler(async (req, res, next) => {
 
             if (prevAnswer) return {
                 note: prevAnswer.chosenOptionId !== answer.chosenOptionId &&
-                    'هذا السؤال تمت الايجابه عنه مسبقا لذلك الايجابه التي ستظهر هى ايجابتك السابقه اما الايجابه التى اخترتها حاليا هى : ' +
-                    question.options.find(opt => opt.id === answer.chosenOptionId)?.title || 'لم تتم الايجابه عن هذا السؤال',
+                    'هذا السؤال تمت الإجابه عنه مسبقا لذلك الإجابه التي ستظهر هى ايجابتك السابقه اما الإجابه التى اخترتها حاليا هى : ' +
+                    question.options.find(opt => opt.id === answer.chosenOptionId)?.title || 'لم تتم الإجابه عن هذا السؤال',
                 ...question, chosenOptionId: prevAnswer.chosenOptionId, answer: prevAnswer, //prev
             }
 
@@ -216,8 +216,8 @@ const markAttempt = expressAsyncHandler(async (req, res, next) => {
 
             if (!attempt.attemptId && answeredBefore && !exam) { //
                 const note = answeredBefore.chosenOptionId !== answer.chosenOptionId &&
-                    'هذا السؤال تمت الايجابه عنه مسبقا لذلك الايجابه التي ستظهر هى ايجابتك السابقه اما الايجابه التى اخترتها حاليا هى : ' +
-                    (question.options.find(opt => opt.id === answer.chosenOptionId)?.title || 'لم تتم الايجابه عن هذا السؤال')
+                    'هذا السؤال تمت الإجابه عنه مسبقا لذلك الإجابه التي ستظهر هى ايجابتك السابقه اما الإجابه التى اخترتها حاليا هى : ' +
+                    (question.options.find(opt => opt.id === answer.chosenOptionId)?.title || 'لم تتم الإجابه عن هذا السؤال')
 
                 return {
                     note,

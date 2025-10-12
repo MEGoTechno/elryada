@@ -248,7 +248,7 @@ function GetGroups({ reset, setReset }) {
                                 return [
                                     <BtnConfirm
                                         modalInfo={{
-                                            desc: 'سيتم اضافه هذه المحاضره الي المجموعه'
+                                            desc: 'سيتم إضافه هذه المحاضره الي المجموعه'
                                         }}
                                         btn={<IconButton color='success' onClick={() => addLecture(params?.row?._id, group._id)}>
                                             <IoIosAddCircleOutline></IoIosAddCircleOutline>
@@ -274,7 +274,7 @@ function GetGroups({ reset, setReset }) {
             }
         }, {
             field: 'createdAt',
-            headerName: 'تاريخ الانشاء',
+            headerName: 'تاريخ الإنشاء',
             width: 200,
             type: 'date',
             valueGetter: (createdAt) => new Date(createdAt),

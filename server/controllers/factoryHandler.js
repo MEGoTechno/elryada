@@ -192,7 +192,7 @@ exports.insertOne = (Model, withIndex = false, populate = '', meta = {}) =>
         if (meta?.afterCreation) {
             others = await meta.afterCreation(req, doc)
         }
-        return res.status(201).json({ status: statusTexts.SUCCESS, values: doc, message: 'تم الانشاء بنجاح', ...others })
+        return res.status(201).json({ status: statusTexts.SUCCESS, values: doc, message: 'تم الإنشاء بنجاح', ...others })
     });
 
 exports.updateOne = (Model) =>
@@ -494,7 +494,7 @@ exports.pushToModel = (Model) => {
         );
 
         res.status(200).json({
-            message: (action === 'push' ? ' تمت الايضافه بنجاح' : ' تمت الازاله بنجاح'),
+            message: (action === 'push' ? ' تمت الإضافه بنجاح' : ' تمت الإزاله بنجاح'),
             status: statusTexts.SUCCESS
         });
     })

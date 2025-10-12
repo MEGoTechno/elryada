@@ -22,7 +22,7 @@ function CreateTeacher({ setReset }) {
     }
     return (
         <Section>
-            <BannerIcon title={'انشاء مدرس جديد'} icon={<FaChalkboardTeacher style={{
+            <BannerIcon title={'إنشاء مدرس جديد'} icon={<FaChalkboardTeacher style={{
                 width: '3rem', height: '3rem', color: '#fff'
             }} />} />
 

@@ -38,16 +38,18 @@ function CardHover({ img, title, desc, to, children, secure = false }) {
                     e.preventDefault()
                 }
             }}>
-                <CardMedia
-                    component="img"
-                    image={img || '#'}
-                    alt="green iguana"
-                    sx={{
-                        position: 'relative',
-                        zIndex: 8,
-                        borderRadius: '16px', bgcolor: 'none', minWidth: '250px', maxHeight: '250px'
-                    }}
-                />
+                {img && (
+                    <CardMedia
+                        component="img"
+                        image={img || '#'}
+                        alt="green iguana"
+                        sx={{
+                            position: 'relative',
+                            zIndex: 8,
+                            borderRadius: '16px', bgcolor: 'none', maxHeight: '250px', objectFit: 'contain'
+                        }}
+                    />
+                )}
                 <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="div" fontWeight={'700'} >
                         {title}

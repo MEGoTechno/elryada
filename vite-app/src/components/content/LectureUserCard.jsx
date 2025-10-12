@@ -102,7 +102,7 @@ function LectureUserCard({ lecture, isSubscribed, currentLectureId, unlock = fal
                     {lecture.exam && (
                         <>
                             <TabInfo count={lecture.exam?.time} i={0} title={'الوقت'} isBold={false} icon={<FaClock size={'1.1rem'} />} />
-                            <TabInfo count={lecture.exam?.questions?.length || lecture.exam?.questionsLength} i={1} title={'عدد الاسئله'} isBold={false} icon={<BsFillQuestionSquareFill size={'1.1rem'} />} />
+                            <TabInfo count={lecture.exam?.questions?.length || lecture.exam?.questionsLength} i={1} title={'عدد الأسئلة'} isBold={false} icon={<BsFillQuestionSquareFill size={'1.1rem'} />} />
                             <TabInfo count={lecture.exam?.attemptsNums} i={3} title={'عدد المحاولات'} isBold={false} icon={<AttemptsIcon size={'1.5rem'} />} />
                             {lecture.dateStart && (
                                 <TabInfo count={getDateWithTime(lecture.dateStart)} i={0} title={'موعد البدايه'} isBold={false} icon={<FaClock size={'1.1rem'} />} />

@@ -45,19 +45,19 @@ function UserHome() {
     const dispatch = useDispatch()
     const [getUserData] = useLazyIsLoggedQuery()
 
-    useEffect(() => {
-        const checkIslogged = async () => {
-            const isWorked = JSON.parse(sessionStorage.getItem('user'))
-            if (isWorked?.name) {
-                return
-            }
-            const { data } = await getUserData()
-            const userData = data?.values
+    // useEffect(() => {
+    //     const checkIslogged = async () => {
+    //         const isWorked = JSON.parse(sessionStorage.getItem('user'))
+    //         if (isWorked?.name) {
+    //             return
+    //         }
+    //         const { data } = await getUserData()
+    //         const userData = data?.values
 
-            dispatch(setUser({ ...user, ...userData }))
-        }
-        checkIslogged()
-    }, [])
+    //         dispatch(setUser({ ...user, ...userData }))
+    //     }
+    //     checkIslogged()
+    // }, [])
 
     // const [data, setData] = useState([
     //     { name: "اختبارات", data: [10, 12, 9, 8, 6, 8, 16, 14, 12, 10, 11, 11], color: 'linear-gradient(#e66465, #188df0)' },
@@ -119,16 +119,17 @@ function UserHome() {
             <Separator />
             <UserHeader user={user} flexDirection={'row'} variant={'circle'} />
             <Box sx={{ my: '16px' }}></Box>
-            <TitleSection title={lang.YOUR_SUBSCRIPTIONS} />
 
-            {(user.role === user_roles.ONLINE || user.role == user_roles.STUDENT) && <>
+            {(user.role === user_roles.ONLINE || user.role == user_roles.STUDENT) ? <>
+                <TitleSection title={lang.YOUR_SUBSCRIPTIONS} />
                 <FlexColumn>
                     <ButtonGroup color="primary" aria-label="Medium-sized button group">
                         {btns}
                     </ButtonGroup>
                 </FlexColumn>
                 {compos.find(compo => compo.value === activeCompo)?.compo}
-            </>
+            </> :
+                <TitleSection title={'احصائياتك'} />
             }
         </Section>
     )

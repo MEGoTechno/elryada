@@ -137,7 +137,7 @@ function GetCodesPage() {
             editable: true
         }, {
             field: 'createdBy',
-            headerName: "تم انشاءه بواسطه",
+            headerName: "تم إنشاءه بواسطه",
             width: 170,
             valueGetter: c => c?.name,
             filterable: false,
@@ -209,7 +209,7 @@ function GetCodesPage() {
                                 return [
                                     <BtnConfirm
                                         modalInfo={{
-                                            desc: 'سيتم اضافه هذه المحاضره الي الكود'
+                                            desc: 'سيتم إضافه هذه المحاضره الي الكود'
                                         }}
                                         btn={<IconButton color='success' onClick={() => pushCodes({
                                             field: 'codes', value: code._id, id: lecture._id, action: 'push'
@@ -254,7 +254,7 @@ function GetCodesPage() {
             editable: true
         }, {
             field: 'createdAt',
-            headerName: 'تم انشاءه فى',
+            headerName: 'تم إنشاءه فى',
             width: 170,
             // type: 'number',
             renderCell: (params) => {
@@ -270,7 +270,7 @@ function GetCodesPage() {
             <TitleWithDividers title={lecture ? 'محاضره: ' + data?.values?.name : 'صفحه الاكواد'} />
 
             <FlexColumn>
-                <FilledHoverBtn onClick={() => setOpen(true)}>انشاء كود</FilledHoverBtn>
+                <FilledHoverBtn onClick={() => setOpen(true)}>إنشاء كود</FilledHoverBtn>
             </FlexColumn>
 
             <MeDatagrid

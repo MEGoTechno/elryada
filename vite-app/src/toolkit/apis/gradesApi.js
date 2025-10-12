@@ -49,5 +49,5 @@ const gradesApi = apiSlice.injectEndpoints({
 export const {
     useLazyGetGradesQuery, useLazyGetOneGradeQuery,useGetGradesQuery,
 
-    useCreateGradeMutation, useUpdateGradeMutation,
+    useCreateGradeMutation, useUpdateGradeMutation,useDeleteGradeMutation
 } = gradesApi

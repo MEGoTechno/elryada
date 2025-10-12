@@ -25,6 +25,7 @@ const bunnyRegex = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12
 
 
 function LectureForm({ grade, course, onSubmit, lecture, status, location, chapter, setLectures }) {
+    const [close, setClose] = useState(false) //forExam create
 
     const [sectionType, setSectionType] = useState(lecture?.sectionType)
     const [videoPlayer, setVideoPlayer] = useState(lecture?.video?.player)
@@ -371,15 +372,16 @@ function LectureForm({ grade, course, onSubmit, lecture, status, location, chapt
                     :
                     sectionType === sectionConstants.EXAM &&
                     <BtnModal
+                        close={close}
                         fullScreen
-                        btnName={location === 'update' ? "تعديل الاختبار" : 'انشاء اختبار'}>
+                        btnName={location === 'update' ? "تعديل الاختبار" : 'إنشاء اختبار'}>
                         {location === 'update' ? <ExamUpdatePage lecId={lecture._id} setLectures={setLectures} /> :
-                            <ExamCreatePage courseId={course} chapter={chapter} setLectures={setLectures} />}
+                            <ExamCreatePage setClose={setClose} courseId={course} chapter={chapter} setLectures={setLectures} />}
                     </BtnModal>
                     // <Button
                     //     component={Link}
                     //     to={location === 'update' ? updateExamUrl : createExamBtnUrl}>
-                    //     {location === 'update' ? "تعديل الاختبار" : 'انشاء اختبار'}
+                    //     {location === 'update' ? "تعديل الاختبار" : 'إنشاء اختبار'}
                     // </Button>
                 }
             </FlexColumn>

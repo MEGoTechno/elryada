@@ -6,7 +6,7 @@ import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import { MdMarkEmailRead } from "react-icons/md";
 import { FaSquarePhoneFlip } from "react-icons/fa6";
 import { PiPhoneDisconnectFill } from "react-icons/pi";
-import { IoSchool } from "react-icons/io5";
+// import { IoSchool } from "react-icons/io5";
 import { RiGovernmentFill } from "react-icons/ri";
 import { TbPasswordUser } from "react-icons/tb";
 
@@ -19,14 +19,14 @@ import { makeArrWithValueAndLabel } from '../../tools/fcs/MakeArray';
 import { user_roles } from '../../settings/constants/roles';
 
 import * as Yup from "yup"
-import useGrades from '../../hooks/useGrades';
+// import useGrades from '../../hooks/useGrades';
 import { validatePhone } from '../../tools/validations/validatePhone';
 
 function CreateUserForm({ setReset }) {
 
   const [sendData, status] = useCreateUserMutation()
   const [createUser] = usePostData(sendData)
-  const { grades } = useGrades()
+  // const { grades } = useGrades()
 
   const inputs = [
     {
@@ -67,14 +67,16 @@ function CreateUserForm({ setReset }) {
       icon: <PiPhoneDisconnectFill color='green' />,
       validation:validatePhone
         .notOneOf([Yup.ref('phone'), null], 'مينفعش هاتف ولى الامر يبقا رقمك'),
-    }, {
-      name: 'grade',
-      label: lang.GRADE,
-      type: 'select',
-      options: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
-      icon: <IoSchool color='green' />,
-      validation: Yup.string().required(lang.REQUERIED)
-    }, {
+    },
+    //  {
+    //   name: 'grade',
+    //   label: lang.GRADE,
+    //   type: 'select',
+    //   options: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
+    //   icon: <IoSchool color='green' />,
+    //   validation: Yup.string().required(lang.REQUERIED)
+    // },
+     {
       name: 'government',
       label: lang.GOVERNMENT,
       type: 'select',

@@ -15,7 +15,7 @@ function ExamInfo({ exam }) {
             <TabInfo count={formatDuration(exam.time)} i={1} title={"الوقت"} />
             <TabInfo count={(total)} i={0} title={"الدرجه الكليه"} />
             <TabInfo count={(exam.attemptsNums)} i={3} title={"عدد المحاولات"} />
-            <TabInfo count={(exam.questions.length)} i={2} title={"عدد الاسئله"} />
+            <TabInfo count={(exam.questions.length)} i={2} title={"عدد الأسئلة"} />
         </FlexRow>
     )
 }

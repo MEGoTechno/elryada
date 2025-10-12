@@ -23,7 +23,7 @@ function UpdateQuestion({ question, setReset }) {
                 setReset(pre => !pre)
             }
             // props.resetForm(questions[0])
-            // props.resetForm({ values: questions[0] })
+            // props.resetForm({ values: [res] })
 
             setLoading(false)
         } catch (error) {

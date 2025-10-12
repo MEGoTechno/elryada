@@ -32,7 +32,7 @@ function UserQuestionsBank() {
 
     const [methods, setMethods] = useState([])
     const fetchFc = async () => {
-        const res = await getTagsFc({ isActive: true, grade: user.grade, counting: true })
+        const res = await getTagsFc({ isActive: true, counting: true }) //grade: user.grade, *No-grade
         const methods = res.tags.map(tag => {
             return {
                 value: tag._id, label: tag.name, description: tag.description,
@@ -44,7 +44,7 @@ function UserQuestionsBank() {
                     sx={{ display: 'flex', justifyContent: 'flex-end', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', bgcolor: '#00000073', zIndex: 2, cursor: 'pointer' }
                     }>
                     <Typography sx={{ color: 'grey.0', bgcolor: 'primary.main', width: 'fit-content', height: 'fit-content' }}>
-                        شراء الاسئله بسعر {tag.price} ريال
+                        شراء الأسئلة بسعر {tag.price} ريال
                     </Typography>
                 </Box>,
                 disabled: tag.unansweredCount === 0
@@ -57,7 +57,7 @@ function UserQuestionsBank() {
         if (methods?.length === 0) {
             fetchFc()
         }
-    }, [user.grade])
+    }, [user])
 
     //Payments
     const [open, setOpen] = useState(false)
@@ -77,10 +77,10 @@ function UserQuestionsBank() {
     const inputs = [
         {
             name: 'number',
-            label: 'اختر عدد الاسئله',
+            label: 'اختر عدد الأسئلة',
             type: 'number',
             width: '45%',
-            validation: yup.number().required().min(isDevelop ? 1 : 5, 'اقل عدد من الاسئله هو 5') // *_*
+            validation: yup.number().required().min(isDevelop ? 1 : 5, 'اقل عدد من الأسئلة هو 5') // *_*
         }, {
             name: 'method',
             label: 'طريقه التصحيح',
@@ -118,7 +118,7 @@ function UserQuestionsBank() {
 
         if (res.length > 0) {
             navigate('/exams/' + values.method, {
-                state: { questions: res, method: values.method, name: 'بنك الاسئله : ' + res.length + ' اسئله' }
+                state: { questions: res, method: values.method, name: 'بنك الأسئلة : ' + res.length + ' أسئلة' }
             })
         }
         //exams/_id
@@ -131,7 +131,7 @@ function UserQuestionsBank() {
     }
     return (
         <div>
-            <MakeForm modalInfo={{ desc: 'فلتستمع ولتجب جيدا على الاسئله, حظا سعيدا' }} inputs={inputs} onSubmit={onSubmit} status={status} />
+            <MakeForm modalInfo={{ desc: 'فلتستمع ولتجب جيدا على الأسئلة, حظا سعيدا' }} inputs={inputs} onSubmit={onSubmit} status={status} />
             <PaymentMethods
                 open={open} setOpen={setOpen}
                 title={'الاشتراك فى الرابط' + ' :' + tagToPay?.name}

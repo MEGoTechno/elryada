@@ -42,7 +42,7 @@ function GradeHeader({ grade }) {
 
     return (
         <HeaderContent title={grade.name} body={grade.description} img={grade.image.url} middle={true}
-        sectionName={'الصف الدراسي'}
+        sectionName={'الماده الاساسيه'}
             infos={[{
                 caption: lang.UNITS, desc: '+ ' + unitsCount, icon: <UnitsIcon size='1.5rem' />
             },

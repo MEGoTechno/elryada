@@ -5,7 +5,7 @@ import CouponForm from './CouponForm'
 import TitleWithDividers from '../ui/TitleWithDividers'
 import Section from '../../style/mui/styled/Section'
 
-function CreateCoupon({ course, setReset, coupon, tag = null, sectionName = 'انشاء كوبون' }) {
+function CreateCoupon({ course, setReset, coupon, tag = null, sectionName = 'إنشاء كوبون' }) {
 
 
     const [sendData, status] = useCreateCouponMutation()

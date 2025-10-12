@@ -46,14 +46,14 @@ function ManageCoursesPage() {
             setCounts(counts)
         }
         trigger()
-    }, [grade, activeCourse, activeUnit, grades])
+    }, [grade, activeCourse, grades]) // activeUnit,
 
     const changeGrade = (index) => {
         setGrade(index)
         setSearchParams({
             grade: index
         })
-        setActiveUnit('')
+        // setActiveUnit('')
         setActiveCourse('')
     }
 
@@ -76,7 +76,7 @@ function ManageCoursesPage() {
     const changeCourse = (course) => {
         setActiveCourse(course)
         setSearchParams({
-            grade, unit: activeUnit, course
+            grade,  course //unit: activeUnit,
         })
     }
 
@@ -87,13 +87,13 @@ function ManageCoursesPage() {
                 <GradesTabs setGrade={changeGrade} counts={counts} grade={grade} />
                 <FlexColumn>
                     {/* <BannerIcon title="manage Courses" icon="icon " /> */}
-                    <ManageUnits grade={grade} activeUnit={activeUnit} setActiveUnit={changeUnit} />
+                    {/* <ManageUnits grade={grade} activeUnit={activeUnit} setActiveUnit={changeUnit} /> */}
 
-                    {(activeUnit) && (
-                        <ManageCourses courses={courses} setCourses={setCourses} grade={grade} activeUnit={activeUnit} activeCourse={activeCourse} setActiveCourse={changeCourse} />
+                    {(grade || grade === 0) && (
+                        <ManageCourses courses={courses} setCourses={setCourses} grade={grade}  activeCourse={activeCourse} setActiveCourse={changeCourse} /> //activeUnit={activeUnit}
                     )}
 
-                    {(activeCourse && activeUnit) && (
+                    {(activeCourse) && ( // && activeUnit
                         <Box sx={{ width: '100%' }}>
                             <AdminCourseDetails
                                 setGrade={changeOnlyGrade}
@@ -106,11 +106,11 @@ function ManageCoursesPage() {
 
                     <Separator sx={{ width: '100%' }} />
 
-                    {(activeCourse && activeUnit) && (
+                    {(activeCourse) && ( // && activeUnit
                         <Box sx={{ width: '100%' }}>
                             <AdminCourseChapters
                                 setLecturesCount={setLecturesCount}
-                                course={activeCourse} unit={activeUnit} grade={grade}
+                                course={activeCourse} grade={grade} // unit={activeUnit}
                                 refetchLectures={refetchLectures} />
                         </Box>
                     )}

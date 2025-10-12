@@ -7,9 +7,9 @@ function QuestionsBankPage() {
     return (
         <Section>
             <TitleWithDividers
-                title={'بنك الاسئله'}
+                title={'بنك الأسئلة'}
                 icon={<PiBankBold size={'40px'} color={'inherit'} />}
-                desc='اختار العناوين التى من خلالها ستظهر الاسئله الخاصه بها ثم حدد عدد الاسئله التى تريد الاختبار عليها' />
+                desc='اختار العناوين التى من خلالها ستظهر الأسئلة الخاصه بها ثم حدد عدد الأسئلة التى تريد الاختبار عليها' />
             <UserQuestionsBank />
         </Section>
     )

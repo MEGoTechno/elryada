@@ -54,7 +54,7 @@ function FeedBacks({ isAdmin }) {
             }
         }, {
             field: 'createdAt',
-            headerName: 'تاريخ الانشاء',
+            headerName: 'تاريخ الإنشاء',
             width: 200,
             type: 'date',
             valueGetter: (createdAt) => new Date(createdAt),

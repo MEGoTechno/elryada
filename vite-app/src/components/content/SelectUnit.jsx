@@ -32,7 +32,7 @@ function SelectUnit({ grade = 'all', activeUnit, setActiveUnit, reset = [], unit
   if (status.isLoading) return <LoaderWithText />
 
   if (status.isSuccess && units.length === 0) return <Alert variant="filled" severity="warning">
-    لا يوجد وحدات فى هذا الصف الدراسى !
+    لا يوجد وحدات فى هذه الماده حاليا !
   </Alert>
 
   return (

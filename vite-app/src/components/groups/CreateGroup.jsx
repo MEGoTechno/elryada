@@ -21,7 +21,7 @@ function CreateGroup({ setReset }) {
 
     return (
         <Section>
-            <TitleWithDividers title={'انشاء مجموعه'} />
+            <TitleWithDividers title={'إنشاء مجموعه'} />
             <GroupForm status={status} onSubmit={onSubmit} />
         </Section>
     )

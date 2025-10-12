@@ -6,7 +6,7 @@ import CreateCode from '../../components/codes/CreateCode'
 function CreateCodePage() {
     return (
         <Section>
-            <TitleWithDividers title={'انشاء كود'} />
+            <TitleWithDividers title={'إنشاء كود'} />
             <CreateCode />
         </Section>
     )

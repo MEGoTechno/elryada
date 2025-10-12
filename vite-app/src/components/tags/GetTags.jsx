@@ -148,7 +148,7 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
             }
         }, {
             field: 'questions',
-            headerName: 'الاسئله المضافه',
+            headerName: 'الأسئلة المضافه',
             width: 150,
             type: 'actions',
             disableExport: true,
@@ -181,9 +181,9 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
                 }
 
                 return <BtnModal
-                    btnName={'عرض الاسئله'}
+                    btnName={'عرض الأسئلة'}
                     fullScreen={true}
-                    titleInSection={'اسئله : ' + params.row.name}
+                    titleInSection={'أسئلة : ' + params.row.name}
                     component={<FlexColumn>
                         <AdminGetQuestions
                             disableAllActions={true} addColumns={addColumns}
@@ -196,7 +196,7 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
 
                         {unLinkedQs?.length > 0 && (
                             <FilledHoverBtn onClick={() => unLinkFc()}>
-                                ازاله {unLinkedQs.length} اسئله
+                                ازاله {unLinkedQs.length} أسئلة
                             </FilledHoverBtn>
                         )}
                     </FlexColumn>}
@@ -204,7 +204,7 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
             }
         }, {
             field: 'notQuestions',
-            headerName: 'ايضافه اسئله',
+            headerName: 'ايضافه أسئلة',
             width: 150,
             type: 'actions',
             disableExport: true,
@@ -224,7 +224,7 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
                             <BtnConfirm
                                 key={0}
                                 modalInfo={{
-                                    desc: 'سيتم اضافه هذا السؤال الي الرابط'
+                                    desc: 'سيتم إضافه هذا السؤال الي الرابط'
                                 }}
                                 btn={<IconButton color='success' onClick={() => linkFc(params?.row._id)}>
                                     <FaPlus></FaPlus>
@@ -251,7 +251,7 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
 
                         {chosenQs.length > 0 && (
                             <FilledHoverBtn onClick={() => linkFc()}>
-                                ربط الرابط ب {chosenQs.length} اسئله
+                                ربط الرابط ب {chosenQs.length} أسئلة
                             </FilledHoverBtn>
                         )}
                     </FlexColumn>}
@@ -274,7 +274,7 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
                 return <BtnModal
                     titleInSection={"كوبونات الرابط" + ' ' + params.row.name}
                     component={<GetCoupons tag={params.row._id}
-                        createBtnName={'انشاء كوبون للرابط ' + params.row.name}
+                        createBtnName={'إنشاء كوبون للرابط ' + params.row.name}
                     />}
                     fullScreen={true}
                     btnName={'كوبونات الرابط'}
@@ -342,7 +342,7 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
                                 return [
                                     <BtnConfirm
                                         modalInfo={{
-                                            desc: 'سيتم اضافه هذا الطالب الي الرابط'
+                                            desc: 'سيتم إضافه هذا الطالب الي الرابط'
                                         }}
                                         btn={<IconButton color='success'
                                             onClick={() => manageUser({
@@ -362,7 +362,7 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
             }
         }, {
             field: 'createdAt',
-            headerName: 'تاريخ الانشاء',
+            headerName: 'تاريخ الإنشاء',
             type: "date",
             valueGetter: value => new Date(value),
             width: 200,
@@ -383,7 +383,7 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
     return (
         <Section>
             {isShowCreate && (
-                <BtnModal fullWidth={true} btnName={'انشاء رابط'} component={<CreateTag setReset={setReset} defaultGrade={defaultGrade} />} size='medium' isFilledHover={true} />
+                <BtnModal fullWidth={true} btnName={'إنشاء رابط'} component={<CreateTag setReset={setReset} defaultGrade={defaultGrade} />} size='medium' isFilledHover={true} />
             )}
 
             <MeDatagrid

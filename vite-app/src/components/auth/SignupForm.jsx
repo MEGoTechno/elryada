@@ -20,13 +20,13 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '../../toolkit/globalSlice';
 import { useSignupMutation } from '../../toolkit/apis/usersApi';
 import { makeArrWithValueAndLabel } from '../../tools/fcs/MakeArray';
-import useGrades from '../../hooks/useGrades';
+// import useGrades from '../../hooks/useGrades';
 import { validatePhone } from '../../tools/validations/validatePhone';
 // validation: Yup.string().required("مطلوب").min(6, "يجب ان يكون اكثر من 6")
 
 
 function SignupForm() {
-    const { grades } = useGrades()
+    // const { grades } = useGrades()
 
     const inputs = [
         {
@@ -54,14 +54,16 @@ function SignupForm() {
             width: { xs: '100%', md: '49%' },
             icon: <PiPhoneDisconnectFill color='orange' />,
             validation: validatePhone.notOneOf([Yup.ref('phone'), null], 'مينفعش هاتف ولى الامر يبقا رقمك'),
-        }, {
-            name: 'grade',
-            label: lang.GRADE,
-            type: 'select',
-            options: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
-            icon: <IoSchool color='orange' />,
-            validation: Yup.string().required(lang.REQUERIED)
-        }, {
+        }, 
+        // {
+        //     name: 'grade', *No-grade
+        //     label: lang.GRADE,
+        //     type: 'select',
+        //     options: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
+        //     icon: <IoSchool color='orange' />,
+        //     validation: Yup.string().required(lang.REQUERIED)
+        // }, 
+        {
             name: 'government',
             label: lang.GOVERNMENT,
             type: 'select',
