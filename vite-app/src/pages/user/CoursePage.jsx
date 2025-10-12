@@ -88,7 +88,7 @@ function CoursePage() {
     //get /lectures/lectureId (index)
 
     const compo = <Paper elevation={1} sx={{ width: '100%', p: '16px', mt: '16px' }}>
-        <TitleWithDividers title={'الفصول التعليميه'} />
+        <TitleWithDividers title={'محتوى الدوره'} />
         {courseDetails?.chapters && courseDetails?.chapters.map(chapter => {
 
             return <AccordionStyled
