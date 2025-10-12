@@ -107,7 +107,7 @@ export default function MakeInput({ input, props, nestedInputName, style }) {
             return <MakeSelectRef inputName={inputName} input={input} props={props} value={value} />
 
         case 'editor':
-            return <Text disabled={input.disabled} defaultData={value} setText={(text) => props.setFieldValue(inputName, text)} />
+            return <Text key={inputName} disabled={input.disabled} defaultData={value} setText={(text) => props.setFieldValue(inputName, text)} />
 
         case 'switch':
             return <MakeSwitch input={input} props={props} inputName={inputName} />
