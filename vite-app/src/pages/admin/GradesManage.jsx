@@ -64,7 +64,7 @@ function GradesManage() {
 
             <FullComponent data={{
                 useFetch: useLazyGetGradesQuery,
-                useDelete: useDeleteGradeMutation,
+                // useDelete: useDeleteGradeMutation,
                 resKey: 'grades', reset,
                 useUpdate: useUpdateGradeMutation, isMultiPart: true,
                 columns
