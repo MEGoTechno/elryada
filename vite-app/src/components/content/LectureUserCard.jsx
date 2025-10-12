@@ -60,7 +60,7 @@ function LectureUserCard({ lecture, isSubscribed, currentLectureId, unlock = fal
     // const isNextLecture = ((lecture.index - 1) === currentLectureIndex && lecture.chapters.includes(currentChapter))
 
     return (
-        <Card sx={{ maxWidth: 345, display: 'flex', flexDirection: 'column', position: 'relative' }}>
+        <Card sx={{ maxWidth: 345, width: '100%', display: 'flex', flexDirection: 'column', position: 'relative' }}>
             <CardHeader
                 sx={{
                     p: '12px 12px 0 12px'
