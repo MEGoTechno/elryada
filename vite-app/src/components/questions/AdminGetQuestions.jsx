@@ -137,7 +137,7 @@ function AdminGetQuestions({
             filterable: false,
             sortable: false,
             valueFormatter: (v) => {
-                return v.map(tag => data?.values?.tags.find(t => t._id === tag).name).join(' - ') || 'لا يوجد مهاره'
+                return (v?.map(tag => data?.values?.tags.find(t => t._id === tag).name).join(' - ')) || 'لا يوجد مهاره'
             }
         }, {
             field: 'hints',
@@ -262,7 +262,7 @@ function AdminGetQuestions({
                     btnName={'اضافه مهارات الي السؤال'}
                     color={'error'}
                     icon={<TbTagsOff />}
-                    disabled={params.row.tags.length ? true : false}
+                    disabled={params.row?.tags?.length ? true : false}
                     close={reset}
                     fullScreen={true}
                     titleInSection={<>اضافه مهاره الي السؤال: <span dangerouslySetInnerHTML={{ __html: params.row.title }} /></>}

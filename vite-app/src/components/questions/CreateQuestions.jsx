@@ -15,7 +15,7 @@ function CreateQuestions({ setReset, grade, tags, chapter, type = 'mcq' }) { //t
 
     const onSubmit = async (values, props) => {
         try {
-            // console.log(values)
+            console.log(values)
             // return
             setLoading(true)
             const questions = await saveFiles(values)
