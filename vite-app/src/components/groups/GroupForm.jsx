@@ -35,7 +35,7 @@ function GroupForm({ status, onSubmit, group = {}, enableReinitialize = false, i
             name: "days",
             type: 'array',
             add: daySchema,
-            addLabel: "ايضافه يوم",
+            addLabel: "إضافة يوم",
             removeLabel: "ازاله يوم",
             validation:
                 Yup.array()

@@ -134,8 +134,8 @@ function UserQuestionsBank() {
             <MakeForm modalInfo={{ desc: 'فلتستمع ولتجب جيدا على الأسئلة, حظا سعيدا' }} inputs={inputs} onSubmit={onSubmit} status={status} />
             <PaymentMethods
                 open={open} setOpen={setOpen}
-                title={'الاشتراك فى الرابط' + ' :' + tagToPay?.name}
-                subTitle={'الاشتراك فى الرابط' + ' :' + tagToPay?.name}
+                title={'الاشتراك فى المهارة' + ' :' + tagToPay?.name}
+                subTitle={'الاشتراك فى المهارة' + ' :' + tagToPay?.name}
                 setCoupon={setCoupon}
                 tag={tagToPay?._id} handelResponse={handelResponse}
                 price={tagToPay?.price} invoiceNameId={'tag'}

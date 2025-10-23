@@ -386,7 +386,7 @@ const addToLectures = expressAsyncHandler(async (req, res, next) => {
     }
 
     await LectureModel.updateMany({ _id: { $in: lectures } }, { $addToSet: addToSet }) //, { new: true }
-    res.status(200).json({ message: 'تم ايضافه المحاضره بنجاح', status: SUCCESS })
+    res.status(200).json({ message: 'تم إضافة المحاضره بنجاح', status: SUCCESS })
 })
 
 //@route /content/lectures/array

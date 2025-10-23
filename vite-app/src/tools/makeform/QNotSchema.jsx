@@ -1,17 +1,17 @@
 import { Typography } from "@mui/material"
 import { FlexColumn } from "../../style/mui/styled/Flexbox"
 import SwitchStyled from "../../style/mui/styled/SwitchStyled"
-import { useMemo } from "react"
+import { memo, useMemo } from "react"
 import _ from 'lodash';
 import TabInfo from "../../components/ui/TabInfo";
+import { useField } from "formik";
 
-function QNotSchema({ freeze, setFreeze, props, currentValueIndex }) {
+function QNotSchema({ freeze, setFreeze, origin }) {
 
-    const origin = props.getFieldMeta('questions')?.value[currentValueIndex]
+    // const origin = props.getFieldMeta('questions')?.value[currentValueIndex]
+    const [{ value: linkedQuestions }] = useField('linkedQuestions')
 
-    const linkedQuestions = props.getFieldMeta('linkedQuestions').value
     const current = linkedQuestions.find(l => l._id === origin._id)
-
     const hasChanged = useMemo(() => !_.isEqual(origin, current), [origin, current]);
 
     return (
@@ -25,4 +25,4 @@ function QNotSchema({ freeze, setFreeze, props, currentValueIndex }) {
     )
 }
 
-export default QNotSchema
+export default memo(QNotSchema)

@@ -47,7 +47,7 @@ function PermissionsPage() {
 
     return (
         <Section>
-            <TitleWithDividers title={'اداره صلاحيات المنصه للمدرس و المشرفين'} />
+            <TitleWithDividers title={'إدارة صلاحيات المنصه للمدرس و المشرفين'} />
             <TabsAutoStyled originalTabs={tabs} searchVal="perms" />
         </Section>
     )

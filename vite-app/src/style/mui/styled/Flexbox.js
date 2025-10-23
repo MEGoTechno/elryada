@@ -7,6 +7,7 @@ export const FlexRow = styled(Box)(({ theme }) => ({
     alignItems: 'center',
     // justifyContent: 'center',
     flexWrap: 'wrap',
+    // width: '100%'
 }))
 
 export const FlexColumn = styled(Box)(({ theme }) => ({

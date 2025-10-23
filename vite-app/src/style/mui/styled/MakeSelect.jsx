@@ -1,7 +1,7 @@
 import { memo, useEffect } from 'react'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 
-function MakeSelect({ title, value, setValue, options, reset = [], disabled = false, disableValue = [] }) {
+function MakeSelect({ title, value, setValue, options, reset = [], disabled = false, disableValue = [], isLoading = false, variant = 'outlined' }) {
 
     useEffect(() => {
         if (reset.length !== 0) {
@@ -23,6 +23,7 @@ function MakeSelect({ title, value, setValue, options, reset = [], disabled = fa
         <FormControl disabled={disabled} sx={{ maxWidth: '500px', minWidth: '250px' }}>
             <InputLabel id="demo-simple-select-label">{title}</InputLabel>
             <Select
+                variant={variant}
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={selectValue || ""}

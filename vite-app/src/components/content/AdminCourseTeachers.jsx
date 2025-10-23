@@ -32,14 +32,14 @@ function AdminCourseTeachers({ course }) {
 
     const tabs = [
         {
-            label: 'ايضافه مدرس', permId: 0, component: <Users
+            label: 'إضافة مدرس', permId: 0, component: <Users
                 filters={{
                     courses: '!=' + course._id, role: [user_roles.TEACHER, user_roles.SUBADMIN], _id: '!=' + user._id
                 }}
                 allStatuses={[status]} reset={reset}
                 addColumns={[{
                     field: 'addToCourse',
-                    headerName: 'ايضافه المدرس',
+                    headerName: 'إضافة المدرس',
                     type: 'actions',
                     renderCell: (params) => {
                         const teacher = params.row

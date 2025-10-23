@@ -1,7 +1,13 @@
+export const examMethodsConstants = {
+    QUESTION: 'question',
+    EXAM: 'Exam'
+}
+
 const examMethods = [
-    { value: 'question', label: 'تصحيح كل سؤال على حده', markQ: true }, //time for Every Q + fixed Can`t skip //fixedPagination: true,
-    { value: 'Exam', label: 'تصحيح كاختبار', markQ: false } // time for All || can correct it individually
+    { value: examMethodsConstants.QUESTION, label: 'تصحيح كل سؤال على حده', markQ: true }, //time for Every Q + fixed Can`t skip //fixedPagination: true,
+    { value: examMethodsConstants.EXAM, label: 'تصحيح كاختبار', markQ: false } // time for All || can correct it individually
 ]
+
 
 const defaultVal = examMethods[1].value
 

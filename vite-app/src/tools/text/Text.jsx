@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 
 import {
@@ -54,8 +54,9 @@ import translations from 'ckeditor5/translations/ar.js';
 import 'ckeditor5/ckeditor5.css';
 
 import './text.css';
+import { Alert } from '@mui/material';
 
-export default function Text({ setText, defaultData, disabled = false }) {
+function Text({ setText, defaultData, disabled = false, showError, error }) {
     const editorContainerRef = useRef(null);
     const editorMenuBarRef = useRef(null);
     const editorToolbarRef = useRef(null);
@@ -246,7 +247,7 @@ export default function Text({ setText, defaultData, disabled = false }) {
 
     return (
         <div style={{ width: '100%' }} >
-            <div className="main-container">
+            <div className="main-container" style={{ borderRadius: '8px', overflow: 'hidden' }}>
                 <div className="editor-container editor-container_document-editor" ref={editorContainerRef}>
                     <div className="editor-container__menu-bar" ref={editorMenuBarRef}></div>
                     <div className="editor-container__toolbar" ref={editorToolbarRef}></div>
@@ -295,6 +296,12 @@ export default function Text({ setText, defaultData, disabled = false }) {
                     </div>
                 </div>
             </div>
+
+            {showError && (
+                <Alert sx={{ my: "5px" }} severity='error'>{error}</Alert>
+            )}
         </div>
     );
 }
+
+export default memo(Text)

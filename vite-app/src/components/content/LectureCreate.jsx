@@ -2,7 +2,7 @@ import { useCreateLectureMutation } from '../../toolkit/apis/lecturesApi'
 import usePostData from '../../hooks/usePostData'
 import LectureForm from './LectureForm'
 
-function LectureCreate({ setLectures, grade, course, chapter }) {
+function LectureCreate({ setLectures, grade, course, chapter, sectionParent }) {
     const [sendData, status] = useCreateLectureMutation()
     const [createLecture] = usePostData(sendData)
 
@@ -12,7 +12,7 @@ function LectureCreate({ setLectures, grade, course, chapter }) {
         props.resetForm()
     }
     return (
-        <LectureForm grade={grade} course={course} onSubmit={onSubmit} status={status} chapter={chapter} setLectures={setLectures} />
+        <LectureForm grade={grade} course={course} onSubmit={onSubmit} status={status} chapter={chapter} setLectures={setLectures} sectionParent={sectionParent} />
     )
 }
 

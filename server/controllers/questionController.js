@@ -53,7 +53,7 @@ const linkQuestionToTags = expressAsyncHandler(async (req, res, next) => {
     const tags = req.body.tags
 
     await QuestionModel.updateOne({ _id: question }, { $addToSet: { tags } })
-    res.status(200).json({ message: 'تم ايضافه الروابط بنجاح', status: SUCCESS })
+    res.status(200).json({ message: 'تم إضافة المهارات بنجاح', status: SUCCESS })
 })
 
 // @desc delete tags from one Question
@@ -67,7 +67,7 @@ const unLinkQuestionToTags = expressAsyncHandler(async (req, res, next) => {
         { _id: question },
         { $pull: { tags: { $in: tags } } }
     );
-    res.status(200).json({ message: 'تم ازاله الروابط بنجاح', status: SUCCESS })
+    res.status(200).json({ message: 'تم ازاله المهارات بنجاح', status: SUCCESS })
 })
 
 // For Many

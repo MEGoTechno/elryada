@@ -12,6 +12,9 @@ import ExamCard from '../exam/ExamCard'
 import Separator from '../ui/Separator'
 import SectionIcon from '../content/SectionIcon'
 import { useSelector } from 'react-redux'
+import TabInfo from '../ui/TabInfo'
+import { getFullDate, getTimeOnly } from '../../settings/constants/dateConstants'
+import { MdDateRange } from 'react-icons/md'
 
 function LectureBody({ lecture, lectureIndex, courseId }) {
     const user = useSelector(s => s.global.user)
@@ -20,7 +23,7 @@ function LectureBody({ lecture, lectureIndex, courseId }) {
         let value = '"' + user.userName + '"'
         document.documentElement.style.setProperty('--main-userName', `${value}`)
     }
-
+ 
     return (
         <Box sx={{ width: '100%', maxWidth: '800px' }}>
             <FlexColumn gap={'16px'}>
@@ -49,6 +52,15 @@ function LectureBody({ lecture, lectureIndex, courseId }) {
                     ) : lecture.sectionType === sectionConstants.LINK ? (
                         <FlexColumn>
                             <ScallyBtn component={Link} to={lecture.link.url} startIcon={<SectionIcon lecture={lecture} color='white' />}> {lecture.name}</ScallyBtn>
+                        </FlexColumn>
+                    ) : lecture.sectionType === sectionConstants.LIVE ? (
+                        <FlexColumn>
+                            <FlexRow>
+                                <TabInfo i={2} count={lecture.dateStart ? getFullDate(lecture.dateStart) : getFullDate(lecture.createdAt)} icon={<MdDateRange size='1rem' />} />
+                                {lecture.dateStart && <TabInfo i={3} count={getTimeOnly(lecture.dateStart)} isBold={false} title={' من '} />}
+                                {lecture.dateEnd && <TabInfo i={3} count={getTimeOnly(lecture.dateEnd)} isBold={false} title={' الي '} />}
+                            </FlexRow>
+                            <ScallyBtn component={Link} to={lecture.link?.url} startIcon={<SectionIcon lecture={lecture} color='white' />}> {lecture.name}</ScallyBtn>
                         </FlexColumn>
                     ) : lecture.sectionType === sectionConstants.FILE ?
                         <ShowPdf file={lecture.file} />

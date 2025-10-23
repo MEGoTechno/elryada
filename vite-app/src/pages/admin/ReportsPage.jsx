@@ -14,7 +14,7 @@ function ReportsPage() {
 
     return (
         <Section>
-            <TitleWithDividers title={'اداره التقارير'}>
+            <TitleWithDividers title={'إدارة التقارير'}>
                 {course && (
                     <CourseName course={course} title={'اسم الكورس : '} />
                 )}

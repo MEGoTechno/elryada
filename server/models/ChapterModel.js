@@ -5,6 +5,7 @@ const chapterSchema = new mongoose.Schema({
     description: String,
     isActive: { type: Boolean, default: true },
     // lectures: [{ type: mongoose.Schema.Types.ObjectId, ref: 'lecture' }],
+    grade: { type: mongoose.Schema.Types.ObjectId, ref: 'grade', required: true },
     courses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'course' }],
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
     isMust: Boolean

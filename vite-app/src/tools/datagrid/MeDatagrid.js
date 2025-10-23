@@ -7,7 +7,7 @@ export default function MeDatagrid({
     type, data, filterParams, reset, columns = [], removeCols, editing, loading, addColumns = null, massActions,
     exportObj, exportTitle,
     viewFc, fetchFc, updateFc, deleteFc, apiRef, deleteMany, ViewRow, analysisFc, viewRowModal,
-    setSelection = false, allSelected,
+    setSelection = false, allSelected,singleSelection,
     disabledActions = [], disableAllActions, allStatuses
 }) {
 
@@ -47,7 +47,7 @@ export default function MeDatagrid({
         filterParams={filterParams}
         columns={modifiedColumns} reset={reset} addColumns={addColumns} removeCols={removeCols}
         loading={loading}
-        setSelection={setSelection}
+        setSelection={setSelection} singleSelection={singleSelection}
         allSelected={allSelected}
         fetchFc={fetchFc} deleteFc={deleteFc} updateFc={updateFc} deleteMany={deleteMany} />
 

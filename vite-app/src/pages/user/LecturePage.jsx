@@ -22,7 +22,6 @@ function LecturePage() {
     const [getData, getStatus] = useLazyGetLectureAndCheckQuery()
     const [getLecture] = useLazyGetData(getData)
 
-
     const [sendData, status] = usePassLectureMutation()
     const [passLecture] = usePostData(sendData)
 

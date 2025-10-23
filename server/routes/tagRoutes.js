@@ -14,7 +14,7 @@ const secureTags = (modify = false, isOnline = false) => checkPermAndModify({
 })
 
 router.route("/")
-    .get(verifyToken(), secureTags(true, true), getTags)
+    .get(verifyToken(), getTags) //secureTags(true, true),
     .post(verifyToken(), allowedTo(user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER), secureTags(true), createTag)
 
 router.route("/count")

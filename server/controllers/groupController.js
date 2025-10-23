@@ -42,7 +42,7 @@ const addUserToGroup = expressAsyncHandler(async (req, res, next) => {
     const users = req.body.users
 
     await UserModel.updateMany({ _id: { $in: users } }, { $addToSet: { groups: group } }, { new: true })
-    res.status(200).json({ message: 'تم ايضافه المستخدمين بنجاح', status: SUCCESS })
+    res.status(200).json({ message: 'تم إضافة المستخدمين بنجاح', status: SUCCESS })
 })
 
 // @desc delete user from group
@@ -68,7 +68,7 @@ const addLectureToGroup = expressAsyncHandler(async (req, res, next) => {
     const lectures = req.body.lectures || []
 
     await LectureModel.updateMany({ _id: { $in: lectures } }, { $addToSet: { groups: group } }, { new: true })
-    res.status(200).json({ message: 'تم ايضافه المحاضره بنجاح', status: SUCCESS })
+    res.status(200).json({ message: 'تم إضافة المحاضره بنجاح', status: SUCCESS })
 })
 
 // @desc delete Lecture from group

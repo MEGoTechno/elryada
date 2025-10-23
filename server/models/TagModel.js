@@ -6,6 +6,7 @@ const tagSchema = new mongoose.Schema({
     name: { type: String },
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
     isActive: { type: Boolean, default: true },
+    chapters: [{ type: mongoose.Schema.Types.ObjectId, ref: 'chapter' }],
     description: String,
     price: Number,
     isFree: Boolean

@@ -1,8 +1,10 @@
 const sectionConstants = {
     VIDEO: 'فيديو',
-    FILE: 'ملف PDF',
+    FILE: 'ملف PDF', //مرفقات
     EXAM: "اختبار",
-    LINK: 'لينك'
+    LINK: 'لينك',
+    LIVE: 'بث',
+    EXERCISE: 'تدريب'
 }
 
 module.exports = sectionConstants

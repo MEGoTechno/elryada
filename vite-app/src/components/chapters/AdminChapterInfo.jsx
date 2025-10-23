@@ -41,11 +41,11 @@ function AdminChapterInfo({ chapter, setChapter, lecturesCount = '', deleteChapt
             <InfoText label={'الاسم'} description={chapter.name} />
             <InfoText label={'الوصف'} description={chapter.description} />
             <TabInfo count={lecturesCount} title={'عدد المحاضرات'} i={1} isBold={false} />
-            {hasPermission(chapterPerms(chapter._id, 'update')) && (
+            {/* {hasPermission(chapterPerms(chapter._id, 'update')) && (
                 <SwitchStyled
                     checked={chapter.isMust}
                     onChange={(v) => onSubmit({ isMust: v })} isLoading={updateStatus.isLoading} label={'تفعيل اكمال المحاضرات'} />
-            )}
+            )} */}
             {hasPermission(chapterPerms(chapter._id, 'permissions')) && (
                 <ChapterTeachers chapter={chapter} course={course} />
             )}
@@ -80,9 +80,6 @@ function AdminChapterInfo({ chapter, setChapter, lecturesCount = '', deleteChapt
                         </IconButton>} />
                 )}
             </FlexRow>
-
-            {/* <Button>الصلاحيات</Button>
-            <InfoText label={'المدرس'} description={'teacher'} /> */}
         </FlexRow>
     )
 }

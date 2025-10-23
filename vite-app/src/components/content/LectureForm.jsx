@@ -7,7 +7,7 @@ import Section from "../../style/mui/styled/Section"
 import * as Yup from "yup"
 import { Button } from '@mui/material'
 import MakeSelect from '../../style/mui/styled/MakeSelect'
-import sectionConstants from '../../settings/constants/sectionConstants'
+import sectionConstants, { modifiedSection } from '../../settings/constants/sectionConstants'
 import { FlexColumn } from '../../style/mui/styled/Flexbox'
 import TitleWithDividers from '../ui/TitleWithDividers'
 import { Link } from 'react-router-dom'
@@ -15,6 +15,7 @@ import filePlayers from '../../settings/constants/filePlayers'
 import BtnModal from '../ui/BtnModal'
 import ExamCreatePage from '../../pages/admin/ExamCreatePage'
 import ExamUpdatePage from '../../pages/admin/ExamUpdatePage'
+import dayjs from 'dayjs'
 
 
 const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|embed\/|v\/|shorts\/|.+\?v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})(\?.*)?$/;
@@ -24,10 +25,10 @@ export const durationRegex = /^(?!^\d+$)(?:(?:\d+[hms]))(?:\s+(?:(?:\d+[hms])))*
 const bunnyRegex = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i;
 
 
-function LectureForm({ grade, course, onSubmit, lecture, status, location, chapter, setLectures }) {
+function LectureForm({ grade, course, onSubmit, lecture, status, location, chapter, setLectures, sectionParent }) {
     const [close, setClose] = useState(false) //forExam create
 
-    const [sectionType, setSectionType] = useState(lecture?.sectionType)
+    const [sectionType, setSectionType] = useState(lecture?.sectionType || sectionParent)
     const [videoPlayer, setVideoPlayer] = useState(lecture?.video?.player)
     const [activeFilePlayer, setActiveFilePlayer] = useState(lecture?.file?.player)
 
@@ -246,6 +247,27 @@ function LectureForm({ grade, course, onSubmit, lecture, status, location, chapt
     },
     ]
 
+    //Live
+    const liveInputs = [...lectureInfoInputs, {
+        name: 'url',
+        label: 'الصق url',
+        validation: Yup.string()
+            .url('Invalid URL format')
+            .required(lang.REQUERIED),
+        value: lecture?.link?.url
+    }, {
+        name: 'dateStart',
+        label: 'وقت البدء',
+        type: 'fullDate',
+        value: lecture?.dateStart ? dayjs(lecture?.dateStart) : '',
+    }, {
+        name: 'dateEnd',
+        label: 'وقت النهايه',
+        type: 'fullDate',
+        value: lecture?.dateEnd ? dayjs(lecture?.dateEnd) : '',
+    },
+    ]
+
     // ######################### manage file #########################
     // file url
     const fileInputs = [...lectureInfoInputs,
@@ -323,16 +345,19 @@ function LectureForm({ grade, course, onSubmit, lecture, status, location, chapt
             <TitleWithDividers title={'اختر القسم المناسب'} />
             <FlexColumn gap={'10px'}>
 
-                <MakeSelect disabled={location === 'update' ? true : false} title={'اختر القسم المناسب'} value={sectionType} setValue={setSectionType}
-                    options={[sectionConstants.EXAM, sectionConstants.FILE, sectionConstants.LINK, sectionConstants.VIDEO]}
+                <MakeSelect disabled={location === 'update' ? true : false}
+                    title={'اختر القسم المناسب'}
+                    value={sectionType} setValue={setSectionType}
+                    options={modifiedSection}
+                //[sectionConstants.EXAM, sectionConstants.FILE, sectionConstants.LINK, sectionConstants.VIDEO]
                 />
 
                 {/* Video setup */}
                 {sectionType === sectionConstants.VIDEO && (
                     <MakeSelect disabled={location === 'update' ? true : false}
-                        disableValue={['bunny']}
+                        disableValue={['bunny', 'AWS']}
                         title={'نوع مشغل الفيديو'} value={videoPlayer} setValue={setVideoPlayer}
-                        options={[filePlayers.YOUTUBE, filePlayers.BUNNY]} /> //, filePlayers.BUNNY_UPLOAD, filePlayers.SERVER
+                        options={[filePlayers.YOUTUBE, filePlayers.BUNNY, 'AWS']} /> //, filePlayers.BUNNY_UPLOAD, filePlayers.SERVER
                 )}
 
                 {sectionType === sectionConstants.VIDEO && videoPlayer && (
@@ -349,10 +374,16 @@ function LectureForm({ grade, course, onSubmit, lecture, status, location, chapt
                     </>
                     // End of videos section
                 )}
+                {/* Live Preview */}
+                {sectionType === sectionConstants.LIVE && (
+                    <MakeForm inputs={liveInputs} onSubmit={onSubmit} status={status} />
+                )}
 
                 {/* file Section */}
                 {sectionType === sectionConstants.FILE && (
-                    <MakeSelect disabled={location === 'update' ? true : false} title={'نوع مشغل PDF'} value={activeFilePlayer} setValue={setActiveFilePlayer}
+                    <MakeSelect
+                        disabled={location === 'update' ? true : false}
+                        title={'نوع مشغل PDF'} value={activeFilePlayer} setValue={setActiveFilePlayer}
                         options={[filePlayers.GOOGLE_DRIVE, filePlayers.SERVER]} />
                 )}
 
@@ -366,6 +397,16 @@ function LectureForm({ grade, course, onSubmit, lecture, status, location, chapt
                     </>
                 )}
 
+                {/* EXERCISE */}
+                {sectionType === sectionConstants.EXERCISE && (
+                    <BtnModal
+                        close={close}
+                        fullScreen
+                        btnName={location === 'update' ? "تعديل التدريب" : 'إنشاء تدريب'}>
+                        {location === 'update' ? <ExamUpdatePage lecId={lecture._id} setLectures={setLectures} /> :
+                            <ExamCreatePage sectionName={sectionConstants.EXERCISE} sectionType={sectionConstants.EXERCISE} setClose={setClose} courseId={course} chapter={chapter} setLectures={setLectures} />}
+                    </BtnModal>
+                )}
                 {/* exam and link Sections */}
                 {sectionType === sectionConstants.LINK ?
                     <MakeForm inputs={linkInputs} onSubmit={onSubmit} status={status} />

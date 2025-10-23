@@ -16,7 +16,7 @@ export const lang = {
     EMAIL: 'البريد الالكترونى',
     PHONE: 'رقم الهاتف',
     FAMILY_PHONE: 'هاتف ولى الامر',
-    GRADE: 'السنه الدراسيه',
+    GRADE: 'الماده',
     CODE_optional: 'كود التفعيل (اختيارى)',
     GOVERNMENT: 'المحافظه',
     PASSWORD: 'كلمة السر',
@@ -52,7 +52,7 @@ export const lang = {
     COURSE_DESCRIPTION: 'وصف الكورس',
 
     STATISTICS: 'الإحصائيات',
-    SUBSCRIBERS_NUMS: 'عدد المشتركون',
+    SUBSCRIBERS_NUMS: 'عدد المشتركين',
     PRICE: "السعر الفعلى",
     COURSE_NAME: 'اسم الكورس',
     POUND: "ريالا",

@@ -31,10 +31,10 @@ const coursesPerms = (courseId, key = null, meta = { values: false }) => {
         addSubscriptions: [
             {
                 id: 'courses.addSubscriptions',
-                label: "ايضافه الطلاب الي الكورسات ",
+                label: "إضافة الطلاب الي الكورسات ",
             }, isScoped(courseId) && {
                 id: 'course.addSubscriptions:' + courseId,
-                label: "ايضافه الطلاب الي هذا الكورس ",
+                label: "إضافة الطلاب الي هذا الكورس ",
                 scoped: true
             },
         ].filter(Boolean),
@@ -52,10 +52,10 @@ const coursesPerms = (courseId, key = null, meta = { values: false }) => {
         teachers: [
             {
                 id: coursesConstants.TeachersCourses,
-                label: "ايضافه او حذف مدرس في الكورسات ",
+                label: "إضافة او حذف مدرس في الكورسات ",
             }, isScoped(courseId) && {
                 id: coursesConstants.$CourseTeachers + courseId,
-                label: "ايضافه او حذف مدرس",
+                label: "إضافة او حذف مدرس",
                 scoped: true
             },
         ].filter(Boolean),
@@ -75,10 +75,10 @@ const coursesPerms = (courseId, key = null, meta = { values: false }) => {
         coupons: [
             {
                 id: coursesConstants.CouponsCourses,
-                label: "اداره الكوبونات في الكورسات ",
+                label: "إدارة الكوبونات في الكورسات ",
             }, isScoped(courseId) && {
                 id: coursesConstants.$CourseCoupons + courseId,
-                label: "اداره الكوبونات",
+                label: "إدارة الكوبونات",
                 scoped: true
 
             },
@@ -180,7 +180,7 @@ const chapterPerms = (chapterId, key = null, meta = { courseId: null, values: fa
         ].filter(Boolean),
 
         lecturesCreate: [
-            { id: "chapters_lectures_create", label: "ايضافه المحاضرات  في الكورسات " },
+            { id: "chapters_lectures_create", label: "إضافة المحاضرات  في الكورسات " },
             isScoped(chapterId) && multiply(chapterId, 'chapter_lectures_create:', { isDefault: true, scoped: true }),
         ].flat().filter(Boolean),
 
@@ -215,7 +215,7 @@ const unitsPerms = (no, key = null, meta = { values: false }) => {
 const questionsPerms = (key = null, meta = { values: false }) => {
     const all = {
         manageQuestions: [
-            { id: 'questions.manage', label: 'اداره أسئلة', isDefault: true }
+            { id: 'questions.manage', label: 'إدارة أسئلة', isDefault: true }
         ],
         create: [
             { id: 'questions.create', label: 'إنشاء أسئلة', isValid: false }
@@ -238,7 +238,7 @@ const questionsPerms = (key = null, meta = { values: false }) => {
 const tagsPerms = (key = null, meta = { values: false }) => {
     const all = {
         manageTags: [
-            { id: 'tags.manage', label: 'اداره الروابط', isValid: true, isDefault: true }
+            { id: 'tags.manage', label: 'إدارة المهارات', isValid: true, isDefault: true }
         ],
         create: [
             { id: 'tags.create', label: 'إنشاء رابط أسئلة', isValid: false }

@@ -4,7 +4,7 @@ import usePostData from '../../hooks/usePostData'
 import MeDatagrid from '../../tools/datagrid/MeDatagrid'
 import { getDateWithTime, getFullDate } from '../../settings/constants/dateConstants'
 import { lang } from '../../settings/constants/arlang'
-import { makeArrWithValueAndLabel } from '../../tools/fcs/MakeArray'
+import { handelObjsOfArr, makeArrWithValueAndLabel } from '../../tools/fcs/MakeArray'
 
 import TabInfo from '../ui/TabInfo'
 
@@ -27,6 +27,7 @@ import Users from '../all/Users'
 import { useAddToUserMutation } from '../../toolkit/apis/usersApi'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import useGrades from '../../hooks/useGrades'
+import { useGetChaptersQuery } from '../../toolkit/apis/chaptersApi'
 
 
 const exportObj = (grades) => {
@@ -50,7 +51,7 @@ const exportObj = (grades) => {
     }
 }
 
-function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, disabledActions = {}, disableAllActions, colsIgnored = [], isShowCreate = true, defaultGrade }) {
+function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, disabledActions = {}, disableAllActions, colsIgnored = [], isShowCreate = true, defaultGrade, singleSelection }) {
     const [reset, setReset] = useState(false)
     const { grades } = useGrades()
 
@@ -98,19 +99,22 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
         await addToUser(v)
         setReset(pre => !pre)
     }
+
+    const { isLoading, data } = useGetChaptersQuery()
+
     const statuses = [
-        sendStatus, linkStatus, unLinkStatus, sendAddStatus
+        sendStatus, linkStatus, unLinkStatus, sendAddStatus, isLoading
     ]
 
     const columns = [
         {
             field: "name",
-            headerName: 'اسم الرابط',
+            headerName: 'اسم المهارة',
             width: 200,
             editable: true
         }, {
             field: "description",
-            headerName: 'وصف الرابط',
+            headerName: 'وصف المهارة',
             width: 200,
             editable: true
         }, {
@@ -121,8 +125,23 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
             editable: true,
             valueOptions: makeArrWithValueAndLabel(grades, { value: '_id', label: 'name' }),
         }, {
+            field: "chapters",
+            headerName: 'الفرع',
+            // type: 'singleSelect',
+            width: 200,
+            editable: false,
+            // valueOptions: chapters,
+            // valueGetter: (params) => params?.join(", ") || 'لا يوجد فرع',
+            valueFormatter: (v) => {
+                return v.map(ch => data?.values?.chapters.find(t => t._id === ch).name).join(' - ') || 'لا يوجد فرع'
+            }
+            // valueFormatter: (v) => {
+            //     console.log(v)
+            //     return v.map(chapter => chapter.name).join(' - ') || 'لا يوجد مهاره'
+            // }
+        }, {
             field: "price",
-            headerName: 'سعر الرابط',
+            headerName: 'سعر المهارة',
             type: 'number',
             editable: true,
         }, {
@@ -153,14 +172,12 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
             type: 'actions',
             disableExport: true,
             renderCell: (params) => {
-
                 const unLinkFc = async (questionId = null) => {
-                    console.log(unLinkedQs)
+                    // console.log(unLinkedQs)
                     await unLinkTag({ questions: questionId ? [questionId] : unLinkedQs, _id: params.row._id })
                     setUnLinkedQs([])
                     setReset(!reset)
                 }
-
 
                 const addColumns = {
                     field: 'ulink',
@@ -170,7 +187,7 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
                             <BtnConfirm
                                 key={0}
                                 modalInfo={{
-                                    desc: 'سيتم ازاله هذا السؤال من الرابط'
+                                    desc: 'سيتم ازاله هذا السؤال من المهارة'
                                 }}
                                 btn={<IconButton color='error' onClick={() => unLinkFc(params?.row._id)}>
                                     <FaMinus></FaMinus>
@@ -183,14 +200,14 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
                 return <BtnModal
                     btnName={'عرض الأسئلة'}
                     fullScreen={true}
-                    titleInSection={'أسئلة : ' + params.row.name}
+                    titleInSection={'أسئلة المهاره : ' + params.row.name}
                     component={<FlexColumn>
                         <AdminGetQuestions
                             disableAllActions={true} addColumns={addColumns}
-                            colsIgnored={['tags', 'notTags']}
+                            colsIgnored={['tagsAction', 'notTags']}
                             setSelectedQs={setUnLinkedQs}
-                            filters={{ tags: params.row._id }}
-                            isShowCreate={false}
+                            filters={{ tags: params.row._id }} defaultGrade={params.row.grade}
+                            isShowCreate={true}
                             preReset={[reset]}
                         />
 
@@ -204,7 +221,7 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
             }
         }, {
             field: 'notQuestions',
-            headerName: 'ايضافه أسئلة',
+            headerName: 'إضافة أسئلة',
             width: 150,
             type: 'actions',
             disableExport: true,
@@ -224,7 +241,7 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
                             <BtnConfirm
                                 key={0}
                                 modalInfo={{
-                                    desc: 'سيتم إضافه هذا السؤال الي الرابط'
+                                    desc: 'سيتم إضافه هذا السؤال الي المهارة'
                                 }}
                                 btn={<IconButton color='success' onClick={() => linkFc(params?.row._id)}>
                                     <FaPlus></FaPlus>
@@ -238,11 +255,11 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
                     btnName={'الغير مضافه'}
                     color={'error'}
                     fullScreen={true}
-                    titleInSection={'ايضافه الي : ' + params.row.name}
+                    titleInSection={'اضافه اسئله الي المهاره: ' + params.row.name}
                     component={<FlexColumn>
                         <AdminGetQuestions
                             addColumns={addColumns} disableAllActions={true}
-                            colsIgnored={['tags', 'notTags']}
+                            colsIgnored={['tagsAction', 'notTags']}
                             setSelectedQs={setChosenQs}
                             filters={{ tags: '!=_split_' + params.row._id, grade: params.row.grade }}
                             isShowCreate={false}
@@ -251,7 +268,7 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
 
                         {chosenQs.length > 0 && (
                             <FilledHoverBtn onClick={() => linkFc()}>
-                                ربط الرابط ب {chosenQs.length} أسئلة
+                                ربط المهاره ب {chosenQs.length} أسئلة
                             </FilledHoverBtn>
                         )}
                     </FlexColumn>}
@@ -264,101 +281,6 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
             valueGetter: value => new Date(value),
             renderCell: (params) => {
                 return <TabInfo count={getFullDate(params.row.updatedAt)} i={2} />
-            }
-        }, {
-            field: 'coupons',
-            headerName: 'coupons',
-            type: 'actions',
-            width: 200,
-            renderCell: (params) => {
-                return <BtnModal
-                    titleInSection={"كوبونات الرابط" + ' ' + params.row.name}
-                    component={<GetCoupons tag={params.row._id}
-                        createBtnName={'إنشاء كوبون للرابط ' + params.row.name}
-                    />}
-                    fullScreen={true}
-                    btnName={'كوبونات الرابط'}
-                />
-            }
-        }, {
-            field: 'users',
-            headerName: 'المشتركون',
-            type: 'actions',
-            width: 200,
-            renderCell: (params) => {
-                const tag = params.row
-                return <BtnModal
-                    btnName={'الطلاب المشتركون'}
-                    titleInSection={"الطلاب المشتركون فى الرابط " + ' ' + params.row.name}
-                    component={<Users
-                        reset={reset}
-                        allStatuses={statuses}
-                        deleteFc={(userId) => {
-                            manageUser({
-                                id: userId, field: 'tags', value: tag._id, action: 'pull'
-                            })
-                        }}
-                        massActions={
-                            [
-                                {
-                                    label: 'ازاله الطلاب',
-                                    onClick: (users) => manageUser({
-                                        field: 'tags', value: tag._id, ids: users, action: 'pull'
-                                    })
-                                }
-                            ]}
-
-                        filters={{
-                            tags: tag._id
-                        }}
-                    />}
-                />
-            }
-        }, {
-            field: 'notUsers',
-            headerName: 'الغير مشتركون',
-            type: 'actions',
-            width: 200,
-            renderCell: (params) => {
-                const tag = params.row
-                return <BtnModal
-                    btnName={'الغير مشتركون'}
-                    color={'error'}
-                    titleInSection={"الطلاب الغير مشتركون فى الرابط " + ' ' + tag.name}
-                    component={<Users
-                        allStatuses={statuses}
-                        reset={reset}
-                        massActions={[{
-                            label: 'ايضافه المستخدمين الي الرابط ' + tag.name,
-                            onClick: (chosenUsers) => manageUser({
-                                field: 'tags', ids: chosenUsers, value: tag._id
-                            })
-                        }]}
-                        addColumns={[{
-                            field: 'add',
-                            headerName: 'ازاله الطالب',
-                            type: 'actions',
-                            getActions: (userParams) => {
-                                return [
-                                    <BtnConfirm
-                                        modalInfo={{
-                                            desc: 'سيتم إضافه هذا الطالب الي الرابط'
-                                        }}
-                                        btn={<IconButton color='success'
-                                            onClick={() => manageUser({
-                                                field: 'tags', value: tag._id, id: userParams.row._id
-                                            })}>
-                                            <IoIosAddCircleOutline></IoIosAddCircleOutline>
-                                        </IconButton>} key={0} />
-                                ]
-                            }
-                        }]}
-
-                        filters={{
-                            tags: '!=_split_' + tag._id, grade: tag.grade
-                        }}
-                    />}
-                />
             }
         }, {
             field: 'createdAt',
@@ -383,20 +305,27 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
     return (
         <Section>
             {isShowCreate && (
-                <BtnModal fullWidth={true} btnName={'إنشاء رابط'} component={<CreateTag setReset={setReset} defaultGrade={defaultGrade} />} size='medium' isFilledHover={true} />
+                <BtnModal
+                    fullWidth={true}
+                    btnName={'إنشاء مهاره'}
+                    component={<CreateTag
+                        setReset={setReset}
+                        defaultGrade={defaultGrade}
+                        defaultChapter={filters.chapters}
+                    />} size='medium' isFilledHover={true} />
             )}
 
             <MeDatagrid
                 type={'crud'}
                 reset={[reset, ...preReset]}
-                exportObj={exportObj(grades)} exportTitle={'الروابط'}
+                exportObj={exportObj(grades)} exportTitle={'المهارات'}
                 columns={modifiedCols} addColumns={addColumns}
                 // loading={status.isLoading || updateStatus.isLoading || isLoading}
                 allStatuses={statuses}
                 fetchFc={fetchFc}
                 updateFc={updateFc} deleteFc={removeFc}
                 disableAllActions={disableAllActions} disabledActions={disabledActions}
-                setSelection={setSelectedTags}
+                setSelection={setSelectedTags} singleSelection={singleSelection}
                 editing={
                     {
                         bgcolor: 'background.alt',
@@ -410,3 +339,100 @@ function GetTags({ filters = {}, setSelectedTags, preReset = [], addColumns, dis
 }
 
 export default GetTags
+// {
+//     field: 'coupons',
+//     headerName: 'coupons',
+//     type: 'actions',
+//     width: 200,
+//     renderCell: (params) => {
+//         return <BtnModal
+//             titleInSection={"كوبونات المهارة" + ' ' + params.row.name}
+//             component={<GetCoupons tag={params.row._id}
+//                 createBtnName={'إنشاء كوبون للرابط ' + params.row.name}
+//             />}
+//             fullScreen={true}
+//             btnName={'كوبونات المهارة'}
+//         />
+//     }
+// },
+// {
+//     field: 'users',
+//     headerName: 'المشتركون',
+//     type: 'actions',
+//     width: 200,
+//     renderCell: (params) => {
+//         const tag = params.row
+//         return <BtnModal
+//             btnName={'الطلاب المشتركون'}
+//             titleInSection={"الطلاب المشتركون فى المهارة " + ' ' + params.row.name}
+//             component={<Users
+//                 reset={reset}
+//                 allStatuses={statuses}
+//                 deleteFc={(userId) => {
+//                     manageUser({
+//                         id: userId, field: 'tags', value: tag._id, action: 'pull'
+//                     })
+//                 }}
+//                 massActions={
+//                     [
+//                         {
+//                             label: 'ازاله الطلاب',
+//                             onClick: (users) => manageUser({
+//                                 field: 'tags', value: tag._id, ids: users, action: 'pull'
+//                             })
+//                         }
+//                     ]}
+
+//                 filters={{
+//                     tags: tag._id
+//                 }}
+//             />}
+//         />
+//     }
+// }, {
+//     field: 'notUsers',
+//     headerName: 'الغير مشتركون',
+//     type: 'actions',
+//     width: 200,
+//     renderCell: (params) => {
+//         const tag = params.row
+//         return <BtnModal
+//             btnName={'الغير مشتركون'}
+//             color={'error'}
+//             titleInSection={"الطلاب الغير مشتركون فى المهارة " + ' ' + tag.name}
+//             component={<Users
+//                 allStatuses={statuses}
+//                 reset={reset}
+//                 massActions={[{
+//                     label: 'إضافة المستخدمين الي المهارة ' + tag.name,
+//                     onClick: (chosenUsers) => manageUser({
+//                         field: 'tags', ids: chosenUsers, value: tag._id
+//                     })
+//                 }]}
+//                 addColumns={[{
+//                     field: 'add',
+//                     headerName: 'ازاله الطالب',
+//                     type: 'actions',
+//                     getActions: (userParams) => {
+//                         return [
+//                             <BtnConfirm
+//                                 modalInfo={{
+//                                     desc: 'سيتم إضافه هذا الطالب الي المهارة'
+//                                 }}
+//                                 btn={<IconButton color='success'
+//                                     onClick={() => manageUser({
+//                                         field: 'tags', value: tag._id, id: userParams.row._id
+//                                     })}>
+//                                     <IoIosAddCircleOutline></IoIosAddCircleOutline>
+//                                 </IconButton>} key={0} />
+//                         ]
+//                     }
+//                 }]}
+
+//                 filters={{
+//                     tags: '!=_split_' + tag._id, grade: tag.grade
+//                 }}
+//             />}
+//         />
+//     }
+// },

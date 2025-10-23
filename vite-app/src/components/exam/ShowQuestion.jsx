@@ -9,6 +9,11 @@ import Loader from '../../style/mui/loaders/Loader'
 import { FlexColumn } from '../../style/mui/styled/Flexbox'
 import { useState } from 'react'
 import ModalStyled from '../../style/mui/styled/ModalStyled'
+import BtnModal from '../ui/BtnModal'
+import InfoText from '../ui/InfoText'
+
+const abcd = ["أ", "ب", "ج", "د", "ه", "و", "ي"]
+
 
 function ShowQuestion({ question, index, setQuestions, method, editUser, activeAttemptId, setActiveAttemptId, examId, tokenTime, course }) {
 
@@ -55,15 +60,21 @@ function ShowQuestion({ question, index, setQuestions, method, editUser, activeA
                     </Box>
 
                     {question.image?.url && (
-                        <Image img={question.image?.url} sx={{ maxWidth: '350px', m: 'auto', my: '16px' }} />
+                        <BtnModal fullWidth btn={<Image img={question.image?.url} sx={{ maxWidth: '350px', m: 'auto', my: '16px' }} />}>
+                            <Image img={question.image?.url} sx={{ maxWidth: '350px', m: 'auto', my: '16px' }} />
+                        </BtnModal>
+                        // <Image img={question.image?.url} sx={{ maxWidth: '350px', m: 'auto', my: '16px' }} />
                     )}
 
                     <Typography color="text.secondary">
                         درجه السؤال: {question.points} نقاط
                     </Typography>
-                    <Typography variant="h5" component="div" my={'12px'} >
-                        السؤال :  <span dangerouslySetInnerHTML={{ __html: question.title }} />
-                    </Typography>
+                    {question.tags?.length ? <InfoText sx={{ opacity: '.7' }} label={'المهارات'} description={question.tags.map(t => t.name).join(' - ')} /> : ''}
+                    {question.title && (
+                        <Typography variant="h5" component="div" my={'12px'} >
+                            السؤال :  <span dangerouslySetInnerHTML={{ __html: question.title }} />
+                        </Typography>
+                    )}
 
                     {question.hints && (
                         <Typography sx={{ mb: 1.5 }} color="text.secondary">
@@ -101,7 +112,7 @@ function ShowQuestion({ question, index, setQuestions, method, editUser, activeA
                                             <Button disabled={status.isLoading} onClick={() => {
                                                 handleChange(option.id)
                                             }} sx={{ color: 'inherit', textTransform: 'none' }}>
-                                                {i + 1} -
+                                                {abcd[i]} -
                                                 <FormControlLabel value={option.id} control={<Radio sx={{ mx: '6px', textTransform: 'default' }} />} label={option.title} />
                                             </Button>
                                         </Grid>

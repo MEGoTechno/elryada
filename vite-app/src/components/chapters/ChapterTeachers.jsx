@@ -21,7 +21,7 @@ function ChapterTeachers({ chapter, course }) {
 
     const tabs = [
         {
-            label: 'ايضافه مدرس', component: <Users
+            label: 'إضافة مدرس', component: <Users
                 filters={{
                     chapters: '!=' + chapter._id, courses: course,
                     role: [user_roles.TEACHER, user_roles.SUBADMIN], _id: '!=' + user._id
@@ -29,7 +29,7 @@ function ChapterTeachers({ chapter, course }) {
                 allStatuses={[status]} reset={reset}
                 addColumns={[{
                     field: 'addTeachers',
-                    headerName: 'ايضافه المدرس',
+                    headerName: 'إضافة المدرس',
                     type: 'actions',
                     renderCell: (params) => {
                         const teacher = params.row
@@ -58,7 +58,7 @@ function ChapterTeachers({ chapter, course }) {
     ]
 
     return (
-        <BtnModal btnName={'اداره المعلمين'} color={'warning'} titleInSection={'معلمين الفصل: ' + chapter.name}>
+        <BtnModal btnName={'إدارة المعلمين'} color={'warning'} titleInSection={'معلمين الفصل: ' + chapter.name}>
             <TabsAutoStyled originalTabs={tabs} />
         </BtnModal>
     )

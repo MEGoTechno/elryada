@@ -310,7 +310,7 @@ const applySubscription = async (invoice, user, meta = {}) => {
             }
         )
 
-        response.message = 'تم ايضافه الرابط بنجاح'
+        response.message = 'تم إضافة المهارة بنجاح'
         responseValues = { tag: invoice.tag }
         // handle tag
     } else if (invoice.lecture) {
@@ -322,7 +322,7 @@ const applySubscription = async (invoice, user, meta = {}) => {
             }
         )
 
-        response.message = 'تم ايضافه المحاضره للطالب بنجاح'
+        response.message = 'تم إضافة المحاضره للطالب بنجاح'
         responseValues = { lecture: { ...invoice.lecture, isPaid: true } }
     } else if (invoice.wallet) {
         user.wallet = user.wallet + invoice.price
@@ -374,7 +374,7 @@ const revokeSubscription = async (invoice, user) => {
             }
         );
 
-        response.message = 'تم إزالة الرابط بنجاح';
+        response.message = 'تم إزالة المهارة بنجاح';
     } else if (invoice.lecture) {
         // handle lecture cancellation here
         await UserModel.updateOne(

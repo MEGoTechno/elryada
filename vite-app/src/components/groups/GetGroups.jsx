@@ -191,7 +191,7 @@ function GetGroups({ reset, setReset }) {
                             reset={reset}
                             allStatuses={allStatuses}
                             massActions={[{
-                                label: 'ايضافه المستخدمين الي جروب ' + params.row?.name,
+                                label: 'إضافة المستخدمين الي جروب ' + params.row?.name,
                                 onClick: (chosenUsers) => addManyUsers(chosenUsers, group._id)
                             }]}
                             deleteFc={addUser}
@@ -237,12 +237,12 @@ function GetGroups({ reset, setReset }) {
                     component={<Lectures
                         reset={reset}
                         massActions={[{
-                            label: 'ايضافه المحاضرات الي ' + group?.name,
+                            label: 'إضافة المحاضرات الي ' + group?.name,
                             onClick: (ids) => addManyLectures(ids, group._id)
                         }]}
                         addColumns={[{
                             field: 'add',
-                            headerName: 'ايضافه',
+                            headerName: 'إضافة',
                             type: 'actions',
                             getActions: (params) => {
                                 return [

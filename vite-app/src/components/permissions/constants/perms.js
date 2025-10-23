@@ -26,8 +26,8 @@ export const chapterPerms = (chapterId, key = null, meta = { courseId: null, val
             { id: "chapters_lectures_read", label: "عرض محاضرات المدرس" },
         ],
         lecturesCreate: [
-            { id: "chapters_lectures_create", label: "ايضافه المحاضرات  في الكورسات " },
-            { id: `chapter_lectures_create:${chapterId}`, label: "ايضافه محاضرات", scoped: true },
+            { id: "chapters_lectures_create", label: "إضافة المحاضرات  في الكورسات " },
+            { id: `chapter_lectures_create:${chapterId}`, label: "إضافة محاضرات", scoped: true },
         ],
         lecturesStatistics: [
             { id: "chapters_lectures_statistics", label: "امكانيه عرض الاحصائيات لكل المحاضرات" },
@@ -74,7 +74,7 @@ export const usersPerms = (none, key = null) => {
 export const questionsPerms = (key = null, meta = { values: false }) => {
     const all = {
         manageQuestions: [
-            { id: 'questions.manage', label: 'اداره أسئلة' }
+            { id: 'questions.manage', label: 'إدارة أسئلة' }
         ],
         create: [
             { id: 'questions.create', label: 'إنشاء أسئلة', isValid: false }
@@ -97,7 +97,7 @@ export const questionsPerms = (key = null, meta = { values: false }) => {
 export const tagsPerms = (key = null, meta = { values: false }) => {
     const all = {
         manageTags: [
-            { id: 'tags.manage', label: 'اداره الروابط', isValid: true }
+            { id: 'tags.manage', label: 'إدارة المهارات', isValid: true }
         ],
         create: [
             { id: 'tags.create', label: 'إنشاء رابط أسئلة', isValid: false }

@@ -57,7 +57,7 @@ function GradesManage() {
 
     return (
         <Section>
-            <TitleWithDividers title={'اداره المواد الاساسيه'} />
+            <TitleWithDividers title={'إدارة المواد الاساسيه'} />
             <BtnModal btnName={'إنشاء ماده جديده'}>
                 <CreateGrade setReset={setReset} />
             </BtnModal>

@@ -7,7 +7,7 @@ import { IconButton, Typography, useTheme } from '@mui/material';
 import { FlexColumn } from './Flexbox';
 import { useState } from 'react';
 
-export default function AccordionStyled({ title, desc, children, bgcolor = 'background.default', expanded = false, setExpanded, titleSx = {}, beforeTitle }) {
+export default function AccordionStyled({ title, desc, sx = {}, children, bgcolor = 'background.default', expanded = false, setExpanded, titleSx = {}, beforeTitle }) {
     const theme = useTheme()
     const [open, setOpen] = useState(expanded)
 
@@ -17,7 +17,6 @@ export default function AccordionStyled({ title, desc, children, bgcolor = 'back
         }
         setOpen(!open)
     }
-
 
     return (
         <Accordion
@@ -32,7 +31,7 @@ export default function AccordionStyled({ title, desc, children, bgcolor = 'back
                 borderRadius: '16px',
                 '&::before': {
                     display: 'none'
-                },
+                }, ...sx
             }}>
             <AccordionSummary
                 expandIcon={

@@ -11,7 +11,7 @@ function ManagePrivacyPage() {
 
     return (
         <Section>
-            <TitleWithDividers title={'اداره سياسات المنصه'} />
+            <TitleWithDividers title={'إدارة سياسات المنصه'} />
             <CreatePrivacy setReset={setReset} />
             <Separator />
             <GetPrivacies reset={reset} setReset={setReset} />

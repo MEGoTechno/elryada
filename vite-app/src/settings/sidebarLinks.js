@@ -123,19 +123,22 @@ export const sidebarLinks = [
     //     allowedTo: [user_roles.STUDENT, user_roles.ONLINE],
     //     // element: <UnitsPage /> Down
     // },
-     {
-        name: "بنك الأسئلة", icon: <CiBank size="22px" />, to: "/questions_bank",
-        allowedTo: [user_roles.STUDENT, user_roles.ONLINE], isDisabled: false,
-        element: <QuestionsBankPage />
-    }, {
+    //  {
+    //     name: "بنك الأسئلة", icon: <CiBank size="22px" />, to: "/questions_bank",
+    //     allowedTo: [user_roles.STUDENT, user_roles.ONLINE], isDisabled: false,
+    //     element: <QuestionsBankPage />
+    // }, 
+    {
         name: "إجاباتك", icon: <MdQuestionAnswer size="22px" />, to: "/answers",
         allowedTo: [user_roles.STUDENT, user_roles.ONLINE], isDisabled: false,
         element: <GetUserAnswers />
-    }, {
-        name: "مجتمع الطلاب", icon: <TbWorldQuestion size="22px" />,
-        to: "/community5050", allowedTo: [user_roles.STUDENT, user_roles.ONLINE], isDisabled: true, info: { title: 'قريبا', i: 2 },
-    }, {
-        name: "اداره الحساب", allowedTo: [user_roles.STUDENT, user_roles.ONLINE]
+    },
+    //  {
+    //     name: "مجتمع الطلاب", icon: <TbWorldQuestion size="22px" />,
+    //     to: "/community5050", allowedTo: [user_roles.STUDENT, user_roles.ONLINE], isDisabled: true, info: { title: 'قريبا', i: 2 },
+    // }, 
+    {
+        name: "إدارة الحساب", allowedTo: [user_roles.STUDENT, user_roles.ONLINE]
     }, {
         name: "حسابى", icon: <SignupIcon size="22px" />, to: "/user/profile",
         allowedTo: [user_roles.STUDENT, user_roles.ONLINE], anyUser: true, //sidebar => user, routes => all
@@ -150,7 +153,7 @@ export const sidebarLinks = [
         to: "/management/sessions", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
         permissions: [''], element: <GetSessionsPage />, id: 'p_sessions'
     }, {
-        name: "اداره الصلاحيات", icon: <GrInsecure size="22px" />, to: "/management/users/permissions", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
+        name: "إدارة الصلاحيات", icon: <GrInsecure size="22px" />, to: "/management/users/permissions", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],
         element: <PermissionsPage />, id: 'p_permissions'
     }, {
         name: "عرض المدرسين", icon: <GiTeacher size="22px" />, to: "/management/users/teachers", allowedTo: [user_roles.ADMIN, user_roles.SUBADMIN, user_roles.TEACHER],

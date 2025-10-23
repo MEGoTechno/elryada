@@ -58,7 +58,7 @@ export default function CreateFormik({ inputs, onSubmit, status, btnWidth, enabl
                         <Form style={{ display: 'flex', alignItems: 'center', flexDirection: formDirection }}>
                             {/*  onChange={() => props.validateForm()} */}
 
-                            <DynamicFormGrid inputs={inputs} props={props} />
+                            <DynamicFormGrid inputs={inputs} />
 
                             {!isAllDisabled && (
                                 <FilledHoverBtn

@@ -10,12 +10,14 @@ import TitleWithDividers from '../ui/TitleWithDividers'
 import InfoText from '../ui/InfoText'
 import YoutubePlyr from '../content/YoutubePlyr'
 
+const abcd = ["أ", "ب", "ج", "د", "ه", "و", "ي"]
+
 function AnsweredQuestion({ currentQuestion, index, setQuestion }) {
 
     const isRightQuestion = (currentQuestion.chosenOptionId === currentQuestion.rtOptionId)
     const isNotAnswered = currentQuestion.chosenOptionId === 'Not answered' || !currentQuestion.chosenOptionId
     const ifInAnswerState = currentQuestion.answer?._id && true
-
+    
     return (
         <CardContent>
             <Box>
@@ -26,7 +28,9 @@ function AnsweredQuestion({ currentQuestion, index, setQuestion }) {
                 </Box>
 
                 {currentQuestion.image?.url && (
-                    <Image img={currentQuestion.image?.url} sx={{ maxWidth: '350px', m: 'auto', my: '16px' }} />
+                    <BtnModal fullWidth btn={<Image img={currentQuestion.image?.url} sx={{ maxWidth: '350px', m: 'auto', my: '16px' }} />}>
+                        <Image img={currentQuestion.image?.url} sx={{ maxWidth: '350px', m: 'auto', my: '16px' }} />
+                    </BtnModal>
                 )}
                 <AnswerHighlight setQuestion={setQuestion} question={currentQuestion} />
                 <TabInfo
@@ -66,7 +70,7 @@ function AnsweredQuestion({ currentQuestion, index, setQuestion }) {
 
                                 return (
                                     <Grid key={i} item xs={12}>
-                                        {i + 1} -
+                                        {abcd[i]} -
                                         <FormControlLabel
                                             sx={{ pointerEvents: 'none' }}
                                             value={option.id}
@@ -96,7 +100,7 @@ function AnsweredQuestion({ currentQuestion, index, setQuestion }) {
                 <Alert severity='success' variant='outlined' sx={{ my: '16px', width: 'fit-content' }}><InfoText sx={{ flexDirection: 'column', alignItems: 'flex-start' }} label={'التوضيح'} description={currentQuestion.clarifyText} /></Alert>
             )}
             {(ifInAnswerState && currentQuestion.clarifyUrl) && (
-                <BtnModal variant='outlined' parenetSx={{alignItems: 'flex-start'}} btnName={'عرض فيديو التوضيح'} component={<Section>
+                <BtnModal variant='outlined' parenetSx={{ alignItems: 'flex-start' }} btnName={'عرض فيديو التوضيح'} component={<Section>
                     <TitleWithDividers title={'فيديو التوضيح'} />
                     <YoutubePlyr url={currentQuestion.clarifyUrl} />
                 </Section>} />

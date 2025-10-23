@@ -6,60 +6,35 @@ import { lang } from '../../settings/constants/arlang'
 import dayjs from 'dayjs'
 import LinkToQuestion from './LinkToQuestion'
 import { memo } from 'react'
-import examMethods, { getExamMethod } from '../../settings/constants/examMethods'
+import examMethods, { examMethodsConstants } from '../../settings/constants/examMethods'
 import { isDevelop } from '../../tools/isDevelop'
 import { durationRegex } from '../content/LectureForm'
+import MakeInput from '../../tools/makeform/MakeInput'
+import { useField } from 'formik'
+import useQuestionsSchema from '../questions/useQuestionsSchema'
 
 // const durationRegex = /^(?:(?:\d+)\s*[hms]?)(?:\s+(?:(?:\d+)\s*[hms]))*$/;
+const TimeInput = ({ value, input }) => {
+    const [{ value: isTime }] = useField('isTime')
 
-function ExamForm({ lecture, status, onSubmit }) {
+    return <>
+        {isTime && (
+            <MakeInput input={{ ...input, value: value }} />
+        )}
+    </>
 
-    const questionSchema = {
-        title: "",
-        hints: "",
-        image: "",
-        rtOptionId: "",
-        points: 1,
-        grade: lecture.grade,
-        isShuffle: true,
-        clarifyText: '',
-        clarifyUrl: '',
-        options: [
-            {
-                id: uuidv4(),
-                title: "",
-                image: ""
-            }, {
-                id: uuidv4(),
-                title: "",
-                image: ""
+}
 
-            }, {
-                id: uuidv4(),
-                title: "",
-                image: ""
+function ExamForm({ lecture, status, onSubmit, sectionName = 'الاختبار', sectionType = sectionConstants.EXAM }) {
 
-            }, {
-                id: uuidv4(),
-                title: "",
-                image: ""
-            }
-        ]
-    }
-
-    const optionSchema = [
-        {
-            id: uuidv4(),
-            title: ""
-        }
-    ]
+    const test = useQuestionsSchema({ grade: lecture.grade, questions: lecture?.exam?.questions ?? [] })
 
     //lecture info
     const lectureInfoInputs = [
         {
             name: 'sectionType',
             label: 'section',
-            value: sectionConstants.EXAM,
+            value: sectionType,
             hidden: false,
             disabled: true,
             validation: Yup.string()
@@ -107,9 +82,9 @@ function ExamForm({ lecture, status, onSubmit }) {
             row: 5,
         }, {
             name: 'method',
-            label: 'اختر نوع الاختبار',
+            label: 'اختر طريقه التصحيح',
             type: 'select',
-            value: lecture?.exam?.method ?? getExamMethod({ isDefault: true, key: 'value' }),
+            value: lecture?.exam?.method ?? (sectionType === sectionConstants.EXAM ? examMethodsConstants.EXAM : examMethodsConstants.QUESTION), //? getExamMethod({ isDefault: true, key: 'value' })
             options: examMethods,
             column: 1,
             row: 3,
@@ -118,21 +93,21 @@ function ExamForm({ lecture, status, onSubmit }) {
         },
         {
             name: "isTime",
-            label: "هل تريد تفعيل التوقيت فى الاختبار",
+            label: "هل تريد تفعيل التوقيت فى " + sectionName,
             type: 'switch',
-            value: lecture?.exam?.isTime ?? true,
+            value: lecture?.exam?.isTime ?? sectionType === sectionConstants.EXAM,
             column: 1,
             row: 3,
         }, {
             name: "dateStart",
-            label: "تاريخ تفعيل الاختبار",
+            label: "تاريخ تفعيل " + sectionName,
             type: 'fullDate',
             value: lecture?.dateStart ? dayjs(lecture.dateStart) : null,
             column: 3,
             row: 1,
         }, {
             name: "dateEnd",
-            label: "تاريخ الغاء الاختبار",
+            label: "تاريخ الغاء " + sectionName,
             type: 'fullDate',
             value: lecture?.dateEnd ? dayjs(lecture.dateEnd) : null,
             column: 3,
@@ -178,15 +153,25 @@ function ExamForm({ lecture, status, onSubmit }) {
             value: lecture?.exam?.isShowAnswers ?? true,
             column: 3,
             row: 3,
-        }, {
-            name: "time",
-            label: "الوقت",
+        },
+        //  {
+        //     name: "time",
+        //     label: "الوقت",
+        //     value: lecture?.exam?.time ?? '15m',
+        //     validation: Yup.string()
+        //         .matches(durationRegex, 'ارقام فقط, غير مسموح بوجود مساحات, h,m,s فقط')
+        //         .required(lang.REQUERIED),
+        //     column: 1,
+        //     row: 4
+        // },
+        {
+            name: 'time',
+            label: 'الوقت',
             value: lecture?.exam?.time ?? '15m',
+            column: 1, row: 4,
+            component: TimeInput,
             validation: Yup.string()
                 .matches(durationRegex, 'ارقام فقط, غير مسموح بوجود مساحات, h,m,s فقط')
-                .required(lang.REQUERIED),
-            column: 1,
-            row: 4
         }, {
             name: 'price',
             label: 'السعر',
@@ -206,129 +191,9 @@ function ExamForm({ lecture, status, onSubmit }) {
     ]
 
     //exam info => in update nested
-    const inputs = [...lectureInfoInputs, {
-        name: "questions",
-        label: "الأسئلة ==>",
-        value: lecture?.exam?.questions ?? [],
-        schema: questionSchema, //
-        addLabel: "إضافه سؤال", // add schema for reply this field in main values
-        removeLabel: "ازاله السؤال", //
-        type: "chunk", //
-        array: [ //inputs control to values of schema
-            {
-                name: "title",
-                label: "العنوان",
-                rows: 3,
-                type: "editor"
-
-            }, {
-                name: "hints",
-                label: "ملحوظه",
-            }, {
-                name: "image",
-                label: "إضافه صوره",
-                type: "file",
-                disabled: false
-            }, {
-                name: "points",
-                label: "عدد النقاط",
-                type: "number",
-            }, {
-                type: 'header',
-                title: 'الإختيارات'
-            }, {
-                name: "isShuffle",
-                label: "هل تريد جعل الإختيارات عشوائيه؟",
-                type: 'switch',
-            }, {
-                name: "rtOptionId",
-                label: "الإجابه الصحيحه",
-                disabled: true,
-                hidden: true
-            }, {
-                name: "options",
-                type: "array",
-                value: [],
-                schema: optionSchema,
-                array: [
-                    {
-                        name: "id",
-                        label: "...",
-                        disabled: true,
-                        hidden: true,
-                    }, {
-                        name: "title",
-                        label: "الإجابه",
-                        choose: "rtOptionId",
-                        from: 'id',
-                        rows: 3
-
-                    }
-                ]
-            },
-            {
-                name: "clarifyText",
-                label: "ايضافه توضيح لايجابه (يظهر عن عرض الحل)",
-                rows: 4,
-                variant: 'filled'
-            }, {
-                name: "clarifyUrl",
-                label: "ايضافه لينك فيديو (يظهر عن عرض الحل)",
-                type: "url",
-                player: "youtube"
-            },
-        ], validation:
-            Yup.array()
-                .of(
-                    Yup.object().shape({
-                        title: Yup.string()
-                            .nullable()
-                            .when('image', {
-                                is: (image) => !image || (!image.url && !image.name),
-                                then: (schema) => schema.required('العنوان مطلوب'),
-                                otherwise: (schema) => schema.notRequired(),
-                            }),
-                        rtOptionId: Yup.string().required('اختر الإجابه الصحيحه'),
-                        image: Yup.mixed()
-                            .test({
-                                message: 'Please provide a supported image typed(jpg or png)',
-                                test: (file, context) => {
-                                    if (file && !file.url) {
-                                        if (file?.url) {
-                                            file.type = file.resource_type + "/" + file.format
-                                        }
-                                        const isValid = ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'].includes(file?.type);
-                                        if (!isValid) context?.createError();
-                                        return isValid;
-                                    } else {
-                                        return true
-                                    }
-                                }
-                            })
-                            .test({
-                                message: `يجب ان يكون حجم الملف اقل من ${Number(import.meta.env.VITE_MAX_IMAGE_SIZE_ADMIN) || 15} MB `,
-                                test: (file) => {
-                                    if (file && file.size) {
-                                        const isValid = file?.size <= (import.meta.env.VITE_MAX_IMAGE_SIZE_ADMIN || 15) * 1024 * 1024; // 15MB
-                                        return isValid;
-                                    } else {
-                                        return true
-                                    }
-                                }
-                            }),
-                        options: Yup.array().of(
-                            Yup.object().shape({
-                                title: Yup.string().required(lang.REQUERIED),
-                            })
-                        )
-                    })
-                )
-                .required('يجب ان يكون هناك أسئلة') // these constraints are shown if and only if inner constraints are satisfied
-                .min(isDevelop ? 1 : 5, '5 على الاقل')
-        ,
-    }
+    const inputs = [...lectureInfoInputs, ...test
     ]
-
+   
     return (
         <MakeForm inputs={inputs} onSubmit={onSubmit} status={status} enableReinitialize={false} />
     )

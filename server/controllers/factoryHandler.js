@@ -437,7 +437,7 @@ exports.useCode = async (code = null, user) => {
                     if (user.role === user_roles.INREVIEW) {
                         user.role = user_roles.ONLINE
                     }
-                    message = 'تم ايضافه محاضراتك بنجاح, يمكنك الوصول اليها من الصفحه الرئيسيه'
+                    message = 'تم إضافة محاضراتك بنجاح, يمكنك الوصول اليها من الصفحه الرئيسيه'
                     break;
                 default: // activate
                     user.role = user_roles.ONLINE

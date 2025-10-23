@@ -68,3 +68,21 @@ overView
 ## Latest courses
     limit 10, isModernSort
     add coursesPage and show Courses
+
+
+## copy paste formik
+
+    -edit course PreDiscount => create, update
+    -Exam Form => TimeInput, LinkToQuestions
+
+## to fix
+
+    type of tags in question => questionSchema || in adminGetQUestions
+    + tag or tags, i need to find not tags in question by chapters
+
+    user side progress
+    analytical tools
+    optimize code
+
+    when delete packge delete inner
+    dynamic form grid in exam form adn question

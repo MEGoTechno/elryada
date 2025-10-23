@@ -43,7 +43,7 @@ function PaymentsPage() {
             <Invoices />
             <PaymentMethods
                 title={'شحن محفظه !'}
-                subTitle={'سيتم ايضافه مبلغ ' + price + ' الي محفظتك'}
+                subTitle={'سيتم إضافة مبلغ ' + price + ' الي محفظتك'}
                 open={open} setOpen={setOpen}
                 invoiceNameId={'wallet'}
                 wallet={price} price={price}

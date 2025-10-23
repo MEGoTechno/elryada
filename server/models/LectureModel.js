@@ -7,7 +7,6 @@ const LinkModel = require("./LinkModel")
 const FileModel = require("./FileModel")
 const GroupModel = require("./GroupModel")
 
-
 const lectureSchema = new mongoose.Schema({
     grade: { type: mongoose.Schema.Types.ObjectId, ref: 'grade', required: true },
     course: { type: mongoose.Schema.Types.ObjectId, ref: CourseModel, required: true },
@@ -27,7 +26,7 @@ const lectureSchema = new mongoose.Schema({
     price: Number,
 
     index: { type: Number, required: true },
-    sectionType: { type: String, required: true, enum: [sectionConstants.VIDEO, sectionConstants.EXAM, sectionConstants.LINK, sectionConstants.FILE] },
+    sectionType: { type: String, required: true, enum: Object.values(sectionConstants) },//[sectionConstants.VIDEO, sectionConstants.EXAM, sectionConstants.LINK, sectionConstants.FILE]
     video: {
         type: mongoose.Schema.Types.ObjectId, ref: VideoModel
     },
@@ -47,9 +46,14 @@ const lectureSchema = new mongoose.Schema({
 function autoPopulateExam(next) {
     this.populate({
         path: 'exam',
-        populate: {
-            path: 'questions', // inside exam, populate questions too
-        }
+        populate: [
+            {
+                path: 'questions',
+                populate: {
+                    path: 'tags',
+                },
+            },
+        ],
     });
     next();
 }

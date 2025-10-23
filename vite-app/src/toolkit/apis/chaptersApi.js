@@ -70,6 +70,7 @@ const chaptersApi = apiSlice.injectEndpoints({
 
 
 export const {
+    useGetChaptersQuery,
     useLazyGetChaptersQuery, useCreateChapterMutation, useUpdateChapterMutation, useDeleteChapterMutation,
     useAddToChapterMutation
 } = chaptersApi

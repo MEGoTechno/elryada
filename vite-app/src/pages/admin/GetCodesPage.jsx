@@ -195,14 +195,14 @@ function GetCodesPage() {
                     <Lectures
                         reset={reset} allStatuses={allStatuses} filters={{ codes: '!=' + code._id }}
                         massActions={[{
-                            label: 'ايضافه المحاضرات الي ' + code?.code,
+                            label: 'إضافة المحاضرات الي ' + code?.code,
                             onClick: (ids) => pushCodes({
                                 field: 'codes', value: code._id, ids, action: 'push'
                             })
                         }]}
                         addColumns={[{
                             field: 'add',
-                            headerName: 'ايضافه',
+                            headerName: 'إضافة',
                             type: 'actions',
                             getActions: (params) => {
                                 const lecture = params.row

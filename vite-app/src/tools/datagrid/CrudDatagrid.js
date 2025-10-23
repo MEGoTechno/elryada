@@ -46,9 +46,9 @@ const fullDateTimeRegex = /^[A-Za-z]{3}\s[A-Za-z]{3}\s\d{1,2}\s\d{4}\s\d{2}:\d{2
 function CrudDatagrid(
     {
         filterParams = [], exportObj, exportTitle, reset, columns,
-        editing = {}, removeCols = ['name'],
+        editing = {}, removeCols = [],
         fetchFc, loading, updateFc, deleteFc, apiRef, viewFc, deleteMany, ViewRow, analysisFc,
-        setSelection = false, allSelected, viewRowModal = {},
+        setSelection = false, allSelected, viewRowModal = {}, singleSelection = false,
         massActions = [], allStatuses = [{ isLoading: false }]
     }) {
     reset = (Array.isArray(reset) ? reset : [reset])
@@ -459,6 +459,7 @@ function CrudDatagrid(
                         setSelection(newRowSelectionModel)
                     }
                 }}
+                disableMultipleRowSelection={singleSelection}
                 rowSelectionModel={selectionModel}
 
                 //slots

@@ -52,10 +52,10 @@ export const coursesPerms = (courseId, key = null, meta = { values: false }) => 
         addSubscriptions: [
             {
                 id: 'courses.addSubscriptions',
-                label: "ايضافه الطلاب الي الكورسات ",
+                label: "إضافة الطلاب الي الكورسات ",
             }, {
                 id: 'course.addSubscriptions:' + courseId,
-                label: "ايضافه الطلاب الي هذا الكورس ",
+                label: "إضافة الطلاب الي هذا الكورس ",
                 scoped: true
             },
         ],
@@ -71,10 +71,10 @@ export const coursesPerms = (courseId, key = null, meta = { values: false }) => 
         teachers: [
             {
                 id: coursesConstants.TeachersCourses,
-                label: "ايضافه او حذف مدرس في الكورسات ",
+                label: "إضافة او حذف مدرس في الكورسات ",
             }, {
                 id: coursesConstants.$CourseTeachers + courseId,
-                label: "ايضافه او حذف مدرس",
+                label: "إضافة او حذف مدرس",
                 scoped: true
             },
         ],
@@ -93,10 +93,10 @@ export const coursesPerms = (courseId, key = null, meta = { values: false }) => 
         coupons: [
             {
                 id: coursesConstants.CouponsCourses,
-                label: "اداره الكوبونات في الكورسات ",
+                label: "إدارة الكوبونات في الكورسات ",
             }, {
                 id: coursesConstants.$CourseCoupons + courseId,
-                label: "اداره الكوبونات",
+                label: "إدارة الكوبونات",
                 scoped: true
 
             },

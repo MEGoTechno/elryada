@@ -6,6 +6,7 @@ const questionSchema = new mongoose.Schema({
     //For Idea should Ref To => grade ;or; Tags
     prevId: String,
     grade: { type: mongoose.Schema.Types.ObjectId, ref: 'grade', required: true },
+    // chapter: { type: mongoose.Schema.Types.ObjectId, ref: 'chapter' },
     tags: [{ type: mongoose.Schema.Types.ObjectId, ref: 'tag' }],
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
 

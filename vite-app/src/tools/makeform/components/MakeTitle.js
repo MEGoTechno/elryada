@@ -1,5 +1,4 @@
 import { Box, Divider, Typography, useTheme } from '@mui/material'
-import React from 'react'
 
 export default function MakeTitle(props) {
     const { children, title } = props

@@ -4,7 +4,7 @@ import useHandelQuestions from '../../hooks/useHandelQuestions'
 import { memo, useState } from 'react'
 import QuestionsForm from './QuestionsForm'
 
-function CreateQuestions({ setReset }) {
+function CreateQuestions({ setReset, grade, tags, chapter, type = 'mcq' }) { //types: mcq, tAf
 
     const [sendData, status] = useCreateQuestionMutation()
     const [createQuestionFc] = usePostData(sendData)
@@ -15,11 +15,13 @@ function CreateQuestions({ setReset }) {
 
     const onSubmit = async (values, props) => {
         try {
+            // console.log(values)
+            // return
             setLoading(true)
             const questions = await saveFiles(values)
             await createQuestionFc(questions)
 
-            localStorage.setItem("grade", questions[questions.length - 1]?.grade)
+            // localStorage.setItem("grade", questions[questions.length - 1]?.grade)
             if (setReset) {
                 setReset(pre => !pre)
             }
@@ -32,7 +34,7 @@ function CreateQuestions({ setReset }) {
 
     return (
         <div>
-            <QuestionsForm onSubmit={onSubmit} status={{ ...status, isLoading: loading }} />
+            <QuestionsForm type={type} onSubmit={onSubmit} status={{ ...status, isLoading: loading }} grade={grade} tags={tags} chapter={chapter} />
         </div>
     )
 }

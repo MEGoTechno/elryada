@@ -11,6 +11,7 @@ const chapterParams = (query) => {
         { key: "isActive", value: query.isActive },
         { key: "courses", value: query.courses },
         { key: "_id", value: query._id },
+        { key: "grade", value: query.grade },
         { key: "createdBy", value: query.createdBy },
         // { key: "teachers", value: query.teachers },
         // { key: "lectures", value: query.lectures },

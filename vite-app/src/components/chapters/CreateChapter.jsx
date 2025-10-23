@@ -5,12 +5,12 @@ import TitleWithDividers from '../ui/TitleWithDividers'
 
 import ChapterForm from './ChapterForm'
 
-function CreateChapter({ courseId, setChapters }) {
+function CreateChapter({ courseId, setChapters, grade }) {
     const [sendData, status] = useCreateChapterMutation()
     const [createChapter] = usePostData(sendData)
 
     const onSubmit = async (values, props) => {
-        const res = await createChapter({ ...values, courses: [courseId] })
+        const res = await createChapter({ ...values, courses: [courseId], grade })
         props.resetForm()
         if (setChapters) {
             setChapters(pre => ([res, ...pre]))

@@ -13,7 +13,7 @@ import Loader from '../../style/mui/loaders/Loader'
 import LoaderSkeleton from '../../style/mui/loaders/LoaderSkeleton'
 
 import { lang } from '../../settings/constants/arlang'
-import sectionConstants from '../../settings/constants/sectionConstants'
+import sectionConstants, { modifiedSection } from '../../settings/constants/sectionConstants'
 
 import { useLazyGetCourseLecturesAndCheckUserQuery } from '../../toolkit/apis/coursesApi'
 import useLazyGetData from '../../hooks/useLazyGetData'
@@ -26,6 +26,8 @@ import Grid from '../../style/vanilla/Grid'
 import DataWith3Items from '../../components/ui/DataWith3Items'
 import InfoText from '../../components/ui/InfoText'
 import { useGetTeachersQuery } from '../../toolkit/apis/usersApi'
+import SectionIcon from '../../components/content/SectionIcon'
+import BtnsGroup from '../../style/mui/styled/BtnsGroup'
 
 function CoursePage() {
     const params = useParams() // {lectureId, courseId = index, gradeId}
@@ -82,6 +84,7 @@ function CoursePage() {
 
     }, [courseDetails, params.lectureId, userProgress])
 
+
     if (!courseDetails?.course) {
         return <LoaderSkeleton />
     }
@@ -98,22 +101,27 @@ function CoursePage() {
                 color='primary.main'
                 desc={chapter.description} title={chapter.name}>
                 <Box>
-                    {chapter?.lectures.length === 0 && (
-                        <Alert variant='filled' severity='warning'>المحاضرات هتنزل قريب , خليك متابع !</Alert>
-                    )}
+                    {/* {chapter?.lectures.length === 0 && (
+                        <Alert variant='filled' severity='warning'>المحاضرات هتنزل قريبا !</Alert>
+                    )} */}
+                    <BtnsGroup innerSx={{ maxWidth: '450px' }} btns={modifiedSection.map(section => ({
+                        label: section.label,
+                        icon: <SectionIcon lecture={{ sectionType: section.value }} color="currentColor" />,
+                        component: <FlexColumn gap={'8px'}>
+                            {chapter?.lectures.filter(lec => lec.sectionType === section.value).length === 0 && (
+                                <Alert variant='filled' severity='warning'>{section.label} هتنزل قريبا !</Alert>
+                            )}
+                            {chapter?.lectures.filter(lec => lec.sectionType === section.value).map((lecture, i) => {
+                                return <LectureUserCard
+                                    lecturesProgress={userProgress && userProgress.find(u => u.chapter === chapter._id) || {}}
+                                    unlock={lecture.chapters?.includes(getCurrentLectureIndexInChapter.currentChapter) && getCurrentLectureIndexInChapter.currentIndex >= lecture.index}
+                                    key={i} lecture={lecture} i={i}
 
-                    <Grid>
-                        {chapter?.lectures.map((lecture, i) => {
-                            return <LectureUserCard
-                                lecturesProgress={userProgress && userProgress.find(u => u.chapter === chapter._id) || {}}
-                                unlock={lecture.chapters?.includes(getCurrentLectureIndexInChapter.currentChapter) && getCurrentLectureIndexInChapter.currentIndex >= lecture.index}
-                                key={i} lecture={lecture} i={i}
-
-                                currentLectureId={getCurrentLectureIndexInChapter?.lectureId}
-                                isSubscribed={courseDetails?.course?.isSubscribed} />
-                        })}
-
-                    </Grid>
+                                    currentLectureId={getCurrentLectureIndexInChapter?.lectureId}
+                                    isSubscribed={courseDetails?.course?.isSubscribed} />
+                            })}
+                        </FlexColumn>
+                    }))} />
                 </Box>
             </AccordionStyled>
         })}
@@ -156,7 +164,7 @@ function CoursePage() {
                                 {/* <TextBorderWithIcons title='المعلمون' sx={{ my: '.5rem', justifyContent: 'flex-start' }} /> */}
                                 <FlexRow justifyContent={'center'} gap='4px' sx={{ width: '100%' }}>
                                     {teachers?.values?.users.map(u => {
-                                        return <DataWith3Items key={u._id} sx={{  flexWrap: 'wrap', justifyContent: 'center' }}
+                                        return <DataWith3Items key={u._id} sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
                                             src={u.avatar?.url}
                                             title={u.name} desc={u.description} />
                                     })}

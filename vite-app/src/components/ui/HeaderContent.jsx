@@ -5,7 +5,7 @@ import Image from './Image'
 import { MdArrowForward } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 
-function HeaderContent({ title, body, infos = [], img, sideImg, children, height = '86vh', sectionName = "العوده", sideChildren }) {
+function HeaderContent({ title, body, infos = [], img, sideImg, children, height = 'auto', sectionName = "العوده", sideChildren }) {
 
     const theme = useTheme()
     const navigate = useNavigate()

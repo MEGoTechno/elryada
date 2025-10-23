@@ -50,11 +50,20 @@ const dateWithTimeOptions = {
 }
 
 export const getFullDate = (date) => {
-    return new Date(date).toLocaleDateString("ar-eg", dateOptions)
+    return new Date(date).toLocaleDateString('ar-SA', dateOptions)
 }
 
 export const getDateWithTime = (date) => {
-    return new Date(date).toLocaleDateString("ar-eg", dateWithTimeOptions)
+    return new Date(date).toLocaleDateString('ar-SA', dateWithTimeOptions)
+}
+
+export const getTimeOnly = (date) => {
+    return new Date(date).toLocaleTimeString('ar-SA', {
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        hour12: true
+    })
 }
 
 // Extend Day.js with the duration plugin

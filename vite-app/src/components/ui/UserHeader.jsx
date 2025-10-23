@@ -49,7 +49,7 @@ export default function UserHeader({ children, user, flexDirection = 'row', vari
                     variant={variant || 'square'} />
                 {(!user?.avatar?.url && !isAll) && (
                     <HashLink to={'/user/profile#edit'} smooth style={{ color: theme.palette.primary.main }}>
-                        <Typography color={'primary.main'} sx={{ cursor: 'pointer' }}>هل تريد ايضافه صوره شخصيه ؟</Typography>
+                        <Typography color={'primary.main'} sx={{ cursor: 'pointer' }}>هل تريد إضافة صوره شخصيه ؟</Typography>
                     </HashLink>
                 )}
 

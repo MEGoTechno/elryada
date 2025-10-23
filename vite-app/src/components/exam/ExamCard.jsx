@@ -87,7 +87,7 @@ function ExamCard({ exam, lecture }) {
     }
 
     const examPoints = useMemo(() => {
-        const points = exam.questions.reduce((acc, question) => {
+        const points = exam.questions?.reduce((acc, question) => {
             acc += question.points
             return acc
         }, 0)

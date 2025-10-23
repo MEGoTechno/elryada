@@ -1,18 +1,16 @@
-import { Alert, Box, FormControl, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup } from '@mui/material'
-import { ErrorMessage, Field, useField } from 'formik'
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { hasError } from '../constants/hasError'
+import { Alert, FormControl, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup } from '@mui/material'
+import { ErrorMessage, Field } from 'formik'
+import { memo } from 'react'
 
-function MakeRadio({ inputName, input, props }) {
+
+function MakeRadio({ inputName, input, showError }) {
 
     return (
-        <FormControl disabled={input.disabled} fullWidth error={hasError(props, inputName) ? true : false} >
+        <FormControl disabled={input.disabled} fullWidth error={showError ? true : false} >
             <FormLabel >{input.label}</FormLabel>
             <Field as={RadioGroup}
                 name={inputName}
             >
-
                 {input.options && input.options.map((option, i) => (
                     <FormControlLabel key={i} value={option.value} label={option.label} control={<Radio sx={{
                         " &.Mui-checked": {
@@ -26,12 +24,7 @@ function MakeRadio({ inputName, input, props }) {
                     <Alert dir='ltr' sx={{ mb: "5px" }} severity='error'>يجب إضافه ماده دراسيه</Alert>
                 )}
 
-                {/* {props.errors[inputName] && props.touched[inputName] && (
-                    <Alert dir='ltr' sx={{ mb: "5px" }} severity='error'> </Alert>
-                )} */}
-
-
-                <FormHelperText sx={{ color: hasError(props, inputName) && "error.dark" }}>
+                <FormHelperText sx={{ color: showError && "error.dark" }}>
                     <ErrorMessage name={inputName} />
                 </FormHelperText>
 
@@ -40,4 +33,4 @@ function MakeRadio({ inputName, input, props }) {
     )
 }
 
-export default MakeRadio
+export default memo(MakeRadio)

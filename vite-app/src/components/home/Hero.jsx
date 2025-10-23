@@ -1,8 +1,7 @@
-import { Box, Typography, useTheme, Accordion, AccordionSummary, AccordionDetails, useMediaQuery } from "@mui/material"
-import { FlexBetween, FlexColumn, FlexRow } from "../../style/mui/styled/Flexbox"
-import { OutLinedHoverBtn, ScallyBtn } from "../../style/buttonsStyles"
-import SpecialCard from "../ui/cards/SpecialCard"
-import CardService from "../ui/CardService"
+import { Box, Typography, useTheme, } from "@mui/material"
+import { FlexColumn, FlexRow } from "../../style/mui/styled/Flexbox"
+import { ScallyBtn } from "../../style/buttonsStyles"
+
 import CardInfo from "../../style/mui/components/CardInfo"
 import Grid from "../../style/vanilla/Grid"
 import { Link } from 'react-router-dom'
@@ -38,8 +37,8 @@ function Hero() {
                     </Grid>
                 </FlexColumn>
 
-                <img src="./assets/hero.webp" style={{
-                    maxWidth: '550px', flexShrink: 1
+                <Box component={'img'} src="./assets/hero.webp" sx={{
+                    maxWidth: { sm: '450px', lg: '550px' }
                 }} />
             </FlexRow>
         </Section>

@@ -18,6 +18,7 @@ const tagParams = (query) => {
         { key: "isActive", value: query.isActive, type: 'boolean' },
         { key: "createdAt", value: query.createdAt },
         { key: "createdBy", value: query.createdBy },
+        { key: "chapters", value: query.chapters },
     ]
 }
 
@@ -155,7 +156,7 @@ const linkTag = expressAsyncHandler(async (req, res, next) => {
     const questions = req.body.questions
 
     await QuestionModel.updateMany({ _id: { $in: questions } }, { $addToSet: { tags: tag } })
-    res.status(200).json({ message: 'تم ايضافه الروابط بنجاح', status: SUCCESS })
+    res.status(200).json({ message: 'تم إضافة المهارات بنجاح', status: SUCCESS })
 })
 
 // @desc delete tag from many Questions
@@ -169,7 +170,7 @@ const unLinkTag = expressAsyncHandler(async (req, res, next) => {
         { _id: { $in: questions }, tags: tag },
         { $pull: { tags: tag } }
     );
-    res.status(200).json({ message: 'تم ازاله الروابط بنجاح', status: SUCCESS })
+    res.status(200).json({ message: 'تم ازاله المهارات بنجاح', status: SUCCESS })
 })
 
 module.exports = {

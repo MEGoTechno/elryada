@@ -163,14 +163,14 @@ function LecturesPage() {
         //                     reset={reset}
         //                     allStatuses={[status]}
         //                     massActions={[{
-        //                         label: 'ايضافه الطلاب الي المحاضره ' + lecture.name,
+        //                         label: 'إضافة الطلاب الي المحاضره ' + lecture.name,
         //                         onClick: (chosenUsers) => handelUser({
         //                             ids: chosenUsers, field: 'lectures', value: lecture._id, action: 'push'
         //                         })
         //                     }]}
         //                     addColumns={[{
         //                         field: 'add',
-        //                         headerName: 'ايضافه',
+        //                         headerName: 'إضافة',
         //                         type: 'actions',
         //                         getActions: (params) => {
         //                             const user = params.row
@@ -250,13 +250,14 @@ function LecturesPage() {
         //     type: 'boolean',
         //     isSwitch: true
         // },
+        // {
+        //     field: "isCenter",
+        //     headerName: 'تفعيله للطلاب السنتر',
+        //     type: 'boolean',
+        //     isSwitch: true,
+        //     width: 150
+        // }, 
         {
-            field: "isCenter",
-            headerName: 'تفعيله للطلاب السنتر',
-            type: 'boolean',
-            isSwitch: true,
-            width: 150
-        }, {
             field: "isFree",
             headerName: 'مجاني؟',
             type: 'boolean',
