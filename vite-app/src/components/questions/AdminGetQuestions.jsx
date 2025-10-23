@@ -80,7 +80,7 @@ function AdminGetQuestions({
     }
 
     const fetchFc = async (params) => {
-        const toSearch = { ...params, ...filters } //grade, 
+        const toSearch = { ...params, ...filters, populate: 'createdBy.name' } //grade, 
         toSearch.tags = (filterTags && filterTags?.length) ? filterTags : toSearch.tags
 
         const res = await getQuestions(toSearch, false)
@@ -138,6 +138,16 @@ function AdminGetQuestions({
             sortable: false,
             valueFormatter: (v) => {
                 return (v?.map(tag => data?.values?.tags.find(t => t._id === tag).name).join(' - ')) || 'لا يوجد مهاره'
+            }
+        }, {
+            field: "createdBy",
+            headerName: 'تم انشاءه بواسطه',
+            width: 200,
+            editable: false,
+            filterable: false,
+            sortable: false,
+            valueFormatter: (v) => {
+                return v.name
             }
         }, {
             field: 'hints',
